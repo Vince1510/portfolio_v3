@@ -1,0 +1,178 @@
+.card {
+  width: 100%;
+}
+
+.email-container,
+.phone-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px; /* Adjust as needed */
+}
+
+.icon {
+  margin-right: 8px; /* Adjust as needed */
+}
+
+.email,
+.phone {
+  color: #6b6b6b; /* Adjust as needed */
+}
+
+/* From Uiverse.io by boryanakrasteva */
+.container-contact {
+  margin-bottom: 5vw;
+  margin-top: 5vw;
+  height: 680px;
+  background: transparent;
+  position: relative;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.438);
+  overflow: hidden;
+  border-radius: 10px;
+}
+/* Removes the background color from the dark and light themes */
+.css-1v5z4dq-MuiPaper-root-MuiCard-root {
+  background-color: transparent !important;
+}
+.css-v4sxju-MuiPaper-root-MuiCard-root {
+  background-color: transparent !important;
+}
+
+.card-contact {
+  cursor: default;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #212121;
+  border: 1px solid rgba(255, 255, 255, 0.222);
+  -webkit-backdrop-filter: blur(100px);
+  backdrop-filter: blur(100px);
+  border-radius: 10px;
+  transition: all ease 0.3s;
+}
+
+.container-contact::after,
+.container-contact::before {
+  width: 500px;
+  height: 500px;
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  transition: 0.5s linear;
+}
+
+.container-contact::after {
+  top: -70px;
+  left: -70px;
+  background-color: #7be08b;
+  animation: animFirst 5s linear infinite;
+}
+
+.container-contact::before {
+  top: 70%;
+  left: 80%;
+  background-color: #e09545;
+  animation: animSecond 5s linear infinite;
+  animation-delay: 3s;
+}
+
+/* Media queries for different screen sizes */
+@media (max-width: 1200px) {
+  .container-contact::after {
+    left: -15px;
+  }
+
+  .container-contact::before {
+    left: 65%;
+  }
+}
+
+@media (max-width: 992px) {
+  .container-contact::after {
+    left: -10px;
+  }
+
+  .container-contact::before {
+    left: 60%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-contact::after {
+    left: -50px;
+  }
+
+  .container-contact::before {
+    left: 55%;
+  }
+}
+
+@media (max-width: 576px) {
+  .container-contact::after {
+    left: -50px;
+  }
+
+  .container-contact::before {
+    left: 50%;
+  }
+}
+
+.container-contact:hover {
+  box-shadow: 0px 0px 10px 0px #e09545, 0px 0px 20px 5px #7be08b;
+}
+
+.container-contact:hover::after {
+  left: 80%;
+  transform: scale(1.2);
+}
+
+.container-contact:hover::before {
+  left: -80px;
+  transform: scale(1.2);
+}
+
+@keyframes animFirst {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+@keyframes animSecond {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes animFirst {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+@keyframes animSecond {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}

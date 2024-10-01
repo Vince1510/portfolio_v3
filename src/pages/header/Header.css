@@ -1,0 +1,165 @@
+.container {
+  display: grid;
+  height: 80vh;
+  place-items: center;
+  overflow: hidden;
+  --circleDiameter: 400px;
+  --planets: calc(var(--circleDiameter) / 5);
+}
+
+.container h2,
+.container h3 {
+  margin: 5px 0; /* Reduces vertical margin */
+  text-align: center; /* Ensures text is centered */
+}
+
+.social-icon {
+  border: 5px solid #7be08b;
+  border-radius: 50%;
+  animation: scale 1s linear infinite alternate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+[data-theme="light"] .social-icon {
+  background-color: white;
+}
+
+[data-theme="dark"] .social-icon {
+  background-color: black;
+}
+
+.social-icon > svg {
+  width: 100%;
+  height: 80%;
+}
+
+.hero-circle {
+  position: relative;
+  width: var(--circleDiameter);
+  height: var(--circleDiameter);
+}
+.inner-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  border-radius: 50%;
+  width: 90%; /* Adjusted width */
+  height: 90%; /* Adjusted height */
+  max-width: 300px; /* Added max-width for limiting size on smaller screens */
+  max-height: 300px; /* Added max-height for limiting size on smaller screens */
+}
+
+.hero-rotate {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 7px solid #e09545;
+  border-radius: 100%;
+  animation: rotate 55s linear infinite;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), 0 0 10px #7be08b, 0 0 20px #e09545;
+}
+
+.planet {
+  position: absolute;
+  width: var(--planets);
+  aspect-ratio: 1;
+  border-radius: 100%;
+  animation: maintain 30s linear infinite;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5), 0 0 10px #7be08b, 0 0 20px #e09545;
+}
+
+.planet:nth-child(1) {
+  top: calc(-1 * var(--planets) / 2);
+  left: calc(var(--circleDiameter) / 2 - var(--planets) / 2 - 5px);
+}
+
+.planet:nth-child(2) {
+  top: calc(var(--circleDiameter) / 2 - var(--planets) / 2 - 5px);
+  right: calc(-1 * var(--planets) / 2);
+}
+
+.planet:nth-child(3) {
+  top: calc(var(--circleDiameter) / 2 - var(--planets) / 2 - 5px);
+  left: calc(-1 * var(--planets) / 2);
+}
+
+.planet:nth-child(4) {
+  left: calc(var(--circleDiameter) / 2 - var(--planets) / 2 - 5px);
+  bottom: calc(-1 * var(--planets) / 2);
+}
+
+@media screen and (max-width: 716px) {
+  .container {
+    --circleDiameter: 280px;
+    margin-bottom: 50px;
+    --planets: calc(var(--circleDiameter) / 5);
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes maintain {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@-webkit-keyframes drop {
+  0% {
+    top: 5px;
+    opacity: 0;
+  }
+  30% {
+    top: 10px;
+    opacity: 1;
+  }
+  100% {
+    top: 25px;
+    opacity: 0;
+  }
+}
+@keyframes drop {
+  0% {
+    top: 5px;
+    opacity: 0;
+  }
+  30% {
+    top: 10px;
+    opacity: 1;
+  }
+  100% {
+    top: 25px;
+    opacity: 0;
+  }
+}

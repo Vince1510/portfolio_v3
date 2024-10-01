@@ -1,0 +1,39 @@
+/* index.css */
+:root {
+  --background-color: #fff; /* default background color for light mode */
+  --text-color: #000; /* default text color for light mode */
+}
+
+.dark-mode {
+  --background-color: #222; /* background color for dark mode */
+  --text-color: #fff; /* text color for dark mode */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  padding-left: 120px;
+  padding-right: 120px;
+}
+
+h2 {
+  margin: 0;
+}
+
+.page-break {
+  margin-top: 100vh; /* Forces the contact section to appear below the visible window height */
+  page-break-before: always; /* Ensures it starts on a new page when printing */
+}
+
+@media (max-width: 716px) {
+  body {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}

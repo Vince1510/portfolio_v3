@@ -1,0 +1,7 @@
+.MuiButton-startIcon {
+  display: inherit;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  filter: drop-shadow(0 0 3px #70f3ff);
+  z-index: 9999;
+}

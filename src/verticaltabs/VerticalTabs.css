@@ -1,0 +1,122 @@
+.vertical-tabs-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.vertical-tabs {
+  cursor: pointer;
+}
+
+/* overwriting default styling */
+.css-1r7avug-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #8c63e0 !important;
+}
+
+.css-dyzi1o-MuiTabs-indicator {
+  background-color: #8c63e0 !important;
+}
+
+.css-3sx0hq-MuiTabs-indicator {
+  background-color: #8c63e0 !important;
+}
+
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #8c63e0 !important;
+}
+
+.css-10d9dml-MuiTabs-indicator {
+  width: 2px;
+  background-color: #8c63e0 !important;
+}
+
+/* Popup styles */
+.vertical-tabs-popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Arrow styles */
+.arrow {
+  display: none;
+  cursor: pointer;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 716px) {
+  .vertical-tabs-container {
+    position: static;
+    height: auto;
+  }
+
+  .vertical-tabs-popup {
+    position: fixed;
+    top: 50%;
+    right: -3px;
+    transform: translateX(100%);
+    background-color: var(--popup-background);
+    box-shadow: -2px 0 5px #e09545;
+    z-index: 1000;
+    border-radius: 5px 0 0 5px;
+  }
+
+  .vertical-tabs-popup.open {
+    transform: translateX(0);
+  }
+
+  .arrow {
+    display: block;
+    position: absolute;
+    left: -2px;
+    background-color: var(--popup-background);
+    padding: 6px;
+    border-radius: 5px 0 0 5px;
+    box-shadow: -2px 0 5px #7be08b;
+    animation: moveArrow 1s infinite alternate; /* Horizontal moving animation */
+    transform: rotate(180deg); /* Initially rotated 180 degrees */
+  }
+
+  .vertical-tabs-popup.open .arrow {
+    transform: rotate(0deg); /* Rotate to 0 degrees when container is open */
+  }
+
+  @keyframes moveArrow {
+    from {
+      left: -20px; /* Start position */
+    }
+    to {
+      left: -24px; /* End position */
+    }
+  }
+
+  /* Dark overlay background when popup is open */
+  .vertical-tabs-popup-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    z-index: 999; /* Below the popup */
+  }
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --popup-background: #121212;
+  --popup-shadow: #000;
+}
+
+/* Light theme */
+[data-theme="light"] {
+  --popup-background: white;
+  --popup-shadow: #8c63e0;
+}

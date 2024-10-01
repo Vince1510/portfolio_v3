@@ -1,0 +1,85 @@
+.skills-container {
+  height: 100vh;
+}
+
+.skills-grid {
+  margin-top: 20px;
+}
+
+.skills-page {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999; /* Ensure it's above other content */
+  transform-origin: top center; /* Set transform origin to top center for flipping effect */
+  transform: translateY(-100%);
+  opacity: 0; /* Initially hidden */
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for smooth animation */
+}
+
+.skills-page.visible {
+  transform: translateY(0%);
+  opacity: 1; /* Visible */
+}
+
+/* Adding different glow colors for each skill icon */
+.skill-icon-1 {
+  filter: drop-shadow(0 0 3px #7be08b);
+}
+
+body.light-theme .skills-container {
+  color: var(--light-theme-color);
+}
+
+body.dark-theme .skills-container {
+  color: var(--dark-theme-color);
+}
+
+.skills-container {
+  width: 100%;
+  margin: 0;
+  font-family: Verdana, sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  position: relative;
+  background: rgba(128, 128, 128, 0.2);
+  padding: 3px;
+  border-radius: 10px;
+  transition: transform 300ms ease-in-out;
+  overflow: hidden;
+}
+
+.inner {
+  padding: 15px;
+  background: none;
+  backdrop-filter: blur(80px);
+  border-radius: 7px;
+  text-align: center;
+}
+
+.blob {
+  filter: blur(40px);
+  position: absolute;
+  z-index: -1;
+  opacity: 0;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: #7be08b;
+  transition: all 300ms ease-in-out;
+}
+
+.fakeblob {
+  display: hidden;
+  position: absolute;
+  z-index: -1;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+}

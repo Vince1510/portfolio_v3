@@ -1,0 +1,42 @@
+.app-bar {
+  background-color: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.css-f7v0hb-MuiPaper-root-MuiAppBar-root {
+  background-image: none !important;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.title {
+  font-family: monospace;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.menu-button {
+  display: flex;
+  align-items: center;
+}
+
+.menu-button .icon {
+  color: inherit;
+}
+
+.nav-button {
+  display: block;
+}
+
+.user-button {
+  padding: 0;
+}
+
+.user-menu {
+  margin-top: 45px;
+}
+
+.menu-item {
+  text-align: center;
+}
