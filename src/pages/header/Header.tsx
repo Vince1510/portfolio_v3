@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { Phone, Email, GitHub, LinkedIn } from "@mui/icons-material";
 import { gsap } from "gsap";
-import "./Header.css";
+import "./Header.scss";
 import vinceImage from "./vince.jpeg";
 
 const HeaderPage: React.FC = () => {
