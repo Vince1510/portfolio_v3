@@ -1,10 +1,10 @@
 import React, { useState, useRef } from "react";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
-import "./index.css";
-import ResponsiveAppBar from "./appbar/AppBar";
-import CustomScrollLine from "./customscroll/CustomScrollLine";
-import BackToTopButton from "./backtotop/BackToTopButton";
-import VerticalTabs from "./verticaltabs/VerticalTabs";
+import "./index.scss";
+import ResponsiveAppBar from "./components/appbar/AppBar";
+import CustomScrollLine from "./components/customscroll/CustomScrollLine";
+import BackToTopButton from "./components/backtotop/BackToTopButton";
+import VerticalTabs from "./components/verticaltabs/VerticalTabs";
 import HeaderPage from "./pages/header/Header";
 import SkillsPage from "./pages/skills/Skills";
 import ProjectPage from "./pages/projecten/Projects";
@@ -12,15 +12,15 @@ import ContactPage from "./pages/contact/Contact";
 
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(true);
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
 
-  const headerRef = useRef<HTMLDivElement>(null);
-  const skillsRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
-  //test
+  const toggleDarkMode = () => setDarkMode((prevMode) => !prevMode);
+
+  const refs = {
+    headerRef: useRef<HTMLDivElement>(null),
+    skillsRef: useRef<HTMLDivElement>(null),
+    projectsRef: useRef<HTMLDivElement>(null),
+    contactRef: useRef<HTMLDivElement>(null),
+  };
 
   const theme = createTheme({
     palette: {
@@ -28,30 +28,27 @@ const App: React.FC = () => {
     },
   });
 
-  const scrollToRef = { headerRef, skillsRef, projectsRef, contactRef };
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <div data-theme={darkMode ? "light" : "dark"}>
-        <VerticalTabs scrollToRef={scrollToRef} />
+        <VerticalTabs scrollToRef={refs} />
         <CustomScrollLine />
 
-        <div id="header" ref={headerRef}>
+        <div id="header" ref={refs.headerRef}>
           <ResponsiveAppBar
             darkMode={darkMode}
             toggleDarkMode={toggleDarkMode}
           />
           <HeaderPage />
         </div>
-        <div id="skills" ref={skillsRef}>
+        <div id="skills" ref={refs.skillsRef}>
           <SkillsPage />
         </div>
-        <div id="projects" ref={projectsRef}>
+        <div id="projects" ref={refs.projectsRef}>
           <ProjectPage />
         </div>
-
-        <div id="contact" ref={contactRef} className="page-break">
+        <div id="contact" ref={refs.contactRef}>
           <ContactPage
             name="Vince van Apeldoorn"
             email="vincevanapeldoorn@gmail.com"

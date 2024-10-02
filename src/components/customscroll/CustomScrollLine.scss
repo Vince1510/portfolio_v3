@@ -30,13 +30,13 @@ body::-webkit-scrollbar {
 }
 
 .custom-scroll-line.left {
-  top: 0;
+  bottom: 0;
   height: 100%;
   width: 5px;
 }
 
 .custom-scroll-line.right {
-  bottom: 0;
+  top: 0;
   height: 100%;
   width: 5px;
 }

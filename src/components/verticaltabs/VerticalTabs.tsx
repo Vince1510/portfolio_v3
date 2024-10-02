@@ -2,8 +2,7 @@ import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import "./VerticalTabs.css";
-
+import "./VerticalTabs.scss";
 import { gsap } from "gsap";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
@@ -11,32 +10,20 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollToPlugin);
 
 interface ScrollToRef {
-  scrollToRef: {
-    headerRef: React.RefObject<HTMLDivElement>;
-    skillsRef: React.RefObject<HTMLDivElement>;
-    projectsRef: React.RefObject<HTMLDivElement>;
-    contactRef: React.RefObject<HTMLDivElement>;
-  };
+  headerRef: React.RefObject<HTMLDivElement>;
+  skillsRef: React.RefObject<HTMLDivElement>;
+  projectsRef: React.RefObject<HTMLDivElement>;
+  contactRef: React.RefObject<HTMLDivElement>;
 }
 
-const handleTabClick = (
-  index: number,
-  setActiveTab: (index: number) => void,
-  togglePopup: () => void
-) => {
-  setActiveTab(index);
-  togglePopup(); // Close the popup when a tab is clicked
-};
-
-export default function VerticalTabs({ scrollToRef }: ScrollToRef) {
+const VerticalTabs: React.FC<{ scrollToRef: ScrollToRef }> = ({
+  scrollToRef,
+}) => {
   const [activeTab, setActiveTab] = React.useState(0);
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
-
   const popupRef = React.useRef<HTMLDivElement | null>(null);
 
-  const togglePopup = () => {
-    setIsPopupOpen((prevState) => !prevState);
-  };
+  const togglePopup = () => setIsPopupOpen((prev) => !prev);
 
   const handleOutsideClick = (event: MouseEvent) => {
     if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
@@ -65,22 +52,14 @@ export default function VerticalTabs({ scrollToRef }: ScrollToRef) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          switch (entry.target.id) {
-            case "header":
-              setActiveTab(0);
-              break;
-            case "skills":
-              setActiveTab(1);
-              break;
-            case "projects":
-              setActiveTab(2);
-              break;
-            case "contact":
-              setActiveTab(3);
-              break;
-            default:
-              setActiveTab(0);
-          }
+          setActiveTab(
+            {
+              header: 0,
+              skills: 1,
+              projects: 2,
+              contact: 3,
+            }[entry.target.id] ?? 0
+          );
         }
       });
     }, options);
@@ -101,31 +80,18 @@ export default function VerticalTabs({ scrollToRef }: ScrollToRef) {
   }, [scrollToRef]);
 
   const handleTabClick = (index: number) => {
-    const { headerRef, skillsRef, projectsRef, contactRef } = scrollToRef;
-    let targetRef: React.RefObject<HTMLDivElement> | null = null;
-
-    switch (index) {
-      case 0:
-        targetRef = headerRef;
-        break;
-      case 1:
-        targetRef = skillsRef;
-        break;
-      case 2:
-        targetRef = projectsRef;
-        break;
-      case 3:
-        targetRef = contactRef;
-        break;
-      default:
-        break;
-    }
+    const targetRef = [
+      scrollToRef.headerRef,
+      scrollToRef.skillsRef,
+      scrollToRef.projectsRef,
+      scrollToRef.contactRef,
+    ][index];
 
     if (targetRef?.current) {
       gsap.to(window, {
-        scrollTo: { y: targetRef.current, autoKill: false }, // scrollTo the element
-        duration: 1, // duration of the animation
-        ease: "bounce.out", // easing function for bounce effect
+        scrollTo: { y: targetRef.current, autoKill: false },
+        duration: 1,
+        ease: "bounce.out",
       });
     }
 
@@ -149,28 +115,20 @@ export default function VerticalTabs({ scrollToRef }: ScrollToRef) {
           aria-label="Vertical tabs example"
           value={activeTab}
         >
-          <Tab
-            label="<Home/>"
-            onClick={() => handleTabClick(0)}
-            className="vertical-tab"
-          />
-          <Tab
-            label="<Skills/>"
-            onClick={() => handleTabClick(1)}
-            className="vertical-tab"
-          />
-          <Tab
-            label="<Projects/>"
-            onClick={() => handleTabClick(2)}
-            className="vertical-tab"
-          />
-          <Tab
-            label="<Contact/>"
-            onClick={() => handleTabClick(3)}
-            className="vertical-tab"
-          />
+          {["<Home/>", "<Skills/>", "<Projects/>", "<Contact/>"].map(
+            (label, index) => (
+              <Tab
+                key={index}
+                label={label}
+                onClick={() => handleTabClick(index)}
+                className="vertical-tab"
+              />
+            )
+          )}
         </Tabs>
       </Box>
     </Box>
   );
-}
+};
+
+export default VerticalTabs;

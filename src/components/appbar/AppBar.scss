@@ -1,11 +1,11 @@
-.app-bar {
-  background-color: transparent;
+.css-f7v0hb-MuiPaper-root-MuiAppBar-root {
+  background-image: none !important;
   padding-left: 0;
   padding-right: 0;
 }
 
-.css-f7v0hb-MuiPaper-root-MuiAppBar-root {
-  background-image: none !important;
+.app-bar {
+  background-color: transparent;
   padding-left: 0;
   padding-right: 0;
 }
@@ -19,10 +19,10 @@
 .menu-button {
   display: flex;
   align-items: center;
-}
 
-.menu-button .icon {
-  color: inherit;
+  .icon {
+    color: inherit;
+  }
 }
 
 .nav-button {

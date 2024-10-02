@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Phone, Email, GitHub, LinkedIn } from "@mui/icons-material";
 import { gsap } from "gsap";
 import "./Header.scss";
-import vinceImage from "./vince.jpeg";
+import vinceImage from "./vince.jpg";
 
 const HeaderPage: React.FC = () => {
   const nameRef = useRef<HTMLHeadingElement | null>(null);

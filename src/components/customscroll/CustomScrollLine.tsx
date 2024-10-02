@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./CustomScrollLine.css";
+import "./CustomScrollLine.scss";
 
 const CustomScrollLine: React.FC = () => {
   const [scrollPercentage, setScrollPercentage] = useState(0);

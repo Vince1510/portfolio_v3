@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -6,7 +6,7 @@ import Container from "@mui/material/Container";
 import Hidden from "@mui/material/Hidden";
 import ThemeSwitcher from "../themeswitcher/ThemeSwitcher";
 import Drawer from "@mui/material/Drawer";
-import "./AppBar.css";
+import "./AppBar.scss";
 
 interface ResponsiveAppBarProps {
   darkMode: boolean;
@@ -19,9 +19,7 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
 }) => {
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
 
-  const toggleDrawer = () => {
-    setIsDrawerOpen(!isDrawerOpen);
-  };
+  const toggleDrawer = () => setIsDrawerOpen((prev) => !prev);
 
   return (
     <AppBar
