@@ -49,11 +49,7 @@ const App: React.FC = () => {
           <ProjectPage />
         </div>
         <div id="contact" ref={refs.contactRef}>
-          <ContactPage
-            name="Vince van Apeldoorn"
-            email="vincevanapeldoorn@gmail.com"
-            phone="+31 6 38457836"
-          />
+          <ContactPage/>
         </div>
 
         <BackToTopButton />

@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.7fed5c36.css",
-    "main.js": "/static/js/main.114c15d1.js",
-    "static/js/453.c88e3155.chunk.js": "/static/js/453.c88e3155.chunk.js",
-    "index.html": "/index.html",
-    "main.7fed5c36.css.map": "/static/css/main.7fed5c36.css.map",
-    "main.114c15d1.js.map": "/static/js/main.114c15d1.js.map",
-    "453.c88e3155.chunk.js.map": "/static/js/453.c88e3155.chunk.js.map"
+    "main.css": "/Vince1510/portfolio_v3/static/css/main.e17deae5.css",
+    "main.js": "/Vince1510/portfolio_v3/static/js/main.b1f29f43.js",
+    "static/media/video-tik-tac-toe.mp4": "/Vince1510/portfolio_v3/static/media/video-tik-tac-toe.d4a35173ed641c3e1c8e.mp4",
+    "static/media/play-to-earn.png": "/Vince1510/portfolio_v3/static/media/play-to-earn.31477fa3c63966bd9814.png",
+    "static/media/putiton-e.png": "/Vince1510/portfolio_v3/static/media/putiton-e.e04416c7480b8d49161e.png",
+    "static/media/vince.jpg": "/Vince1510/portfolio_v3/static/media/vince.150b04276a80993b5b3c.jpg",
+    "static/media/portfolio-site.png": "/Vince1510/portfolio_v3/static/media/portfolio-site.1156a48450aaba01d746.png",
+    "static/media/mern-auth-cover.png": "/Vince1510/portfolio_v3/static/media/mern-auth-cover.b329529b19658f74f9c3.png",
+    "index.html": "/Vince1510/portfolio_v3/index.html",
+    "main.e17deae5.css.map": "/Vince1510/portfolio_v3/static/css/main.e17deae5.css.map",
+    "main.b1f29f43.js.map": "/Vince1510/portfolio_v3/static/js/main.b1f29f43.js.map"
   },
   "entrypoints": [
-    "static/css/main.7fed5c36.css",
-    "static/js/main.114c15d1.js"
+    "static/css/main.e17deae5.css",
+    "static/js/main.b1f29f43.js"
   ]
 }

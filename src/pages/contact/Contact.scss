@@ -1,38 +1,69 @@
 .card {
   width: 100%;
+
+  .email-container,
+  .phone-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px; 
+  }
+
+  .css-sghohy-MuiButtonBase-root-MuiButton-root{
+    background-color: #8c63e0;
+  }
+
+  .css-sghohy-MuiButtonBase-root-MuiButton-root:hover{
+    background-color: #8c63e0;
+
+  }
+  .icon {
+    margin-right: 8px; 
+  }
+
+  .email,
+  .phone {
+    color: #6b6b6b;
+  }
 }
 
-.email-container,
-.phone-container {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px; /* Adjust as needed */
-}
-
-.icon {
-  margin-right: 8px; /* Adjust as needed */
-}
-
-.email,
-.phone {
-  color: #6b6b6b; /* Adjust as needed */
-}
-
-/* From Uiverse.io by boryanakrasteva */
 .container-contact {
   margin-bottom: 5vw;
-  margin-top: 5vw;
-  height: 680px;
+  margin-top: 30vw;
+  height: 590px;
   background: transparent;
   position: relative;
   box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.438);
   overflow: hidden;
   border-radius: 10px;
+
+  &::after,
+  &::before {
+    width: 500px;
+    height: 500px;
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    transition: 0.5s linear;
+  }
+
+  &::after {
+    top: -300px;
+    left: -70px;
+    background-color: #7be08b;
+    animation: animFirst 5s linear infinite;
+  }
+
+  &::before {
+    top: 70%;
+    left: 80%;
+    background-color: #e09545;
+    animation: animSecond 5s linear infinite;
+    animation-delay: 3s;
+  }
 }
-/* Removes the background color from the dark and light themes */
-.css-1v5z4dq-MuiPaper-root-MuiCard-root {
-  background-color: transparent !important;
-}
+
+// Removes the background color from the dark and light themes
+.css-1v5z4dq-MuiPaper-root-MuiCard-root,
 .css-v4sxju-MuiPaper-root-MuiCard-root {
   background-color: transparent !important;
 }
@@ -55,31 +86,6 @@
   backdrop-filter: blur(100px);
   border-radius: 10px;
   transition: all ease 0.3s;
-}
-
-.container-contact::after,
-.container-contact::before {
-  width: 500px;
-  height: 500px;
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  transition: 0.5s linear;
-}
-
-.container-contact::after {
-  top: -70px;
-  left: -70px;
-  background-color: #7be08b;
-  animation: animFirst 5s linear infinite;
-}
-
-.container-contact::before {
-  top: 70%;
-  left: 80%;
-  background-color: #e09545;
-  animation: animSecond 5s linear infinite;
-  animation-delay: 3s;
 }
 
 /* Media queries for different screen sizes */
@@ -133,7 +139,7 @@
 }
 
 .container-contact:hover::before {
-  left: -80px;
+  left: -300px;
   transform: scale(1.2);
 }
 
@@ -176,3 +182,4 @@
     transform: translateY(-20px);
   }
 }
+

@@ -5,7 +5,6 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import { useTheme } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -59,7 +58,6 @@ function a11yProps(index: number): { id: string; "aria-controls": string } {
 
 export default function Project() {
   const [value, setValue] = React.useState(0);
-  const theme = useTheme();
   const isSmallScreen = useMediaQuery("(max-width:1000px)");
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {

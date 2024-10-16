@@ -6,6 +6,7 @@ import Container from "@mui/material/Container";
 import Hidden from "@mui/material/Hidden";
 import ThemeSwitcher from "../themeswitcher/ThemeSwitcher";
 import Drawer from "@mui/material/Drawer";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward"; // Import the arrow icon
 import "./AppBar.scss";
 
 interface ResponsiveAppBarProps {
@@ -52,6 +53,9 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
           </Typography>
           <ThemeSwitcher darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
         </Toolbar>
+        
+
+
         <Hidden mdUp>
           <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer}>
             <div
