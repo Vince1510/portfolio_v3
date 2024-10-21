@@ -6,7 +6,6 @@ import Container from "@mui/material/Container";
 import Hidden from "@mui/material/Hidden";
 import ThemeSwitcher from "../themeswitcher/ThemeSwitcher";
 import Drawer from "@mui/material/Drawer";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward"; // Import the arrow icon
 import "./AppBar.scss";
 
 interface ResponsiveAppBarProps {

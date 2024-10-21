@@ -90,15 +90,21 @@ const ContactPage: React.FC = () => {
               margin="normal"
               required
             />
-            <Button 
-              type="submit" 
-              variant="contained" 
-              color={success ? "success" : "primary"}
-              disabled={loading}
-              endIcon={loading ? <CircularProgress size={20} color="inherit" /> : (success ? <CheckCircleIcon /> : null)} // Show loading or success icon
-            >
-              {loading ? "Sending..." : (success ? "Sent!" : "Submit")}
-            </Button>
+            <Button
+  type="submit"
+  variant="contained"
+  color={success ? "success" : "primary"}
+  disabled={loading}
+  endIcon={loading ? <CircularProgress size={20} color="inherit" /> : (success ? <CheckCircleIcon /> : null)}
+  sx={{
+    backgroundColor: "#8c63e0",
+    "&:hover": {
+      backgroundColor: "#784bd1",
+    },
+  }}
+>
+  {loading ? "Sending..." : (success ? "Sent!" : "Submit")}
+</Button>
           </form>
 
         </CardContent>

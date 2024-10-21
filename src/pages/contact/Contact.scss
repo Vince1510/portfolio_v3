@@ -26,6 +26,36 @@
   }
 }
 
+/* Contact.scss */
+.MuiTextField-root {
+  .MuiOutlinedInput-root {
+    fieldset {
+      border-color: #8c63e0;
+    }
+
+    &:hover fieldset {
+      border-color: #8c63e0;
+    }
+
+    &.Mui-focused fieldset {
+      border-color: #8c63e0;
+    }
+  }
+
+  label.Mui-focused {
+    color: #8c63e0;
+  }
+}
+
+.MuiButton-root {
+  background-color: #8c63e0;
+
+  &:hover {
+    background-color: #784bd1;
+  }
+}
+
+
 .container-contact {
   margin-bottom: 5vw;
   margin-top: 30vw;
