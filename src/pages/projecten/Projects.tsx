@@ -174,7 +174,7 @@ export default function Project() {
               <div className="card-project__content">
                 <p className="card-project__title">Putiton-e</p>
                 <p className="card-project__description">
-                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt de website
+                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website
                   Putiton-e
                   <br />
                   https://putiton-e.com/
@@ -190,7 +190,7 @@ export default function Project() {
               <div className="card-project__content">
                 <p className="card-project__title">Play to Earn games</p>
                 <p className="card-project__description">
-                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt de website
+                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website
                   Play to Earn games
                   <br />
                   https://playtoearngames.com/
@@ -206,8 +206,7 @@ export default function Project() {
               <div className="card-project__content">
                 <p className="card-project__title">Tic Tac Toe</p>
                 <p className="card-project__description">
-                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de
-                  website Play to Earn games
+                  Tic tac toe volledig met React
                   <br />
                   <a
                     href="https://github.com/Vince1510/Tic-Tac-Toe"

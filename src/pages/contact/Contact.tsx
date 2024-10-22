@@ -1,5 +1,12 @@
 import React, { useState, useRef } from "react";
-import { Card, CardContent, Typography, Button, TextField, InputAdornment } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Typography,
+  Button,
+  TextField,
+  InputAdornment,
+} from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle"; // Import check icon
@@ -47,8 +54,7 @@ const ContactPage: React.FC = () => {
           <Typography variant="h6" gutterBottom>
             Contact Me
           </Typography>
-          <form onSubmit={onSubmit} ref={formRef} className="contact-form"> 
-            
+          <form onSubmit={onSubmit} ref={formRef} className="contact-form">
             <TextField
               label="Name"
               name="name"
@@ -91,22 +97,27 @@ const ContactPage: React.FC = () => {
               required
             />
             <Button
-  type="submit"
-  variant="contained"
-  color={success ? "success" : "primary"}
-  disabled={loading}
-  endIcon={loading ? <CircularProgress size={20} color="inherit" /> : (success ? <CheckCircleIcon /> : null)}
-  sx={{
-    backgroundColor: "#8c63e0",
-    "&:hover": {
-      backgroundColor: "#784bd1",
-    },
-  }}
->
-  {loading ? "Sending..." : (success ? "Sent!" : "Submit")}
-</Button>
+              type="submit"
+              variant="contained"
+              color={success ? "success" : "primary"}
+              disabled={loading}
+              endIcon={
+                loading ? (
+                  <CircularProgress size={20} color="inherit" />
+                ) : success ? (
+                  <CheckCircleIcon />
+                ) : null
+              }
+              sx={{
+                backgroundColor: "#8c63e0",
+                "&:hover": {
+                  backgroundColor: "#784bd1",
+                },
+              }}
+            >
+              {loading ? "Sending..." : success ? "Sent!" : "Submit"}
+            </Button>
           </form>
-
         </CardContent>
       </Card>
     </div>

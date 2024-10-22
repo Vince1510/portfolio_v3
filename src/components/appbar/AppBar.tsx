@@ -29,6 +29,7 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
         boxShadow: "none",
         paddingLeft: 0,
         paddingRight: 0,
+        backgroundImage: 'none',
       }}
     >
       <Container maxWidth="xl" sx={{ paddingLeft: 0, paddingRight: 0 }}>
