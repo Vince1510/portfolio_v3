@@ -6,7 +6,7 @@ const SkillsPage: React.FC = () => {
   useEffect(() => {
     // Blob Animation
     const allCards = document.querySelectorAll(".card");
-    
+
     const handleMouseMove = (ev: MouseEvent) => {
       allCards.forEach((card) => {
         const blob = card.querySelector(".blob") as HTMLElement;
@@ -63,7 +63,6 @@ interface Skill {
   title: string;
   icon: JSX.Element;
 }
-
 
 const skills: Skill[] = [
   {
@@ -152,7 +151,7 @@ const skills: Skill[] = [
     ),
   },
   {
-    title: "Material-UI",
+    title: "Mui",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -220,7 +219,7 @@ const skills: Skill[] = [
     ),
   },
   {
-    title: "Tailwind CSS",
+    title: "Tailwind",
     icon: (
       <svg
         xmlns="http://www.w3.org/2000/svg"

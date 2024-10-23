@@ -60,7 +60,7 @@
   .vertical-tabs-popup {
     position: fixed;
     top: 50%;
-    right: -3px;
+    right: 2px;
     transform: translateX(100%);
     background-color: var(--popup-background);
     box-shadow: -2px 0 5px #e09545;
@@ -77,7 +77,7 @@
     position: absolute;
     left: -2px;
     background-color: var(--popup-background);
-    padding: 6px;
+    padding: 8px;
     border-radius: 5px 0 0 5px;
     box-shadow: -2px 0 5px #7be08b;
     animation: moveArrow 1s infinite alternate; /* Horizontal moving animation */
