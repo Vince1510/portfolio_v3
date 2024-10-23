@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/portfolio_v3/static/css/main.0f338f24.css",
+    "main.css": "/portfolio_v3/static/css/main.d68fef1e.css",
     "main.js": "/portfolio_v3/static/js/main.f1f6da8d.js",
     "static/media/video-tik-tac-toe.mp4": "/portfolio_v3/static/media/video-tik-tac-toe.d4a35173ed641c3e1c8e.mp4",
     "static/media/play-to-earn.png": "/portfolio_v3/static/media/play-to-earn.31477fa3c63966bd9814.png",
@@ -9,11 +9,11 @@
     "static/media/portfolio-site.png": "/portfolio_v3/static/media/portfolio-site.1156a48450aaba01d746.png",
     "static/media/mern-auth-cover.png": "/portfolio_v3/static/media/mern-auth-cover.b329529b19658f74f9c3.png",
     "index.html": "/portfolio_v3/index.html",
-    "main.0f338f24.css.map": "/portfolio_v3/static/css/main.0f338f24.css.map",
+    "main.d68fef1e.css.map": "/portfolio_v3/static/css/main.d68fef1e.css.map",
     "main.f1f6da8d.js.map": "/portfolio_v3/static/js/main.f1f6da8d.js.map"
   },
   "entrypoints": [
-    "static/css/main.0f338f24.css",
+    "static/css/main.d68fef1e.css",
     "static/js/main.f1f6da8d.js"
   ]
 }
