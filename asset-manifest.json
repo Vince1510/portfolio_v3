@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/portfolio_v3/static/css/main.a226534f.css",
-    "main.js": "/portfolio_v3/static/js/main.cfec6e31.js",
+    "main.js": "/portfolio_v3/static/js/main.1872a4db.js",
     "static/media/video-tik-tac-toe.mp4": "/portfolio_v3/static/media/video-tik-tac-toe.d4a35173ed641c3e1c8e.mp4",
     "static/media/play-to-earn.png": "/portfolio_v3/static/media/play-to-earn.31477fa3c63966bd9814.png",
     "static/media/putiton-e.png": "/portfolio_v3/static/media/putiton-e.e04416c7480b8d49161e.png",
@@ -10,10 +10,10 @@
     "static/media/mern-auth-cover.png": "/portfolio_v3/static/media/mern-auth-cover.b329529b19658f74f9c3.png",
     "index.html": "/portfolio_v3/index.html",
     "main.a226534f.css.map": "/portfolio_v3/static/css/main.a226534f.css.map",
-    "main.cfec6e31.js.map": "/portfolio_v3/static/js/main.cfec6e31.js.map"
+    "main.1872a4db.js.map": "/portfolio_v3/static/js/main.1872a4db.js.map"
   },
   "entrypoints": [
     "static/css/main.a226534f.css",
-    "static/js/main.cfec6e31.js"
+    "static/js/main.1872a4db.js"
   ]
 }
