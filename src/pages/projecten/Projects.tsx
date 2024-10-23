@@ -189,8 +189,7 @@ export default function Project() {
                 <p className="card-project__title">Putiton-e</p>
                 <p className="card-project__description">
                   Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de
-                  website Putiton-e. Hier heb ik ook geleerd om met Ant design
-                  te werken want dit project was opgezet met Ant design.
+                  website Putiton-e.
                   <br />
                   <a
                     href="https://putiton-e.com/"
@@ -212,8 +211,7 @@ export default function Project() {
                 <p className="card-project__title">Play to Earn games</p>
                 <p className="card-project__description">
                   Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de
-                  website Play to Earn games. Hier heb ik ook geleerd om met Mui
-                  te werken want dit project was opgezet met Mui
+                  website Play to Earn games.
                   <br />
                   <a
                     href="https://playtoearngames.com/"

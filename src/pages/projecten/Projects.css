@@ -116,11 +116,10 @@
 @media screen and (max-width: 600px) {
   .container-project:hover {
     box-shadow: 0px 0px 10px 0px #e09545, 0px 0px 20px 5px #7be08b;
-    font-size: 12px;
+    font-size: 9px;
   }
   .container-project {
     box-shadow: 0px 0px 10px 0px #e09545, 0px 0px 20px 5px #7be08b;
-    font-size: 12px;
   }
 }
 
