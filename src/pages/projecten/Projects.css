@@ -91,7 +91,6 @@
   color: #6b6b6b; /* Adjust as needed */
 }
 
-/* From Uiverse.io by boryanakrasteva */
 .container-project {
   background: transparent;
   position: relative;
@@ -117,9 +116,6 @@
   .container-project:hover {
     box-shadow: 0px 0px 10px 0px #e09545, 0px 0px 20px 5px #7be08b;
     font-size: 9px;
-  }
-  .container-project {
-    box-shadow: 0px 0px 10px 0px #e09545, 0px 0px 20px 5px #7be08b;
   }
 }
 
@@ -197,9 +193,7 @@
 
   animation: animFirst 5s linear infinite;
 
-  /* Add blur and transparency */
-  filter: blur(20px); /* Adjust the blur amount as needed */
-  opacity: 0; /* Adjust the transparency level (0.0 to 1.0) */
+  opacity: 0%;
 }
 
 .container-project::before {
@@ -211,9 +205,7 @@
   animation-delay: 3s;
   z-index: 1;
 
-  /* Add blur and transparency */
-  filter: blur(20px); /* Adjust the blur amount as needed */
-  opacity: 0; /* Adjust the transparency level (0.0 to 1.0) */
+  opacity: 0%;
 }
 
 .css-69i1ev {
@@ -261,20 +253,20 @@
   }
 }
 
-.container-project:hover {
+.container-project {
   box-shadow: 0px 0px 10px 0px #e09545, 0px 0px 20px 5px #7be08b;
 }
 
 .container-project:hover::after {
   left: 80%;
   transform: scale(1.2);
-  opacity: 0.6;
+  opacity: 0.3;
 }
 
 .container-project:hover::before {
   left: -80px;
   transform: scale(1.2);
-  opacity: 0.6;
+  opacity: 0.3;
 }
 
 @keyframes animFirst {
