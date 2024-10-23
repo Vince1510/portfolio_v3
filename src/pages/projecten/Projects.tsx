@@ -170,11 +170,11 @@ export default function Project() {
                   UI ook heb ik animaties erin toegevoed met GSAP
                   <br />
                   <a
-                    href="https://github.com/Vince1510/Portfolio-Mui-React_v3"
+                    href="https://github.com/Vince1510/portfolio_v3"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    https://github.com/Vince1510/Portfolio-Mui-React_v3
+                    https://github.com/Vince1510/portfolio_v3
                   </a>
                 </p>
               </div>
