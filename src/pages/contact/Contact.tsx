@@ -61,56 +61,6 @@ const ContactPage: React.FC = () => {
           boxShadow: "0px 0px 5px rgba(0, 0, 0, 0.438)",
           overflow: "hidden",
           borderRadius: "10px",
-          "&::after, &::before": {
-            zIndex: -1,
-            width: "500px",
-            height: "500px",
-            content: '""',
-            position: "absolute",
-            borderRadius: "50%",
-            transition: "0.5s linear",
-            filter: "blur(120px)", // Applying extreme blur
-          },
-          "&::after": {
-            top: "-150px",
-            left: "-70px",
-            backgroundColor: "#7be08b",
-            animation: "animFirst 5s linear infinite",
-          },
-          "&::before": {
-            top: "70%",
-            left: "70%",
-            backgroundColor: "#e09545",
-            animation: "animSecond 5s linear infinite",
-            animationDelay: "3s",
-          },
-          "&:hover": {
-            boxShadow: "0px 0px 10px 0px #e09545, 0px 0px 20px 5px #7be08b",
-          },
-          "&:hover::after": {
-            left: "80%",
-            transform: "scale(1.2)",
-          },
-          "&:hover::before": {
-            left: "-150px",
-            transform: "scale(1.2)",
-          },
-          "@keyframes animFirst": {
-            "0%, 100%": {
-              transform: "translateY(0)",
-            },
-            "50%": {
-              transform: "translateY(20px)",
-            },
-          },
-          "@keyframes animSecond": {
-            "0%, 100%": {
-              transform: "translateY(0)",
-            },
-            "50%": {
-              transform: "translateY(-20px)",
-            },
-          },
         }}
       >
         <CardContent>
@@ -182,6 +132,8 @@ const ContactPage: React.FC = () => {
             </Button>
           </form>
         </CardContent>
+        <div className="contactanimate1"></div>
+        <div className="contactanimate2"></div>
       </Card>
     </div>
   );
