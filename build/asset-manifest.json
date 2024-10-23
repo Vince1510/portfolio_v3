@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/portfolio_v3/static/css/main.a226534f.css",
-    "main.js": "/portfolio_v3/static/js/main.cfec6e31.js",
+    "main.css": "/portfolio_v3/static/css/main.d68fef1e.css",
+    "main.js": "/portfolio_v3/static/js/main.f1f6da8d.js",
     "static/media/video-tik-tac-toe.mp4": "/portfolio_v3/static/media/video-tik-tac-toe.d4a35173ed641c3e1c8e.mp4",
     "static/media/play-to-earn.png": "/portfolio_v3/static/media/play-to-earn.31477fa3c63966bd9814.png",
     "static/media/putiton-e.png": "/portfolio_v3/static/media/putiton-e.e04416c7480b8d49161e.png",
@@ -9,11 +9,11 @@
     "static/media/portfolio-site.png": "/portfolio_v3/static/media/portfolio-site.1156a48450aaba01d746.png",
     "static/media/mern-auth-cover.png": "/portfolio_v3/static/media/mern-auth-cover.b329529b19658f74f9c3.png",
     "index.html": "/portfolio_v3/index.html",
-    "main.a226534f.css.map": "/portfolio_v3/static/css/main.a226534f.css.map",
-    "main.cfec6e31.js.map": "/portfolio_v3/static/js/main.cfec6e31.js.map"
+    "main.d68fef1e.css.map": "/portfolio_v3/static/css/main.d68fef1e.css.map",
+    "main.f1f6da8d.js.map": "/portfolio_v3/static/js/main.f1f6da8d.js.map"
   },
   "entrypoints": [
-    "static/css/main.a226534f.css",
-    "static/js/main.cfec6e31.js"
+    "static/css/main.d68fef1e.css",
+    "static/js/main.f1f6da8d.js"
   ]
 }
