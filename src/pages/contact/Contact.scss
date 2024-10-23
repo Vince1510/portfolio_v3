@@ -34,7 +34,6 @@
     background-color: #7be08b;
     opacity: 50%;
     animation: animFirst 5s linear infinite;
-    box-shadow: 0px 0px 100px 50px #7be08b;
   }
 
   .contactanimate2 {
@@ -45,7 +44,6 @@
 
     animation: animSecond 5s linear infinite;
     animation-delay: 3s;
-    box-shadow: 0px 0px 100px 50px #e09545;
   }
 
   &:hover {
