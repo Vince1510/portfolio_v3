@@ -144,8 +144,16 @@ export default function Project() {
               <div className="card-project__content">
                 <p className="card-project__title">MERN Auth</p>
                 <p className="card-project__description">
-                  Mern authenticatie met json web token:
-                  https://github.com/Vince1510/MERN-Auth
+                  Ik heb van NetNinja geleerd hoe ik mern-stack projecten kan
+                  maken met JSON web tokens.
+                  <br />
+                  <a
+                    href="https://github.com/Vince1510/MERN-Auth"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://github.com/Vince1510/MERN-Auth
+                  </a>
                 </p>
               </div>
             </div>
@@ -161,7 +169,13 @@ export default function Project() {
                   Deze portfolio website is gemaakt met Typescript en Material
                   UI ook heb ik animaties erin toegevoed met GSAP
                   <br />
-                  https://github.com/Vince1510/Portfolio-Mui-React_v3
+                  <a
+                    href="https://github.com/Vince1510/Portfolio-Mui-React_v3"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://github.com/Vince1510/Portfolio-Mui-React_v3
+                  </a>
                 </p>
               </div>
             </div>
@@ -174,10 +188,17 @@ export default function Project() {
               <div className="card-project__content">
                 <p className="card-project__title">Putiton-e</p>
                 <p className="card-project__description">
-                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website
-                  Putiton-e
+                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de
+                  website Putiton-e. Hier heb ik ook geleerd om met Ant design
+                  te werken want dit project was opgezet met Ant design.
                   <br />
-                  https://putiton-e.com/
+                  <a
+                    href="https://putiton-e.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://putiton-e.com/
+                  </a>
                 </p>
               </div>
             </div>
@@ -190,10 +211,17 @@ export default function Project() {
               <div className="card-project__content">
                 <p className="card-project__title">Play to Earn games</p>
                 <p className="card-project__description">
-                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website
-                  Play to Earn games
+                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de
+                  website Play to Earn games. Hier heb ik ook geleerd om met Mui
+                  te werken want dit project was opgezet met Mui
                   <br />
-                  https://playtoearngames.com/
+                  <a
+                    href="https://playtoearngames.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    https://playtoearngames.com/
+                  </a>
                 </p>
               </div>
             </div>
@@ -206,7 +234,7 @@ export default function Project() {
               <div className="card-project__content">
                 <p className="card-project__title">Tic Tac Toe</p>
                 <p className="card-project__description">
-                  Tic tac toe volledig met React
+                  Tic tac toe volledig met React voor 2 spelers.
                   <br />
                   <a
                     href="https://github.com/Vince1510/Tic-Tac-Toe"

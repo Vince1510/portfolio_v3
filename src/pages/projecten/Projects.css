@@ -99,6 +99,59 @@
   overflow: hidden;
   border-radius: 10px;
 }
+
+.container-project {
+  background: transparent;
+  position: relative;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.438);
+  overflow: hidden;
+  border-radius: 10px;
+  transition: box-shadow 0.3s ease, height 0.6s ease;
+}
+
+.container-project:hover {
+  box-shadow: 0px 0px 10px 0px #e09545, 0px 0px 20px 5px #7be08b;
+}
+
+@media screen and (max-width: 600px) {
+  .container-project:hover {
+    box-shadow: 0px 0px 10px 0px #e09545, 0px 0px 20px 5px #7be08b;
+    height: 310px;
+    font-size: 12px;
+  }
+}
+
+.container-project:hover::after {
+  left: 80%;
+  transform: scale(1.2);
+  opacity: 0.6;
+}
+
+.container-project:hover::before {
+  left: -80px;
+  transform: scale(1.2);
+  opacity: 0.6;
+}
+
+/* Optional: Adjust card-project styles for better responsiveness */
+.card-project {
+  padding: 1vw;
+  cursor: default;
+  width: 100%;
+  height: auto; /* Allow height to adjust based on content */
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  -webkit-backdrop-filter: blur(100px);
+  backdrop-filter: blur(100px);
+  border-radius: 10px;
+  transition: all ease 0.3s;
+}
+
 /* Removes the background color from the dark and light themes */
 .css-1v5z4dq-MuiPaper-root-MuiCard-root {
   background-color: transparent !important;
@@ -161,7 +214,7 @@
   opacity: 0; /* Adjust the transparency level (0.0 to 1.0) */
 }
 
-.css-69i1ev{
+.css-69i1ev {
   margin-top: 50px;
 }
 
