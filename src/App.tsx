@@ -16,17 +16,14 @@ const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
+  const headerRef = useRef<HTMLDivElement>(null);
+  const skillsRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLDivElement>(null);
+  const contactRef = useRef<HTMLDivElement>(null);
+
   const toggleDarkMode = () => setDarkMode((prevMode) => !prevMode);
 
-  const refs = {
-    headerRef: useRef<HTMLDivElement>(null),
-    skillsRef: useRef<HTMLDivElement>(null),
-    projectsRef: useRef<HTMLDivElement>(null),
-    contactRef: useRef<HTMLDivElement>(null),
-  };
-
   useEffect(() => {
-    // Scene, Camera, Renderer Setup
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
       75,
@@ -40,13 +37,11 @@ const App: React.FC = () => {
     });
     renderer.setSize(window.innerWidth, window.innerHeight);
 
-    // Load a Circle Texture for the Particles
     const textureLoader = new THREE.TextureLoader();
     const circleTexture = textureLoader.load(
       "https://threejs.org/examples/textures/sprites/circle.png"
     );
 
-    // Particle Setup
     const particlesCount = 1000;
     const particlesGeometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particlesCount * 3);
@@ -72,25 +67,22 @@ const App: React.FC = () => {
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particles);
 
-    camera.position.z = 10; // Start camera further out
+    camera.position.z = 10;
 
-    // GSAP Landing Animation for camera and particles
-    gsap.to(camera.position, {
-      z: 5, // Zoom into position
-      duration: 2,
-      ease: "power2.inOut",
-    });
+    const timeline = gsap.timeline();
+    timeline
+      .to(camera.position, {
+        z: 5,
+        duration: 2,
+        ease: "power2.inOut",
+      })
+      .fromTo(
+        particlesMaterial,
+        { opacity: 0 },
+        { opacity: 1, duration: 2, ease: "power2.inOut" }
+      );
 
-    gsap.fromTo(
-      particlesMaterial,
-      { opacity: 0 },
-      { opacity: 1, duration: 2, ease: "power2.inOut" }
-    );
-
-    const mouse = {
-      x: 0,
-      y: 0,
-    };
+    const mouse = { x: 0, y: 0 };
 
     const handleMouseMove = (event: MouseEvent) => {
       mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -113,46 +105,66 @@ const App: React.FC = () => {
 
     animate();
 
+    const handleResize = () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    };
+
+    window.addEventListener("resize", handleResize);
+
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
   const theme = createTheme({
     palette: {
-      mode: darkMode ? "light" : "dark",
+      mode: darkMode ? "dark" : "light",
     },
   });
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div data-theme={darkMode ? "light" : "dark"}>
-        <VerticalTabs scrollToRef={refs} />
+      <div data-theme={darkMode ? "dark" : "light"}>
+        <VerticalTabs
+          scrollToRef={{
+            headerRef,
+            skillsRef,
+            projectsRef,
+            contactRef,
+          }}
+        />
         <CustomScrollLine />
-
-        <div id="header" ref={refs.headerRef}>
+        <div id="header" ref={headerRef}>
           <ResponsiveAppBar
             darkMode={darkMode}
             toggleDarkMode={toggleDarkMode}
           />
           <HeaderPage />
         </div>
-        <div id="skills" ref={refs.skillsRef}>
+        <div id="skills" ref={skillsRef}>
           <SkillsPage />
         </div>
-        <div id="projects" ref={refs.projectsRef}>
+        <div id="projects" ref={projectsRef}>
           <ProjectPage />
         </div>
-        <div id="contact" ref={refs.contactRef}>
+        <div id="contact" ref={contactRef}>
           <ContactPage />
         </div>
-
         <BackToTopButton />
-
         <canvas
           ref={canvasRef}
-          style={{ position: "fixed", top: 0, left: 0, zIndex: -1 }}
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            zIndex: -10,
+            width: "100vw",
+            height: "100vh",
+          }}
         />
       </div>
     </ThemeProvider>
