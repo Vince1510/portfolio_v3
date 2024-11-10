@@ -121,14 +121,14 @@ const App: React.FC = () => {
 
   const theme = createTheme({
     palette: {
-      mode: darkMode ? "dark" : "light",
+      mode: darkMode ? "light" : "dark",
     },
   });
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div data-theme={darkMode ? "dark" : "light"}>
+      <div data-theme={darkMode ? "light" : "dark"}>
         <VerticalTabs
           scrollToRef={{
             headerRef,
