@@ -58,7 +58,7 @@ const App: React.FC = () => {
     );
 
     const particlesMaterial = new THREE.PointsMaterial({
-      size: 0.05,
+      size: 0.03,
       color: 0x8c63e0,
       map: circleTexture,
       transparent: true,

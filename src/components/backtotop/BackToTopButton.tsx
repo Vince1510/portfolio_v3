@@ -14,7 +14,7 @@ const buttonStyle = {
   justifyContent: "center",
   position: "fixed",
   bottom: "20px",
-  left: "20px", // Changed from right to left
+  left: "20px",
   backgroundColor: "transparent",
   zIndex: 1000,
 };

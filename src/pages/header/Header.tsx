@@ -25,7 +25,7 @@ const HeaderPage: React.FC = () => {
   return (
     <div className="container">
       <h2 ref={nameRef}>I'm Vince van Apeldoorn</h2>
-      <h3 ref={studentRef}>Front end Student at TechniekCollege Rotterdam</h3>
+      <h3 ref={studentRef}>Front end Student at Hogeschool Rotterdam</h3>
 
       <div className="hero-circle">
         <img className="inner-img" src={vinceImage} alt="Vince van Apeldoorn" />

@@ -10,8 +10,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import "./Projects.css";
 
-import tiktactoe from "./video-tik-tac-toe.mp4"; // Ensure the file exists or add a type declaration for mp4 files
-//images
+import tiktactoe from "./video-tik-tac-toe.mp4";
 import mernImg from "./mern-auth-cover.png";
 import portfolioImg from "./portfolio-site.png";
 import playtoearnImg from "./play-to-earn.png";
@@ -102,7 +101,7 @@ export default function Project() {
               value={value}
               onChange={handleChange}
               aria-label="Vertical tabs example"
-              scrollButtons={false} // Hides scroll buttons
+              scrollButtons={false}
               sx={{
                 borderRight: isSmallScreen ? 0 : 1,
                 borderBottom: isSmallScreen ? 1 : 0,
@@ -127,7 +126,7 @@ export default function Project() {
             value={value}
             onChange={handleChange}
             aria-label="Vertical tabs example"
-            scrollButtons={false} // Hides scroll buttons for larger screens as well
+            scrollButtons={false}
             sx={{ borderRight: 1, borderColor: "divider" }}
           >
             <Tab label="MERN" {...a11yProps(0)} />

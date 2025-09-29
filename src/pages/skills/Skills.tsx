@@ -4,7 +4,6 @@ import "./Skills.css";
 
 const SkillsPage: React.FC = () => {
   useEffect(() => {
-    // Blob Animation
     const allCards = document.querySelectorAll(".card");
 
     const handleMouseMove = (ev: MouseEvent) => {
@@ -150,6 +149,24 @@ const skills: Skill[] = [
       </svg>
     ),
   },
+  {
+    title: "Angular",
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="48"
+        height="48"
+        viewBox="0 0 24 24"
+        className="skill-icon-1"
+      >
+        <path
+          fill="currentColor"
+          d="M12 2L1.8 6.3l1.7 13.6L12 22l8.5-2.1L22.2 6.3zm3.5 15.1h-1.7l-1.1-2.8H11l-1 2.8H8.4L12 7.3zm-2.7-4.2l-1-2.9l-1 2.9z"
+        />
+      </svg>
+    ),
+  },
+
   {
     title: "Mui",
     icon: (
