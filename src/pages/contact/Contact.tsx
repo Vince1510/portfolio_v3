@@ -244,7 +244,7 @@ const ContactPage: React.FC = () => {
                 sx={{ mt: 2 }}
               />
               <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mt: 3 }}>
-                <Typography variant="body2" color={success ? "success.main" : "error.main"}>
+                <Typography variant="body2" sx={{ color: success ? "#7be08b" : "error.main", fontWeight: "bold" }}>
                   {result}
                 </Typography>
                 <Button
