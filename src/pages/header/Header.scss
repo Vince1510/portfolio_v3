@@ -1,16 +1,28 @@
 .container {
-  display: grid;
-  height: 80vh;
-  place-items: center;
-  overflow: hidden;
-  --circleDiameter: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  --circleDiameter: 480px; /* Reduced from 550px per request */
   --planets: calc(var(--circleDiameter) / 5);
 }
 
-.container h2,
-.container h3 {
-  margin: 5px 0; /* Reduces vertical margin */
-  text-align: center; /* Ensures text is centered */
+/* Intro Text Container */
+.intro-text {
+  text-align: center;
+  z-index: 10;
+  margin-bottom: 20px;
+  position: relative;
+  /* Push text up slightly to avoid planet overlap */
+  transform: translateY(-20px);
+}
+
+.intro-text h2,
+.intro-text h3 {
+  margin: 5px 0;
+  text-align: center;
 }
 
 .social-icon {
@@ -52,10 +64,10 @@
   transform: translate(-50%, -50%);
   overflow: hidden;
   border-radius: 50%;
-  width: 90%; /* Adjusted width */
-  height: 90%; /* Adjusted height */
-  max-width: 300px; /* Added max-width for limiting size on smaller screens */
-  max-height: 300px; /* Added max-height for limiting size on smaller screens */
+  width: 90%;
+  height: 90%;
+  max-width: 380px; 
+  max-height: 380px;
 }
 
 .hero-rotate {

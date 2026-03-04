@@ -1,31 +1,15 @@
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { Phone, Email, GitHub, LinkedIn } from "@mui/icons-material";
-import { gsap } from "gsap";
 import "./Header.scss";
 import vinceImage from "./vince.jpg";
 
 const HeaderPage: React.FC = () => {
-  const nameRef = useRef<HTMLHeadingElement | null>(null);
-  const studentRef = useRef<HTMLHeadingElement | null>(null);
-
-  useEffect(() => {
-    const tl = gsap.timeline();
-    tl.fromTo(
-      nameRef.current,
-      { opacity: 0, y: -50 },
-      { opacity: 1, y: 0, duration: 1.5, ease: "power1.out" }
-    ).fromTo(
-      studentRef.current,
-      { opacity: 0, y: -50 },
-      { opacity: 1, y: 0, duration: 1.5, ease: "power1.out" },
-      "+=0.5"
-    );
-  }, []);
-
   return (
     <div className="container">
-      <h2 ref={nameRef}>I'm Vince van Apeldoorn</h2>
-      <h3 ref={studentRef}>Front end Student at Hogeschool Rotterdam</h3>
+      <div className="intro-text">
+        <h2>I'm Vince van Apeldoorn</h2>
+        <h3>Front end Student at Hogeschool Rotterdam</h3>
+      </div>
 
       <div className="hero-circle">
         <img className="inner-img" src={vinceImage} alt="Vince van Apeldoorn" />

@@ -1,11 +1,43 @@
 :root {
   --background-color: #fff; 
   --text-color: #000;
+  --x: 50%;
+  --y: 50%;
+  --r: 100vmax;
 }
 
 [data-theme="dark"] {
   --background-color: #222; 
   --text-color: #fff; 
+}
+
+html {
+  view-transition-name: root;
+}
+
+/* View Transitions API specific styling */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  animation: grow-from-click 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 9999;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+@keyframes grow-from-click {
+  from {
+    clip-path: circle(0px at var(--x) var(--y));
+  }
+  to {
+    clip-path: circle(var(--r) at var(--x) var(--y));
+  }
 }
 
 * {
@@ -18,8 +50,11 @@
 body {
   background-color: var(--background-color);
   color: var(--text-color);
-  padding-left: 120px;
-  padding-right: 120px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
 }
 
 h2 {
@@ -28,7 +63,6 @@ h2 {
 
 @media (max-width: 716px) {
   body {
-    padding-left: 30px;
-    padding-right: 30px;
+    padding: 0;
   }
 }

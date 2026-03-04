@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { Typography, Divider, Grid } from "@mui/material";
+import { Typography, Divider } from "@mui/material";
+import Grid from "@mui/material/Unstable_Grid2";
 import "./Skills.css";
 
 const SkillsPage: React.FC = () => {
@@ -42,7 +43,7 @@ const SkillsPage: React.FC = () => {
       <Divider />
       <Grid container spacing={2} className="skills-grid">
         {skills.map((skill, index) => (
-          <Grid item xs={6} sm={6} md={4} key={index}>
+          <Grid xs={6} sm={6} md={4} key={index}>
             <div className="card">
               <div className="inner">
                 <Typography variant="h5">{skill.title}</Typography>
@@ -60,7 +61,7 @@ const SkillsPage: React.FC = () => {
 
 interface Skill {
   title: string;
-  icon: JSX.Element;
+  icon: React.ReactElement;
 }
 
 const skills: Skill[] = [
@@ -166,7 +167,6 @@ const skills: Skill[] = [
       </svg>
     ),
   },
-
   {
     title: "Mui",
     icon: (

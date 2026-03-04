@@ -1,0 +1,73 @@
+.full-page-section {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1),
+    opacity 0.8s cubic-bezier(0.8, 0, 0.2, 1),
+    filter 0.8s cubic-bezier(0.8, 0, 0.2, 1);
+  will-change: transform, opacity, filter;
+  overflow: hidden;
+  /* Make sure background is mostly transparent if canvas is visible */
+}
+
+/* 
+  The container inside that we might want to also transition slightly 
+  e.g., scale it or fade it out 
+*/
+.full-page-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Start from top to allow scrolling down */
+  align-items: center;
+  padding-top: 70px; /* Leave space for AppBar */
+  padding-bottom: 20px;
+  
+  /* Hide scrollbar for a cleaner slide look, but keep functionality */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* On larger screens where content fits, we can center it */
+@media (min-height: 900px) {
+  .full-page-content {
+    justify-content: center;
+    padding-top: 0;
+  }
+}
+
+/* State corresponding to index < activeIndex */
+.section--above {
+  transform: translateY(-5%) scale(0.9);
+  opacity: 0;
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* State corresponding to index === activeIndex */
+.section--active {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  filter: blur(0);
+  pointer-events: auto;
+  z-index: 20;
+}
+
+/* State corresponding to index > activeIndex */
+.section--below {
+  /* It comes from below the viewport */
+  transform: translateY(100%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 30; /* Keep higher so it slides *over* the current section */
+}

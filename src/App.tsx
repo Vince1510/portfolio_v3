@@ -1,27 +1,49 @@
 import React, { useState, useRef, useEffect } from "react";
 import * as THREE from "three";
 import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
-import { gsap } from "gsap";
 import "./index.scss";
 import ResponsiveAppBar from "./components/appbar/AppBar";
-import CustomScrollLine from "./components/customscroll/CustomScrollLine";
-import BackToTopButton from "./components/backtotop/BackToTopButton";
 import VerticalTabs from "./components/verticaltabs/VerticalTabs";
 import HeaderPage from "./pages/header/Header";
 import SkillsPage from "./pages/skills/Skills";
 import ProjectPage from "./pages/projecten/Projects";
 import ContactPage from "./pages/contact/Contact";
 
+import FullPageSection from "./components/fullpage/FullPageSection";
+import { useFullPage } from "./components/fullpage/useFullPage";
+
+const TOTAL_SECTIONS = 4;
+
 const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(true);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  const headerRef = useRef<HTMLDivElement>(null);
-  const skillsRef = useRef<HTMLDivElement>(null);
-  const projectsRef = useRef<HTMLDivElement>(null);
-  const contactRef = useRef<HTMLDivElement>(null);
+  const { activeIndex, goToSection } = useFullPage(TOTAL_SECTIONS);
 
-  const toggleDarkMode = () => setDarkMode((prevMode) => !prevMode);
+  const toggleDarkMode = (event?: React.MouseEvent) => {
+    const isViewTransitionSupported =
+      // @ts-ignore
+      document.startViewTransition !== undefined;
+
+    if (!isViewTransitionSupported || !event) {
+      setDarkMode((prevMode) => !prevMode);
+      return;
+    }
+
+    const { clientX: x, clientY: y } = event;
+    const right = window.innerWidth - x;
+    const bottom = window.innerHeight - y;
+    const maxRadius = Math.hypot(Math.max(x, right), Math.max(y, bottom));
+
+    document.documentElement.style.setProperty("--x", `${x}px`);
+    document.documentElement.style.setProperty("--y", `${y}px`);
+    document.documentElement.style.setProperty("--r", `${maxRadius}px`);
+
+    // @ts-ignore
+    document.startViewTransition(() => {
+      setDarkMode((prevMode) => !prevMode);
+    });
+  };
 
   useEffect(() => {
     const scene = new THREE.Scene();
@@ -67,38 +89,15 @@ const App: React.FC = () => {
     const particles = new THREE.Points(particlesGeometry, particlesMaterial);
     scene.add(particles);
 
-    camera.position.z = 10;
+    camera.position.z = 5;
 
-    const timeline = gsap.timeline();
-    timeline
-      .to(camera.position, {
-        z: 5,
-        duration: 2,
-        ease: "power2.inOut",
-      })
-      .fromTo(
-        particlesMaterial,
-        { opacity: 0 },
-        { opacity: 1, duration: 2, ease: "power2.inOut" }
-      );
-
-    const mouse = { x: 0, y: 0 };
-
-    const handleMouseMove = (event: MouseEvent) => {
-      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-    };
-
-    window.addEventListener("mousemove", handleMouseMove);
+    let animationId: number;
 
     const animate = () => {
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
 
       particles.rotation.x += 0.001;
       particles.rotation.y += 0.001;
-
-      particles.position.x = mouse.x * 2;
-      particles.position.y = mouse.y * 2;
 
       renderer.render(scene, camera);
     };
@@ -114,47 +113,45 @@ const App: React.FC = () => {
     window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener("mousemove", handleMouseMove);
+      cancelAnimationFrame(animationId);
       window.removeEventListener("resize", handleResize);
+      renderer.dispose();
     };
   }, []);
 
   const theme = createTheme({
     palette: {
-      mode: darkMode ? "light" : "dark",
+      mode: darkMode ? "dark" : "light",
     },
   });
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div data-theme={darkMode ? "light" : "dark"}>
-        <VerticalTabs
-          scrollToRef={{
-            headerRef,
-            skillsRef,
-            projectsRef,
-            contactRef,
-          }}
+      <div data-theme={darkMode ? "dark" : "light"}>
+        <VerticalTabs activeTab={activeIndex} onTabClick={goToSection} />
+
+        <ResponsiveAppBar
+          darkMode={darkMode}
+          toggleDarkMode={toggleDarkMode}
         />
-        <CustomScrollLine />
-        <div id="header" ref={headerRef}>
-          <ResponsiveAppBar
-            darkMode={darkMode}
-            toggleDarkMode={toggleDarkMode}
-          />
+
+        <FullPageSection index={0} activeIndex={activeIndex} id="header">
           <HeaderPage />
-        </div>
-        <div id="skills" ref={skillsRef}>
+        </FullPageSection>
+
+        <FullPageSection index={1} activeIndex={activeIndex} id="skills">
           <SkillsPage />
-        </div>
-        <div id="projects" ref={projectsRef}>
+        </FullPageSection>
+
+        <FullPageSection index={2} activeIndex={activeIndex} id="projects">
           <ProjectPage />
-        </div>
-        <div id="contact" ref={contactRef}>
+        </FullPageSection>
+
+        <FullPageSection index={3} activeIndex={activeIndex} id="contact">
           <ContactPage />
-        </div>
-        <BackToTopButton />
+        </FullPageSection>
+
         <canvas
           ref={canvasRef}
           style={{
@@ -162,8 +159,8 @@ const App: React.FC = () => {
             top: 0,
             left: 0,
             zIndex: -10,
-            width: "100vw",
-            height: "100vh",
+            width: "100%",
+            height: "100%",
           }}
         />
       </div>
