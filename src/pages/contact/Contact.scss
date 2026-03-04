@@ -1,82 +1,90 @@
 .card-contact {
-  cursor: default;
-  width: 100%;
-  height: 100%;
   position: relative;
   z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 34px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  color: #212121;
-  border: 1px solid rgba(255, 255, 255, 0.222);
-  -webkit-backdrop-filter: blur(100px);
-  backdrop-filter: blur(100px);
-  border-radius: 10px;
   transition: all ease 0.3s;
 
   .contactanimate1,
   .contactanimate2 {
-    width: 500px;
-    height: 500px;
-
+    width: 600px;
+    height: 600px;
     position: absolute;
     border-radius: 50%;
-    transition: 0.5s linear;
+    transition: 1s linear;
     z-index: -1;
+    pointer-events: none;
+    filter: blur(80px); /* Heavy blur to make it an ambient glow rather than a solid shape */
   }
 
   .contactanimate1 {
-    top: -150px;
-    left: -70px;
+    top: -200px;
+    left: -150px;
     background-color: #7be08b;
-    opacity: 50%;
-    animation: animFirst 5s linear infinite;
+    opacity: 0.2;
+    animation: animFirstGlass 15s linear infinite alternate;
   }
 
   .contactanimate2 {
-    top: 70%;
-    left: 70%;
+    bottom: -200px;
+    right: -150px;
     background-color: #e09545;
-    opacity: 50%;
-
-    animation: animSecond 5s linear infinite;
-    animation-delay: 3s;
-  }
-
-  &:hover {
-    box-shadow: 0px 0px 10px 0px #e09545, 0px 0px 20px 5px #7be08b;
+    opacity: 0.15;
+    animation: animSecondGlass 20s linear infinite alternate;
   }
 
   &:hover .contactanimate1 {
-    left: 80%;
-    transform: scale(1.2);
+    opacity: 0.3;
+    transform: scale(1.1) translate(50px, 50px);
   }
 
   &:hover .contactanimate2 {
-    left: -150px;
-    transform: scale(1.2);
+    opacity: 0.25;
+    transform: scale(1.1) translate(-50px, -50px);
   }
 
-  @keyframes animFirst {
-    0%,
-    100% {
-      transform: translateY(0);
+  @keyframes animFirstGlass {
+    0% {
+      transform: translateY(0) scale(1);
     }
-    50% {
-      transform: translateY(20px);
+    100% {
+      transform: translateY(100px) scale(1.2);
     }
   }
 
-  @keyframes animSecond {
-    0%,
-    100% {
-      transform: translateY(0);
+  @keyframes animSecondGlass {
+    0% {
+      transform: translateY(0) scale(1);
     }
-    50% {
-      transform: translateY(-20px);
+    100% {
+      transform: translateY(-100px) scale(1.2);
+    }
+  }
+}
+
+/* MUI input styling overrides for better glassmorphism fit */
+.contact-form {
+  [data-theme="light"] & {
+    .MuiOutlinedInput-root {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  }
+
+  [data-theme="dark"] & {
+    .MuiOutlinedInput-root {
+      background: rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .MuiOutlinedInput-root {
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: rgba(140, 99, 224, 0.05);
+    }
+
+    &.Mui-focused {
+      background: rgba(140, 99, 224, 0.05);
+      box-shadow: 0 0 0 2px rgba(140, 99, 224, 0.2);
     }
   }
 }

@@ -1,251 +1,225 @@
 import * as React from "react";
-import PropTypes from "prop-types";
+import Box from "@mui/material/Box";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardMedia from "@mui/material/CardMedia";
+import CardContent from "@mui/material/CardContent";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
+import LinkIcon from "@mui/icons-material/Link";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import IconButton from "@mui/material/IconButton";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useTheme } from "@mui/material/styles";
 import "./Projects.css";
 
-import tiktactoe from "./video-tik-tac-toe.mp4";
 import mernImg from "./mern-auth-cover.png";
 import portfolioImg from "./portfolio-site.png";
 import playtoearnImg from "./play-to-earn.png";
 import putitoneImg from "./putiton-e.png";
+import tiktactoeImg from "./video-tik-tac-toe.mp4"; // We'll render this as a video element
 
-interface TabPanelProps {
-  children?: React.ReactNode;
-  index: number;
-  value: number;
+interface ProjectData {
+  title: string;
+  description: string;
+  link: string;
+  mediaUrl: string;
+  mediaType: "image" | "video";
 }
 
-function TabPanel(props: TabPanelProps) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </div>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index: number): { id: string; "aria-controls": string } {
-  return {
-    id: `vertical-tab-${index}`,
-    "aria-controls": `vertical-tabpanel-${index}`,
-  };
-}
+const projects: ProjectData[] = [
+  {
+    title: "MERN Auth",
+    description:
+      "Ik heb van NetNinja geleerd hoe ik mern-stack projecten kan maken met JSON web tokens.",
+    link: "https://github.com/Vince1510/MERN-Auth",
+    mediaUrl: mernImg,
+    mediaType: "image",
+  },
+  {
+    title: "Portfolio Website",
+    description:
+      "Deze portfolio website is gemaakt met Typescript en Material UI.",
+    link: "https://github.com/Vince1510/portfolio_v3",
+    mediaUrl: portfolioImg,
+    mediaType: "image",
+  },
+  {
+    title: "Putiton-e",
+    description:
+      "Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website Putiton-e.",
+    link: "https://putiton-e.com/",
+    mediaUrl: putitoneImg,
+    mediaType: "image",
+  },
+  {
+    title: "Play to Earn games",
+    description:
+      "Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website Play to Earn games.",
+    link: "https://playtoearngames.com/",
+    mediaUrl: playtoearnImg,
+    mediaType: "image",
+  },
+  {
+    title: "Tic Tac Toe",
+    description: "Tic tac toe volledig met React voor 2 spelers.",
+    link: "https://github.com/Vince1510/Tic-Tac-Toe",
+    mediaUrl: tiktactoeImg,
+    mediaType: "video",
+  },
+];
 
 export default function Project() {
   const [value, setValue] = React.useState(0);
-  const isSmallScreen = useMediaQuery("(max-width:1000px)");
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleChange = (_event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
 
-  const handlePrev = () => {
-    setValue((prevValue) => (prevValue > 0 ? prevValue - 1 : prevValue));
-  };
-
-  const handleNext = () => {
-    setValue((prevValue) => (prevValue < 4 ? prevValue + 1 : prevValue));
-  };
+  const currentProject = projects[value];
 
   return (
-    <>
-      <Box
+    <Box
+      sx={{
+        width: "100%",
+        maxWidth: "1200px",
+        px: { xs: 2, sm: 4, md: 8 },
+        py: 4,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Tabs
+        value={value}
+        onChange={handleChange}
+        variant="scrollable"
+        scrollButtons="auto"
+        allowScrollButtonsMobile
+        aria-label="Projects navigation"
         sx={{
-          width: "100%",
-          marginTop: "5vw",
-          flexGrow: 1,
-          bgcolor: "background.paper",
-          display: "flex",
-          height: "auto",
-          flexDirection: isSmallScreen ? "column" : "row",
+          mb: 4,
+          maxWidth: "100%",
+          "& .MuiTabs-flexContainer": {
+            justifyContent: isSmallScreen ? "flex-start" : "center",
+          },
         }}
       >
-        {isSmallScreen && (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-            }}
-          >
-            <IconButton onClick={handlePrev} disabled={value === 0}>
-              <ArrowBackIosIcon />
-            </IconButton>
-            <Tabs
-              orientation={isSmallScreen ? "horizontal" : "vertical"}
-              variant="scrollable"
-              value={value}
-              onChange={handleChange}
-              aria-label="Vertical tabs example"
-              scrollButtons={false}
+        {projects.map((proj, idx) => (
+          <Tab key={idx} label={proj.title} />
+        ))}
+      </Tabs>
+
+      <Card
+        className="card-project-glass"
+        sx={{
+          width: "100%",
+          display: "flex",
+          flexDirection: isSmallScreen ? "column" : "row",
+          background: "rgba(255, 255, 255, 0.05)",
+          backdropFilter: "blur(20px)",
+          boxShadow: theme.palette.mode === "dark" ? "0 8px 32px rgba(0,0,0,0.5)" : "0 8px 32px rgba(0,0,0,0.1)",
+          borderRadius: 4,
+          border: "1px solid rgba(255, 255, 255, 0.1)",
+          overflow: "hidden",
+          transition: "transform 0.3s ease",
+          "&:hover": {
+            transform: "translateY(-5px)",
+          },
+          position: "relative",
+          zIndex: 2,
+        }}
+      >
+        <Box
+          sx={{
+            flex: 1,
+            position: "relative",
+            minHeight: isSmallScreen ? "250px" : "400px",
+            width: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            bgcolor: "rgba(0,0,0,0.2)",
+          }}
+        >
+          {currentProject.mediaType === "image" ? (
+            <CardMedia
+              component="img"
+              image={currentProject.mediaUrl}
+              alt={currentProject.title}
               sx={{
-                borderRight: isSmallScreen ? 0 : 1,
-                borderBottom: isSmallScreen ? 1 : 0,
-                borderColor: "divider",
+                width: "100%",
+                height: "100%",
+                objectFit: "contain",
+                p: 2,
+              }}
+            />
+          ) : (
+            <Box
+              component="video"
+              src={currentProject.mediaUrl}
+              autoPlay
+              loop
+              muted
+              playsInline
+              sx={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+            />
+          )}
+        </Box>
+
+        <Box
+          sx={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            p: 4,
+          }}
+        >
+          <CardContent sx={{ p: 0, pb: 2 }}>
+            <Typography variant="h4" component="h2" gutterBottom fontWeight="bold" color="text.primary">
+              {currentProject.title}
+            </Typography>
+            <Typography variant="body1" color="text.secondary" sx={{ fontSize: "1.1rem", lineHeight: 1.6 }}>
+              {currentProject.description}
+            </Typography>
+          </CardContent>
+          <CardActions sx={{ p: 0, mt: 2 }}>
+            <Button
+              variant="contained"
+              color="primary"
+              size="large"
+              startIcon={<LinkIcon />}
+              href={currentProject.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                textTransform: "none",
+                fontWeight: "bold",
+                borderRadius: "20px",
+                px: 4,
+                bgcolor: "#8c63e0",
+                "&:hover": {
+                  bgcolor: "#784bd1",
+                },
               }}
             >
-              <Tab label="MERN" {...a11yProps(0)} />
-              <Tab label="Portfolio Website" {...a11yProps(1)} />
-              <Tab label="Putiton-e" {...a11yProps(2)} />
-              <Tab label="Playtoearn" {...a11yProps(3)} />
-              <Tab label="Tic Tac Toe" {...a11yProps(4)} />
-            </Tabs>
-            <IconButton onClick={handleNext} disabled={value === 4}>
-              <ArrowForwardIosIcon />
-            </IconButton>
-          </Box>
-        )}
-        {!isSmallScreen && (
-          <Tabs
-            orientation="vertical"
-            variant="scrollable"
-            value={value}
-            onChange={handleChange}
-            aria-label="Vertical tabs example"
-            scrollButtons={false}
-            sx={{ borderRight: 1, borderColor: "divider" }}
-          >
-            <Tab label="MERN" {...a11yProps(0)} />
-            <Tab label="Portfolio Website" {...a11yProps(1)} />
-            <Tab label="Putiton-e" {...a11yProps(2)} />
-            <Tab label="Playtoearn" {...a11yProps(3)} />
-            <Tab label="Tic Tac Toe" {...a11yProps(4)} />
-          </Tabs>
-        )}
-        <TabPanel value={value} index={0}>
-          <div className="card-project">
-            <div className="container-project">
-              <img src={mernImg} alt="MernImg" width="400vw" />
-              <div className="card-project__content">
-                <p className="card-project__title">MERN Auth</p>
-                <p className="card-project__description">
-                  Ik heb van NetNinja geleerd hoe ik mern-stack projecten kan
-                  maken met JSON web tokens.
-                  <br />
-                  <a
-                    href="https://github.com/Vince1510/MERN-Auth"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    https://github.com/Vince1510/MERN-Auth
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <div className="card-project">
-            <div className="container-project">
-              <img src={portfolioImg} alt="Portfolio Website" width="400vw" />
-              <div className="card-project__content">
-                <p className="card-project__title">Portfolio Website</p>
-                <p className="card-project__description">
-                  Deze portfolio website is gemaakt met Typescript en Material
-                  UI ook heb ik animaties erin toegevoed met GSAP
-                  <br />
-                  <a
-                    href="https://github.com/Vince1510/portfolio_v3"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    https://github.com/Vince1510/portfolio_v3
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <div className="card-project">
-            <div className="container-project">
-              <img src={putitoneImg} alt="Putiton-e" width="400vw" />
-              <div className="card-project__content">
-                <p className="card-project__title">Putiton-e</p>
-                <p className="card-project__description">
-                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de
-                  website Putiton-e.
-                  <br />
-                  <a
-                    href="https://putiton-e.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    https://putiton-e.com/
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={3}>
-          <div className="card-project">
-            <div className="container-project">
-              <img src={playtoearnImg} alt="Play to Earn games" width="400vw" />
-              <div className="card-project__content">
-                <p className="card-project__title">Play to Earn games</p>
-                <p className="card-project__description">
-                  Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de
-                  website Play to Earn games.
-                  <br />
-                  <a
-                    href="https://playtoearngames.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    https://playtoearngames.com/
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </TabPanel>
-        <TabPanel value={value} index={4}>
-          <div className="card-project">
-            <div className="container-project">
-              <video src={tiktactoe} width="100%" autoPlay loop muted />
-              <div className="card-project__content">
-                <p className="card-project__title">Tic Tac Toe</p>
-                <p className="card-project__description">
-                  Tic tac toe volledig met React voor 2 spelers.
-                  <br />
-                  <a
-                    href="https://github.com/Vince1510/Tic-Tac-Toe"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    https://github.com/Vince1510/Tic-Tac-Toe
-                  </a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </TabPanel>
-      </Box>
-    </>
+              View Project
+            </Button>
+          </CardActions>
+        </Box>
+        
+        {/* Ambient background glows */}
+        <div className="projectanimate1"></div>
+        <div className="projectanimate2"></div>
+      </Card>
+    </Box>
   );
 }

@@ -1,49 +1,27 @@
 .skills-container {
-  height: 100vh;
+  width: 100%;
+  margin: 0;
+  font-family: Verdana, sans-serif;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
 }
 
 .skills-grid {
   margin-top: 20px;
-}
-
-.skills-page {
-  position: fixed;
-  top: 0;
-  left: 0;
+  max-width: 1200px;
   width: 100%;
-  z-index: 999; /* Ensure it's above other content */
-  transform-origin: top center; /* Set transform origin to top center for flipping effect */
-  transform: translateY(-100%);
-  opacity: 0; /* Initially hidden */
-  transition: transform 0.3s ease, opacity 0.3s ease; /* Add transition for smooth animation */
+  padding: 0 5vw;
 }
 
-.skills-page.visible {
-  transform: translateY(0%);
-  opacity: 1; /* Visible */
-}
-
-/* Adding different glow colors for each skill icon */
-.skill-icon-1 {
-  filter: drop-shadow(0 0 3px #7be08b);
-}
-
-body.light-theme .skills-container {
-  color: var(--light-theme-color);
-}
-
-body.dark-theme .skills-container {
-  color: var(--dark-theme-color);
-}
-
-.skills-container {
-  width: 100%;
-  margin: 0;
-  font-family: Verdana, sans-serif;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* On small screens, make cards slightly smaller to fit better */
+@media (max-width: 600px) {
+  .skills-grid {
+    padding: 0 10px;
+  }
 }
 
 .card {
@@ -61,6 +39,19 @@ body.dark-theme .skills-container {
   backdrop-filter: blur(80px);
   border-radius: 7px;
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  .inner {
+    padding: 10px;
+  }
+  .inner h5 {
+    font-size: 1rem;
+  }
+  .inner svg {
+    width: 32px;
+    height: 32px;
+  }
 }
 
 .blob {

@@ -3,32 +3,26 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import "./VerticalTabs.scss";
-import { gsap } from "gsap";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
-gsap.registerPlugin(ScrollToPlugin);
-
-interface ScrollToRef {
-  headerRef: React.RefObject<HTMLDivElement>;
-  skillsRef: React.RefObject<HTMLDivElement>;
-  projectsRef: React.RefObject<HTMLDivElement>;
-  contactRef: React.RefObject<HTMLDivElement>;
+interface VerticalTabsProps {
+  activeTab: number;
+  onTabClick: (index: number) => void;
 }
 
-const VerticalTabs: React.FC<{ scrollToRef: ScrollToRef }> = ({
-  scrollToRef,
+const VerticalTabs: React.FC<VerticalTabsProps> = ({
+  activeTab,
+  onTabClick,
 }) => {
-  const [activeTab, setActiveTab] = React.useState(0);
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const popupRef = React.useRef<HTMLDivElement | null>(null);
 
   const togglePopup = () => setIsPopupOpen((prev) => !prev);
 
-  const handleOutsideClick = (event: MouseEvent) => {
+  const handleOutsideClick = React.useCallback((event: MouseEvent) => {
     if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
       setIsPopupOpen(false);
     }
-  };
+  }, []);
 
   React.useEffect(() => {
     if (isPopupOpen) {
@@ -40,61 +34,10 @@ const VerticalTabs: React.FC<{ scrollToRef: ScrollToRef }> = ({
     return () => {
       document.removeEventListener("click", handleOutsideClick);
     };
-  }, [isPopupOpen]);
-
-  React.useEffect(() => {
-    const options = {
-      rootMargin: "0px",
-      threshold: 0.5,
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveTab(
-            {
-              header: 0,
-              skills: 1,
-              projects: 2,
-              contact: 3,
-            }[entry.target.id] ?? 0
-          );
-        }
-      });
-    }, options);
-
-    Object.values(scrollToRef).forEach((refObject) => {
-      if (refObject.current) {
-        observer.observe(refObject.current);
-      }
-    });
-
-    return () => {
-      Object.values(scrollToRef).forEach((refObject) => {
-        if (refObject.current) {
-          observer.unobserve(refObject.current);
-        }
-      });
-    };
-  }, [scrollToRef]);
+  }, [isPopupOpen, handleOutsideClick]);
 
   const handleTabClick = (index: number) => {
-    const targetRef = [
-      scrollToRef.headerRef,
-      scrollToRef.skillsRef,
-      scrollToRef.projectsRef,
-      scrollToRef.contactRef,
-    ][index];
-
-    if (targetRef?.current) {
-      gsap.to(window, {
-        scrollTo: { y: targetRef.current, autoKill: false },
-        duration: 1,
-        ease: "bounce.out",
-      });
-    }
-
-    setActiveTab(index);
+    onTabClick(index);
     togglePopup();
   };
 
