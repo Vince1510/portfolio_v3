@@ -21,9 +21,8 @@ import PhoneIcon from "@mui/icons-material/Phone";
 import SendIcon from "@mui/icons-material/Send";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import "./Contact.scss";
-
 import confetti from "canvas-confetti";
+import "./Contact.scss";
 
 const ContactPage: React.FC = () => {
   const [result, setResult] = useState("");
@@ -32,6 +31,27 @@ const ContactPage: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const fireConfetti = () => {
+    const duration = 3 * 1000;
+    const animationEnd = Date.now() + duration;
+    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+    const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+
+    const interval: any = setInterval(function() {
+      const timeLeft = animationEnd - Date.now();
+
+      if (timeLeft <= 0) {
+        return clearInterval(interval);
+      }
+
+      const particleCount = 50 * (timeLeft / duration);
+      // since particles fall down, start a bit higher than random
+      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
+      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+    }, 250);
+  };
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -54,20 +74,12 @@ const ContactPage: React.FC = () => {
       if (data.success) {
         setResult("Bedankt! Je bericht is succesvol verzonden. ✨");
         setSuccess(true);
-        
-        // Trigger sparkles/confetti
-        confetti({
-          particleCount: 150,
-          spread: 70,
-          origin: { y: 0.6 },
-          colors: ['#8c63e0', '#7be08b', '#e09545']
-        });
-
+        fireConfetti();
         formRef.current?.reset();
         setTimeout(() => {
           setSuccess(false);
           setResult("");
-        }, 5000);
+        }, 10000);
       } else {
         console.log("Error", data);
         setResult("Oeps! Er ging iets mis: " + data.message);
@@ -243,8 +255,8 @@ const ContactPage: React.FC = () => {
                 required
                 sx={{ mt: 2 }}
               />
-              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mt: 3 }}>
-                <Typography variant="body2" sx={{ color: success ? "#7be08b" : "error.main", fontWeight: "bold" }}>
+              <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mt: 3, minHeight: "24px" }}>
+                <Typography variant="body2" sx={{ color: success ? "#7be08b" : "error.main", fontWeight: success ? "bold" : "normal" }}>
                   {result}
                 </Typography>
                 <Button
