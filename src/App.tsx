@@ -33,7 +33,8 @@ const App: React.FC = () => {
     const { clientX: x, clientY: y } = event;
     const right = window.innerWidth - x;
     const bottom = window.innerHeight - y;
-    const maxRadius = Math.hypot(Math.max(x, right), Math.max(y, bottom));
+    // Add a 20% buffer to ensure the circle covers the entire viewport, even on mobile with safe areas
+    const maxRadius = Math.hypot(Math.max(x, right), Math.max(y, bottom)) * 1.2;
 
     document.documentElement.style.setProperty("--x", `${x}px`);
     document.documentElement.style.setProperty("--y", `${y}px`);

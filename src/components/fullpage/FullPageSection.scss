@@ -1,3 +1,7 @@
+// Animation timing – keep in sync with LOCK_TIMEOUT in useFullPage.ts
+$anim-duration: 0.85s;
+$anim-easing: cubic-bezier(0.16, 1, 0.3, 1); // smooth spring-like ease-out
+
 .full-page-section {
   position: fixed;
   top: 0;
@@ -7,18 +11,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.8s cubic-bezier(0.8, 0, 0.2, 1),
-    opacity 0.8s cubic-bezier(0.8, 0, 0.2, 1),
-    filter 0.8s cubic-bezier(0.8, 0, 0.2, 1);
-  will-change: transform, opacity, filter;
+  will-change: transform, opacity;
   overflow: hidden;
-  /* Make sure background is mostly transparent if canvas is visible */
+
+  transition:
+    transform $anim-duration $anim-easing,
+    opacity   $anim-duration $anim-easing;
 }
 
-/* 
-  The container inside that we might want to also transition slightly 
-  e.g., scale it or fade it out 
-*/
 .full-page-content {
   width: 100%;
   height: 100%;
@@ -26,18 +26,20 @@
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Start from top to allow scrolling down */
+  justify-content: flex-start;
   align-items: center;
-  padding-top: 70px; /* Leave space for AppBar */
+  padding-top: 70px; // space for AppBar
   padding-bottom: 20px;
-  
-  /* Hide scrollbar for a cleaner slide look, but keep functionality */
+
+  // Hide scrollbar for a cleaner look
   &::-webkit-scrollbar {
     display: none;
   }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
-/* On larger screens where content fits, we can center it */
+// Center content on tall screens
 @media (min-height: 900px) {
   .full-page-content {
     justify-content: center;
@@ -45,29 +47,30 @@
   }
 }
 
-/* State corresponding to index < activeIndex */
+// ── Section states ────────────────────────────────────────────────────────────
+
+// Section that has already been passed (above current)
+// Fades up and out of view
 .section--above {
-  transform: translateY(-5%) scale(0.9);
+  transform: translateY(-48px);
   opacity: 0;
-  filter: blur(10px);
   pointer-events: none;
   z-index: 10;
 }
 
-/* State corresponding to index === activeIndex */
+// The currently visible section
 .section--active {
-  transform: translateY(0) scale(1);
+  transform: translateY(0);
   opacity: 1;
-  filter: blur(0);
   pointer-events: auto;
   z-index: 20;
 }
 
-/* State corresponding to index > activeIndex */
+// Section that hasn't been visited yet (below current)
+// Fades up in from below
 .section--below {
-  /* It comes from below the viewport */
-  transform: translateY(100%);
+  transform: translateY(48px);
   opacity: 0;
   pointer-events: none;
-  z-index: 30; /* Keep higher so it slides *over* the current section */
+  z-index: 10;
 }

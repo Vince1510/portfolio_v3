@@ -6,63 +6,32 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  z-index: 100; /* Ensure tabs are above full-page sections so they are clickable */
 }
 
-/* Interaction animations & styling for the tabs */
-.vertical-tab {
+.vertical-tabs {
   cursor: pointer;
-  opacity: 0.5;
-  font-weight: 600 !important;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  transform-origin: right center;
-  letter-spacing: 1px;
 }
 
-/* Hover effect on larger screens */
-@media (min-width: 717px) {
-  .vertical-tab:hover {
-    opacity: 1;
-    transform: translateX(-5px) scale(1.05); /* slightly push left and grow */
-    color: #8c63e0 !important;
-    text-shadow: 0 0 12px rgba(140, 99, 224, 0.4);
-  }
-
-  /* Click animation */
-  .vertical-tab:active {
-    transform: translateX(-2px) scale(0.95);
-    transition: all 0.1s;
-  }
-}
-
-/* overwriting default styling MuiTab */
-.vertical-tab.Mui-selected {
-  color: #8c63e0 !important;
-  opacity: 1;
-  font-weight: 800 !important;
-  text-shadow: 0 0 15px rgba(140, 99, 224, 0.6);
-}
-
-@media (min-width: 717px) {
-  .vertical-tab.Mui-selected {
-    transform: translateX(-8px) scale(1.1); /* active state pops out fully */
-  }
-}
-
-.css-1r7avug-MuiButtonBase-root-MuiTab-root.Mui-selected,
-.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+/* overwriting default styling */
+.css-1r7avug-MuiButtonBase-root-MuiTab-root.Mui-selected {
   color: #8c63e0 !important;
 }
 
-.css-dyzi1o-MuiTabs-indicator,
+.css-dyzi1o-MuiTabs-indicator {
+  background-color: #8c63e0 !important;
+}
+
 .css-3sx0hq-MuiTabs-indicator {
   background-color: #8c63e0 !important;
 }
 
+.css-1h9z7r5-MuiButtonBase-root-MuiTab-root.Mui-selected {
+  color: #8c63e0 !important;
+}
+
 .css-10d9dml-MuiTabs-indicator {
-  width: 3px;
+  width: 2px;
   background-color: #8c63e0 !important;
-  border-radius: 4px;
 }
 
 /* Popup styles */
@@ -87,7 +56,6 @@
     position: static;
     height: auto;
   }
-
   .vertical-tabs-popup {
     position: fixed;
     top: 50%;
@@ -98,11 +66,9 @@
     z-index: 1000;
     border-radius: 5px 0 0 5px;
   }
-
   .vertical-tabs-popup.open {
     transform: translateX(0);
   }
-
   .arrow {
     display: block;
     position: absolute;
@@ -114,11 +80,9 @@
     animation: moveArrow 1s infinite alternate; /* Horizontal moving animation */
     transform: rotate(180deg); /* Initially rotated 180 degrees */
   }
-
   .vertical-tabs-popup.open .arrow {
     transform: rotate(0deg); /* Rotate to 0 degrees when container is open */
   }
-
   @keyframes moveArrow {
     from {
       left: -24px; /* Start position */
@@ -127,7 +91,6 @@
       left: -28px; /* End position */
     }
   }
-
   /* Dark overlay background when popup is open */
   .vertical-tabs-popup-background {
     position: fixed;
@@ -139,15 +102,14 @@
     z-index: 999; /* Below the popup */
   }
 }
-
 /* Dark theme */
-[data-theme="dark"] {
+[data-theme=dark] {
   --popup-background: #121212;
   --popup-shadow: #000;
 }
 
 /* Light theme */
-[data-theme="light"] {
+[data-theme=light] {
   --popup-background: white;
   --popup-shadow: #8c63e0;
-}
+}/*# sourceMappingURL=VerticalTabs.css.map */
