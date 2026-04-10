@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.540f7882.css",
+    "main.js": "/static/js/main.7c4a1d96.js",
+    "static/media/video-tik-tac-toe.mp4": "/static/media/video-tik-tac-toe.d4a35173ed641c3e1c8e.mp4",
+    "static/media/play-to-earn.png": "/static/media/play-to-earn.31477fa3c63966bd9814.png",
+    "static/media/putiton-e.png": "/static/media/putiton-e.e04416c7480b8d49161e.png",
+    "static/media/vince.jpg": "/static/media/vince.150b04276a80993b5b3c.jpg",
+    "static/media/portfolio-site.png": "/static/media/portfolio-site.1156a48450aaba01d746.png",
+    "static/media/mern-auth-cover.png": "/static/media/mern-auth-cover.b329529b19658f74f9c3.png",
+    "index.html": "/index.html",
+    "main.540f7882.css.map": "/static/css/main.540f7882.css.map",
+    "main.7c4a1d96.js.map": "/static/js/main.7c4a1d96.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.540f7882.css",
+    "static/js/main.7c4a1d96.js"
+  ]
+}
