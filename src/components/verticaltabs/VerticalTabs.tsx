@@ -54,6 +54,7 @@ const VerticalTabs: React.FC<VerticalTabsProps> = ({
         <Tabs
           orientation="vertical"
           variant="scrollable"
+          scrollButtons={false}
           aria-label="Vertical tabs example"
           value={activeTab}
         >

@@ -1,14 +1,14 @@
 :root {
-  --background-color: #fff; 
+  --background-color: #fff;
   --text-color: #000;
   --x: 50%;
   --y: 50%;
   --r: 100vmax;
 }
 
-[data-theme="dark"] {
-  --background-color: #222; 
-  --text-color: #fff; 
+[data-theme=dark] {
+  --background-color: #222;
+  --text-color: #fff;
 }
 
 html {
@@ -40,7 +40,6 @@ html {
     clip-path: circle(max(var(--r), 150vmax) at var(--x) var(--y));
   }
 }
-
 * {
   margin: 0;
   padding: 0;
@@ -66,4 +65,4 @@ h2 {
   body {
     padding: 0;
   }
-}
+}/*# sourceMappingURL=index.css.map */
