@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/portfolio_v3/static/css/main.a5c34942.css",
-    "main.js": "/portfolio_v3/static/js/main.b128096e.js",
-    "static/media/video-tik-tac-toe.mp4": "/portfolio_v3/static/media/video-tik-tac-toe.d4a35173ed641c3e1c8e.mp4",
-    "static/media/Teamkraus.png": "/portfolio_v3/static/media/Teamkraus.cb29c91748edca813df5.png",
-    "static/media/play-to-earn.png": "/portfolio_v3/static/media/play-to-earn.31477fa3c63966bd9814.png",
-    "static/media/Witgoed-Hellevoetsluis.png": "/portfolio_v3/static/media/Witgoed-Hellevoetsluis.52b3c757615fb969236e.png",
-    "static/media/putiton-e.png": "/portfolio_v3/static/media/putiton-e.e04416c7480b8d49161e.png",
-    "static/media/vince.jpg": "/portfolio_v3/static/media/vince.150b04276a80993b5b3c.jpg",
-    "static/media/portfolio-site.png": "/portfolio_v3/static/media/portfolio-site.1156a48450aaba01d746.png",
-    "static/media/mern-auth-cover.png": "/portfolio_v3/static/media/mern-auth-cover.b329529b19658f74f9c3.png",
-    "static/media/iam-self-service.png": "/portfolio_v3/static/media/iam-self-service.f67c77206fba9171ae3b.png",
-    "index.html": "/portfolio_v3/index.html",
-    "main.a5c34942.css.map": "/portfolio_v3/static/css/main.a5c34942.css.map",
-    "main.b128096e.js.map": "/portfolio_v3/static/js/main.b128096e.js.map"
+    "main.css": "/static/css/main.bae25e16.css",
+    "main.js": "/static/js/main.61e7780a.js",
+    "static/media/video-tik-tac-toe.mp4": "/static/media/video-tik-tac-toe.d4a35173ed641c3e1c8e.mp4",
+    "static/media/Teamkraus.png": "/static/media/Teamkraus.cb29c91748edca813df5.png",
+    "static/media/play-to-earn.png": "/static/media/play-to-earn.31477fa3c63966bd9814.png",
+    "static/media/vince.jpg": "/static/media/vince.2e899ffeb5249d9fe581.jpg",
+    "static/media/Witgoed-Hellevoetsluis.png": "/static/media/Witgoed-Hellevoetsluis.52b3c757615fb969236e.png",
+    "static/media/putiton-e.png": "/static/media/putiton-e.e04416c7480b8d49161e.png",
+    "static/media/portfolio-site.png": "/static/media/portfolio-site.1156a48450aaba01d746.png",
+    "static/media/mern-auth-cover.png": "/static/media/mern-auth-cover.b329529b19658f74f9c3.png",
+    "static/media/iam-self-service.png": "/static/media/iam-self-service.f67c77206fba9171ae3b.png",
+    "index.html": "/index.html",
+    "main.bae25e16.css.map": "/static/css/main.bae25e16.css.map",
+    "main.61e7780a.js.map": "/static/js/main.61e7780a.js.map"
   },
   "entrypoints": [
-    "static/css/main.a5c34942.css",
-    "static/js/main.b128096e.js"
+    "static/css/main.bae25e16.css",
+    "static/js/main.61e7780a.js"
   ]
 }
