@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Phone, Email, GitHub, LinkedIn } from "@mui/icons-material";
 import "./Header.scss";
 import vinceImage from "./vince.jpg";

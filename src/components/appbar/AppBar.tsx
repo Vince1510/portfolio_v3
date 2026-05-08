@@ -4,8 +4,6 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import ThemeSwitcher from "../themeswitcher/ThemeSwitcher";
-import logoLight from "./apeldoorn-logo.png";
-import logoDark from "./logo-apeldoorn-dark.png";
 import "./AppBar.scss";
 
 interface ResponsiveAppBarProps {
@@ -20,6 +18,8 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
   return (
     <AppBar
       position="fixed"
+      color="transparent"
+      elevation={0}
       sx={{
         backgroundColor: "transparent",
         backdropFilter: "none",

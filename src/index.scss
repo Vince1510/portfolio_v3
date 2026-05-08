@@ -1,21 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+
+/* ─── CSS Custom Properties ──────────────────────────────────────────────── */
 :root {
-  --background-color: #fff; 
-  --text-color: #000;
   --x: 50%;
   --y: 50%;
   --r: 100vmax;
+
+  /* Season gradient colours */
+  --season-top: #fce4ec;
+  --season-bottom: #e8f5e9;
+
+  /* Glass theme  */
+  --glass-bg: rgba(255, 255, 255, 0.18);
+  --glass-border: rgba(255, 255, 255, 0.35);
+  --glass-shadow: rgba(0, 0, 0, 0.12);
+  --glass-blur: 16px;
 }
 
 [data-theme="dark"] {
-  --background-color: #222; 
-  --text-color: #fff; 
+  --glass-bg: rgba(10, 10, 30, 0.35);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: rgba(0, 0, 0, 0.45);
+  --glass-blur: 20px;
 }
 
 html {
   view-transition-name: root;
 }
 
-/* View Transitions API specific styling */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
@@ -36,34 +48,85 @@ html {
     clip-path: circle(0px at var(--x) var(--y));
   }
   to {
-    /* Use the calculated radius or a safe fallback of 150vmax to ensure full coverage */
     clip-path: circle(max(var(--r), 150vmax) at var(--x) var(--y));
   }
 }
 
+/* Base */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: "Inter", "Roboto", sans-serif;
 }
 
 body {
-  background-color: var(--background-color);
-  color: var(--text-color);
   margin: 0;
   padding: 0;
   overflow: hidden;
   height: 100vh;
   width: 100vw;
+  background: transparent;
+  color: #000;
+  transition: color 0.4s ease;
+}
+
+[data-theme="dark"] body,
+[data-theme="dark"] {
+  color: #fff;
 }
 
 h2 {
   margin: 0;
 }
 
+/* Glass theme */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px var(--glass-shadow);
+  border-radius: 16px;
+  transition:
+    background 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.glass:hover {
+  box-shadow: 0 12px 40px var(--glass-shadow);
+}
+
+
+/* Light mode */
+[data-theme="light"][data-season="spring"] {
+  --body-overlay: rgba(252, 228, 236, 0.08);
+}
+[data-theme="light"][data-season="summer"] {
+  --body-overlay: rgba(255, 249, 196, 0.08);
+}
+[data-theme="light"][data-season="autumn"] {
+  --body-overlay: rgba(255, 243, 224, 0.08);
+}
+[data-theme="light"][data-season="winter"] {
+  --body-overlay: rgba(227, 242, 253, 0.08);
+}
+
+/* Cosmic dark background */
+[data-theme="dark"] body {
+  background: #000510;
+}
+
 @media (max-width: 716px) {
   body {
     padding: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .glass {
+    border-radius: 10px;
+    --glass-blur: 10px;
   }
 }

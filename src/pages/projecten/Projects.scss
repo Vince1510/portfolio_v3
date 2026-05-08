@@ -20,16 +20,20 @@
   flex-direction: row;
   align-items: center;
   gap: 20px;
-  overflow-x: scroll;
+  overflow-x: auto; /* native scroll first */
   overflow-y: visible;
+  
+  /* Robust native snapping */
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  
   cursor: grab;
   width: 100%;
   padding-top: 12px;
-  padding-bottom: 20px;
-  /* padding-left / padding-right set dynamically via JS to center cards */
+  padding-bottom: 24px;
+  
+  /* Dynamic padding-left/right handles centering via IntersectionObserver */
 }
 
 .carousel-track:active {

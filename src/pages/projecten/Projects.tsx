@@ -4,13 +4,20 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import LinkIcon from "@mui/icons-material/Link";
 import { useTheme } from "@mui/material/styles";
-import "./Projects.css";
-
+import gsap from "gsap";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
 import mernImg from "./mern-auth-cover.png";
 import portfolioImg from "./portfolio-site.png";
 import playtoearnImg from "./play-to-earn.png";
 import putitoneImg from "./putiton-e.png";
 import tiktactoeImg from "./video-tik-tac-toe.mp4";
+import iamImg from "./iam-self-service.png";
+import witgoedImg from "./Witgoed-Hellevoetsluis.png";
+import krausImg from "./Teamkraus.png";
+import "./Projects.scss";
+
+// Register ScrollToPlugin
+gsap.registerPlugin(ScrollToPlugin);
 
 interface ProjectData {
   title: string;
@@ -23,13 +30,31 @@ interface ProjectData {
 
 const projects: ProjectData[] = [
   {
-    title: "MERN Auth",
+    title: "Witgoed Hellevoetsluis",
     description:
-      "Ik heb van NetNinja geleerd hoe ik mern-stack projecten kan maken met JSON web tokens.",
-    link: "https://github.com/Vince1510/MERN-Auth",
-    mediaUrl: mernImg,
+      "Website gemaakt voor Witgoed Hellevoetsluis en Meubeldiscount met React, TypeScript en MUI.",
+    link: "https://www.meubeldiscountbzoon.com/",
+    mediaUrl: witgoedImg,
     mediaType: "image",
-    tags: ["MongoDB", "Express", "React", "Node.js"],
+    tags: ["React", "TypeScript", "MUI"],
+  },
+  {
+    title: "Enovation IAM Self Service",
+    description:
+      "Tijdens mijn stage bij Enovation heb ik de IAM Self Service applicatie gemigreerd van Angular 1 naar Angular v18.",
+    link: "https://enovationgroup.com/",
+    mediaUrl: iamImg,
+    mediaType: "image",
+    tags: ["Angular v18", "Migration", "Stage"],
+  },
+  {
+    title: "Team Kraus",
+    description:
+      "De officiële website voor Albert Kraus en Gradus Kraus, gemaakt met HTML, CSS en JavaScript.",
+    link: "https://teamkraus.nl/",
+    mediaUrl: krausImg,
+    mediaType: "image",
+    tags: ["HTML", "CSS", "JavaScript"],
   },
   {
     title: "Portfolio Website",
@@ -66,154 +91,133 @@ const projects: ProjectData[] = [
     mediaType: "video",
     tags: ["React", "Game", "2-Player"],
   },
+  {
+    title: "MERN Auth",
+    description:
+      "Ik heb van NetNinja geleerd hoe ik mern-stack projecten kan maken met JSON web tokens.",
+    link: "https://github.com/Vince1510/MERN-Auth",
+    mediaUrl: mernImg,
+    mediaType: "image",
+    tags: ["MongoDB", "Express", "React", "Node.js"],
+  },
 ];
 
 export default function Project() {
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
-  const theme = useTheme();
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Mouse drag state
+  // Drag state
   const isDragging = useRef(false);
-  const hasDragged = useRef(false);
   const startX = useRef(0);
   const scrollLeftStart = useRef(0);
+  const isAutoScrolling = useRef(false);
 
-  // ── Center padding ──────────────────────────────────────────────────────────
-  // Set padding so first/last card can be centered in the track
-  const setCenterPadding = useCallback(() => {
-    window.requestAnimationFrame(() => {
-      const track = trackRef.current;
-      if (!track) return;
-      const firstCard = track.querySelector<HTMLElement>(".carousel-card");
-      if (!firstCard) return;
-      const padding = Math.max(0, (track.clientWidth - firstCard.offsetWidth) / 2);
-      track.style.paddingLeft = `${padding}px`;
-      track.style.paddingRight = `${padding}px`;
-    });
+  // 1. DYNAMIC CENTERING PADDING
+  // We need to add padding to the container so that the first and last cards can be centered.
+  const updatePadding = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const firstCard = track.querySelector(".carousel-card") as HTMLElement;
+    if (!firstCard) return;
+    
+    // Total padding to center a card: (containerWidth - cardWidth) / 2
+    const padding = (track.clientWidth - firstCard.offsetWidth) / 2;
+    track.style.paddingLeft = `${padding}px`;
+    track.style.paddingRight = `${padding}px`;
   }, []);
 
   useEffect(() => {
-    setCenterPadding();
-    const ro = new ResizeObserver(setCenterPadding);
-    if (trackRef.current) ro.observe(trackRef.current);
-    return () => ro.disconnect();
-  }, [setCenterPadding]);
+    updatePadding();
+    window.addEventListener("resize", updatePadding);
+    return () => window.removeEventListener("resize", updatePadding);
+  }, [updatePadding]);
 
-  const isAutoScrolling = useRef(false);
-
-  // ── goTo ────────────────────────────────────────────────────────────────────
-  const goTo = useCallback((index: number) => {
+  // 2. INTERSECTION OBSERVER FOR ACTIVE INDEX
+  // Highly performant way to track which card is currently centered
+  useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
-    const cards = Array.from(
-      track.querySelectorAll<HTMLElement>(".carousel-card")
-    );
-    if (!cards[index]) return;
-    
+
+    const observerOption = {
+      root: track,
+      threshold: 0.6, // Fire when 60% of the card is visible
+      rootMargin: "0px -25% 0px -25%" // Focus on the center area
+    };
+
+    const callback: IntersectionObserverCallback = (entries) => {
+      if (isAutoScrolling.current) return;
+      
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const index = cardRefs.current.indexOf(entry.target as HTMLDivElement);
+          if (index !== -1) {
+            setActiveIndex(index);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, observerOption);
+    cardRefs.current.forEach((card) => {
+      if (card) observer.observe(card);
+    });
+
+    return () => observer.disconnect();
+  }, [projects.length]);
+
+  // 3. ROBUST NAVIGATION
+  const goTo = (index: number) => {
+    const track = trackRef.current;
+    const card = cardRefs.current[index];
+    if (!track || !card) return;
+
     isAutoScrolling.current = true;
     setActiveIndex(index);
+    
+    // Temporarily disable snap to allow GSAP to scroll smoothly
     track.style.scrollSnapType = "none";
 
-    const card = cards[index];
-    const targetScrollLeft = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
-    track.scrollTo({ left: targetScrollLeft, behavior: "smooth" });
+    const targetOffset = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
 
-    // Re-enable snap logic after animation completes
-    setTimeout(() => {
-      isAutoScrolling.current = false;
-      if (trackRef.current) trackRef.current.style.scrollSnapType = "";
-    }, 600);
-  }, []);
-
-  // ── Active index from scroll ─────────────────────────────────────────────────
-  const updateActive = useCallback(() => {
-    if (isAutoScrolling.current) return;
-    const track = trackRef.current;
-    if (!track) return;
-    const trackCenter = track.scrollLeft + track.clientWidth / 2;
-    const cards = Array.from(
-      track.querySelectorAll<HTMLElement>(".carousel-card")
-    );
-    let minDist = Infinity;
-    let idx = 0;
-    cards.forEach((card, i) => {
-      const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-      const dist = Math.abs(cardCenter - trackCenter);
-      if (dist < minDist) {
-        minDist = dist;
-        idx = i;
+    gsap.to(track, {
+      scrollTo: { x: targetOffset },
+      duration: 0.8,
+      ease: "power2.inOut",
+      onComplete: () => {
+        isAutoScrolling.current = false;
+        track.style.scrollSnapType = "x mandatory";
       }
     });
-    setActiveIndex(idx);
-  }, []);
+  };
 
-  // ── Mouse drag ───────────────────────────────────────────────────────────────
-  const handleMouseDown = (e: React.MouseEvent) => {
-    if (e.button !== 0) return; // only left-click
+  // 4. MOUSE DRAG HELPER
+  const onMouseDown = (e: React.MouseEvent) => {
     isDragging.current = true;
-    hasDragged.current = false;
-    startX.current = e.clientX;
-    scrollLeftStart.current = trackRef.current?.scrollLeft ?? 0;
+    startX.current = e.pageX - (trackRef.current?.offsetLeft || 0);
+    scrollLeftStart.current = trackRef.current?.scrollLeft || 0;
     if (trackRef.current) {
-      trackRef.current.style.cursor = "grabbing";
-      // Disable snap during drag for smooth feel
       trackRef.current.style.scrollSnapType = "none";
     }
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current) return;
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current || !trackRef.current) return;
     e.preventDefault();
-    const dx = e.clientX - startX.current;
-    if (Math.abs(dx) > 5) hasDragged.current = true;
-    if (trackRef.current) {
-      trackRef.current.scrollLeft = scrollLeftStart.current - dx;
-    }
+    const x = e.pageX - trackRef.current.offsetLeft;
+    const walk = (x - startX.current) * 1.5; // multiplier for speed
+    trackRef.current.scrollLeft = scrollLeftStart.current - walk;
   };
 
-  const handleMouseUp = () => {
-    if (!isDragging.current) return;
+  const onMouseUp = () => {
     isDragging.current = false;
-    const track = trackRef.current;
-    if (track) {
-      track.style.cursor = "grab";
-      track.style.scrollSnapType = "";
-      if (hasDragged.current) {
-        updateActive();
-        // Snap to nearest card
-        setTimeout(() => {
-          const updatedTrack = trackRef.current;
-          if (!updatedTrack) return;
-          const trackCenter =
-            updatedTrack.scrollLeft + updatedTrack.clientWidth / 2;
-          const cards = Array.from(
-            updatedTrack.querySelectorAll<HTMLElement>(".carousel-card")
-          );
-          let minDist = Infinity;
-          let idx = 0;
-          cards.forEach((card, i) => {
-            const cardCenter = card.offsetLeft + card.offsetWidth / 2;
-            const dist = Math.abs(cardCenter - trackCenter);
-            if (dist < minDist) {
-              minDist = dist;
-              idx = i;
-            }
-          });
-          goTo(idx);
-        }, 50);
-      }
+    if (trackRef.current) {
+      trackRef.current.style.scrollSnapType = "x mandatory";
     }
-  };
-
-  const handleCardClick = (index: number) => {
-    if (hasDragged.current) return;
-    goTo(index);
   };
 
   return (
     <div className="projects-wrapper">
-      {/* Title */}
       <Typography
         variant="h4"
         component="h1"
@@ -228,32 +232,26 @@ export default function Project() {
         Projecten
       </Typography>
 
-      {/* ── Carousel track ───────────────────────────────────────── */}
       <div
         ref={trackRef}
         className="carousel-track"
-        onScroll={updateActive}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
+        onMouseDown={onMouseDown}
+        onMouseMove={onMouseMove}
+        onMouseUp={onMouseUp}
+        onMouseLeave={onMouseUp}
       >
         {projects.map((project, index) => {
           const isActive = index === activeIndex;
           return (
             <div
               key={index}
+              ref={(el) => (cardRefs.current[index] = el)}
               className={`carousel-card ${isActive ? "carousel-card--active" : ""}`}
-              onClick={() => handleCardClick(index)}
+              onClick={() => goTo(index)}
             >
-              {/* Media */}
               <div className="carousel-card-media">
                 {project.mediaType === "image" ? (
-                  <img
-                    src={project.mediaUrl}
-                    alt={project.title}
-                    draggable={false}
-                  />
+                  <img src={project.mediaUrl} alt={project.title} draggable={false} />
                 ) : (
                   <video
                     src={project.mediaUrl}
@@ -261,19 +259,21 @@ export default function Project() {
                     loop
                     muted
                     playsInline
+                    ref={(el) => {
+                      if (el) {
+                        if (isActive) el.play().catch(() => {});
+                        else el.pause();
+                      }
+                    }}
                   />
                 )}
-                {/* Overlay glow */}
                 <div className="carousel-card-glow" />
               </div>
 
-              {/* Info */}
               <div className="carousel-card-info">
                 <div className="carousel-card-tags">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="carousel-tag">
-                      {tag}
-                    </span>
+                    <span key={tag} className="carousel-tag">{tag}</span>
                   ))}
                 </div>
                 <h2 className="carousel-card-title">{project.title}</h2>
@@ -301,13 +301,11 @@ export default function Project() {
                   View Project
                 </Button>
               </div>
-
             </div>
           );
         })}
       </div>
 
-      {/* ── Dot indicators ──────────────────────────────────────── */}
       <div className="carousel-dots">
         {projects.map((_, index) => (
           <button
@@ -319,7 +317,6 @@ export default function Project() {
         ))}
       </div>
 
-      {/* Project counter */}
       <p className="carousel-counter">
         {activeIndex + 1} / {projects.length}
       </p>
