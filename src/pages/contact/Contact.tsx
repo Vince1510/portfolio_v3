@@ -21,9 +21,11 @@ import SendIcon from "@mui/icons-material/Send";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import confetti from "canvas-confetti";
+import { useLanguage } from "../../context/LanguageContext";
 import "./Contact.scss";
 
 const ContactPage: React.FC = () => {
+  const { t } = useLanguage();
   const [result, setResult] = useState("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -71,7 +73,7 @@ const ContactPage: React.FC = () => {
       setLoading(false);
 
       if (data.success) {
-        setResult("Bedankt! Je bericht is succesvol verzonden. ✨");
+        setResult(t("contact.msgSuccess"));
         setSuccess(true);
         fireConfetti();
         formRef.current?.reset();
@@ -81,14 +83,14 @@ const ContactPage: React.FC = () => {
         }, 10000);
       } else {
         console.log("Error", data);
-        setResult("Oeps! Er ging iets mis: " + data.message);
+        setResult(t("contact.msgErrorPrefix") + data.message);
         setSuccess(false);
       }
     } catch (error) {
       console.log("Error", error);
       setLoading(false);
       setSuccess(false);
-      setResult("Oeps! Er kon geen verbinding worden gemaakt.");
+      setResult(t("contact.msgNetworkError"));
     }
   };
 
@@ -137,10 +139,10 @@ const ContactPage: React.FC = () => {
           >
             <Box>
               <Typography variant={isSmallScreen ? "h4" : "h3"} fontWeight="bold" gutterBottom color="text.primary">
-                Let's Connect!
+                {t("contact.letsConnect")}
               </Typography>
               <Typography variant="body2" color="text.secondary" sx={{ mb: { xs: 2, md: 4 }, lineHeight: 1.6 }}>
-                Heb je een vraag, wil je samenwerken, of gewoon even hallo zeggen? Stuur me gerust een bericht!
+                {t("contact.connectText")}
               </Typography>
 
               <Box sx={{ display: "flex", flexDirection: "column", gap: { xs: 1.5, md: 2 }, mb: { xs: 2, md: 4 } }}>
@@ -165,7 +167,7 @@ const ContactPage: React.FC = () => {
                     <LocationOnIcon sx={{ color: "#e09545", fontSize: "1.2rem" }} />
                   </Box>
                   <Typography variant="body2" color="text.primary">
-                    Rotterdam, The Netherlands
+                    {t("contact.location")}
                   </Typography>
                 </Box>
               </Box>
@@ -205,12 +207,12 @@ const ContactPage: React.FC = () => {
             }}
           >
             <Typography variant="h5" fontWeight="bold" gutterBottom color="text.primary" sx={{ mb: 3 }}>
-              Stuur een bericht
+              {t("contact.sendMessageTitle")}
             </Typography>
             <form onSubmit={onSubmit} ref={formRef} className="contact-form" style={{ width: "100%" }}>
               <Box sx={{ display: "flex", flexDirection: isSmallScreen ? "column" : "row", gap: 2 }}>
                 <TextField
-                  label="Name"
+                  label={t("contact.nameLabel")}
                   name="name"
                   variant="outlined"
                   fullWidth
@@ -226,7 +228,7 @@ const ContactPage: React.FC = () => {
                   sx={{ mt: 0 }}
                 />
                 <TextField
-                  label="Email"
+                  label={t("contact.emailLabel")}
                   type="email"
                   name="email"
                   variant="outlined"
@@ -244,7 +246,7 @@ const ContactPage: React.FC = () => {
                 />
               </Box>
               <TextField
-                label="Message"
+                label={t("contact.messageLabel")}
                 name="message"
                 multiline
                 rows={4}
@@ -284,7 +286,7 @@ const ContactPage: React.FC = () => {
                     transition: "all 0.3s ease",
                   }}
                 >
-                  {loading ? "Verzenden..." : success ? "Verzonden!" : "Verstuur"}
+                  {loading ? t("contact.statusSending") : success ? t("contact.statusSent") : t("contact.statusSend")}
                 </Button>
               </Box>
             </form>

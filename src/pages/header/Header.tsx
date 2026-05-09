@@ -1,9 +1,11 @@
 import React from "react";
 import { Phone, Email, GitHub, LinkedIn } from "@mui/icons-material";
+import { useLanguage } from "../../context/LanguageContext";
 import "./Header.scss";
 import vinceImage from "./vince.jpg";
 
 const HeaderPage: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <div className="container">
       <div className="hero-circle">
@@ -24,14 +26,14 @@ const HeaderPage: React.FC = () => {
           <path id="top-curve" d="M 40,300 A 260,260 0 0,1 560,300" fill="transparent" />
           <text>
             <textPath href="#top-curve" startOffset="50%" textAnchor="middle" className="fancy-title">
-              I'M VINCE VAN APELDOORN
+              {t("header.title")}
             </textPath>
           </text>
           
           <path id="bottom-curve" d="M 16,300 A 284,284 0 0,0 584,300" fill="transparent" />
           <text>
             <textPath href="#bottom-curve" startOffset="50%" textAnchor="middle" className="fancy-subtitle">
-              Front end Student at Hogeschool Rotterdam
+              {t("header.subtitle")}
             </textPath>
           </text>
         </svg>

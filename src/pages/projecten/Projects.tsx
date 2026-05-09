@@ -4,6 +4,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import LinkIcon from "@mui/icons-material/Link";
 import { useTheme } from "@mui/material/styles";
+import { useLanguage } from "../../context/LanguageContext";
 import gsap from "gsap";
 import ScrollToPlugin from "gsap/ScrollToPlugin";
 import mernImg from "./mern-auth-cover.png";
@@ -103,6 +104,7 @@ const projects: ProjectData[] = [
 ];
 
 export default function Project() {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -229,7 +231,7 @@ export default function Project() {
           letterSpacing: "-0.5px",
         }}
       >
-        Projecten
+        {t("projects.heading")}
       </Typography>
 
       <div
@@ -277,7 +279,7 @@ export default function Project() {
                   ))}
                 </div>
                 <h2 className="carousel-card-title">{project.title}</h2>
-                <p className="carousel-card-desc">{project.description}</p>
+                <p className="carousel-card-desc">{t(`projects.items.${index}.description`)}</p>
                 <Button
                   variant="contained"
                   size="small"
@@ -298,7 +300,7 @@ export default function Project() {
                     "&:hover": { bgcolor: "#784bd1" },
                   }}
                 >
-                  View Project
+                  {t("projects.viewProject")}
                 </Button>
               </div>
             </div>

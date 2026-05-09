@@ -2,6 +2,7 @@ import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import { useLanguage } from "../../context/LanguageContext";
 import "./VerticalTabs.scss";
 
 interface VerticalTabsProps {
@@ -13,6 +14,7 @@ const VerticalTabs: React.FC<VerticalTabsProps> = ({
   activeTab,
   onTabClick,
 }) => {
+  const { t } = useLanguage();
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const popupRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -41,6 +43,13 @@ const VerticalTabs: React.FC<VerticalTabsProps> = ({
     togglePopup();
   };
 
+  const navItems = [
+    t("nav.home"),
+    t("nav.skills"),
+    t("nav.projects"),
+    t("nav.contact"),
+  ];
+
   return (
     <Box className="vertical-tabs-container">
       {isPopupOpen && <div className="vertical-tabs-popup-background" />}
@@ -58,7 +67,7 @@ const VerticalTabs: React.FC<VerticalTabsProps> = ({
           aria-label="Vertical tabs example"
           value={activeTab}
         >
-          {["<Home/>", "<Skills/>", "<Projects/>", "<Contact/>"].map(
+          {navItems.map(
             (label, index) => (
               <Tab
                 key={index}

@@ -1,0 +1,71 @@
+{
+  "nav": {
+    "home": "<Home/>",
+    "skills": "<Skills/>",
+    "projects": "<Projecten/>",
+    "contact": "<Contact/>"
+  },
+  "header": {
+    "title": "VINCE VAN APELDOORN",
+    "subtitle": "Front end Student aan Hogeschool Rotterdam"
+  },
+  "skills": {
+    "heading": "<Skills/>"
+  },
+  "projects": {
+    "heading": "Projecten",
+    "viewProject": "View Project",
+    "items": [
+      {
+        "title": "Witgoed Hellevoetsluis",
+        "description": "Website gemaakt voor Witgoed Hellevoetsluis en Meubeldiscount met React, TypeScript en MUI."
+      },
+      {
+        "title": "Enovation IAM Self Service",
+        "description": "Tijdens mijn stage bij Enovation heb ik de IAM Self Service applicatie gemigreerd van Angular 1 naar Angular v18."
+      },
+      {
+        "title": "Team Kraus",
+        "description": "De officiële website voor Albert Kraus en Gradus Kraus, gemaakt met HTML, CSS en JavaScript."
+      },
+      {
+        "title": "Portfolio Website",
+        "description": "Deze portfolio website is gemaakt met Typescript en Material UI."
+      },
+      {
+        "title": "Putiton-e",
+        "description": "Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website Putiton-e."
+      },
+      {
+        "title": "Play to Earn",
+        "description": "Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website Play to Earn games."
+      },
+      {
+        "title": "Tic Tac Toe",
+        "description": "Tic tac toe volledig met React voor 2 spelers."
+      },
+      {
+        "title": "MERN Auth",
+        "description": "Ik heb van NetNinja geleerd hoe ik mern-stack projecten kan maken met JSON web tokens."
+      }
+    ]
+  },
+  "contact": {
+    "heading": "<Contact/>",
+    "description": "Hieronder kun je me bereiken of mijn CV downloaden.",
+    "cvButton": "Curriculum Vitae",
+    "letsConnect": "Let's Connect!",
+    "connectText": "Heb je een vraag, wil je samenwerken, of gewoon even hallo zeggen? Stuur me gerust een bericht!",
+    "location": "Rotterdam, The Netherlands",
+    "sendMessageTitle": "Stuur een bericht",
+    "nameLabel": "Naam",
+    "emailLabel": "E-mail",
+    "messageLabel": "Bericht",
+    "statusSending": "Verzenden...",
+    "statusSent": "Verzonden!",
+    "statusSend": "Verstuur",
+    "msgSuccess": "Bedankt! Je bericht is succesvol verzonden. ✨",
+    "msgErrorPrefix": "Oeps! Er ging iets mis: ",
+    "msgNetworkError": "Oeps! Er kon geen verbinding worden gemaakt."
+  }
+}

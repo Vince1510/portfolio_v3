@@ -3,7 +3,10 @@ import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
 import ThemeSwitcher from "../themeswitcher/ThemeSwitcher";
+import { useLanguage } from "../../context/LanguageContext";
 import "./AppBar.scss";
 
 interface ResponsiveAppBarProps {
@@ -15,6 +18,8 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
   darkMode,
   toggleDarkMode,
 }) => {
+  const { language, toggleLanguage } = useLanguage();
+
   return (
     <AppBar
       position="fixed"
@@ -51,7 +56,29 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
           >
             {"<Vince/>"}
           </Typography>
-          <ThemeSwitcher darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <Button
+              onClick={toggleLanguage}
+              variant="outlined"
+              size="small"
+              sx={{
+                minWidth: "auto",
+                px: 1,
+                py: 0.5,
+                borderRadius: "20px",
+                borderColor: darkMode ? "rgba(255,255,255,0.3)" : "rgba(0,0,0,0.3)",
+                color: darkMode ? "#fff" : "#000",
+                fontWeight: "bold",
+                "&:hover": {
+                  borderColor: darkMode ? "#fff" : "#000",
+                  backgroundColor: darkMode ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)"
+                }
+              }}
+            >
+              {language.toUpperCase()}
+            </Button>
+            <ThemeSwitcher darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

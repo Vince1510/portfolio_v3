@@ -1,0 +1,71 @@
+{
+  "nav": {
+    "home": "<Home/>",
+    "skills": "<Skills/>",
+    "projects": "<Projects/>",
+    "contact": "<Contact/>"
+  },
+  "header": {
+    "title": "I'M VINCE VAN APELDOORN",
+    "subtitle": "Front end Student at Hogeschool Rotterdam"
+  },
+  "skills": {
+    "heading": "<Skills/>"
+  },
+  "projects": {
+    "heading": "Projects",
+    "viewProject": "View Project",
+    "items": [
+      {
+        "title": "Witgoed Hellevoetsluis",
+        "description": "Website built for Witgoed Hellevoetsluis and Meubeldiscount using React, TypeScript, and MUI."
+      },
+      {
+        "title": "Enovation IAM Self Service",
+        "description": "During my internship at Enovation, I migrated the IAM Self Service application from Angular 1 to Angular v18."
+      },
+      {
+        "title": "Team Kraus",
+        "description": "The official website for Albert Kraus and Gradus Kraus, created with HTML, CSS, and JavaScript."
+      },
+      {
+        "title": "Portfolio Website",
+        "description": "This portfolio website is built with TypeScript and Material UI."
+      },
+      {
+        "title": "Putiton-e",
+        "description": "During my internship at Crebos, I worked on the Putiton-e website."
+      },
+      {
+        "title": "Play to Earn",
+        "description": "During my internship at Crebos, I worked on the Play to Earn games website."
+      },
+      {
+        "title": "Tic Tac Toe",
+        "description": "Tic tac toe game for 2 players, built entirely with React."
+      },
+      {
+        "title": "MERN Auth",
+        "description": "I learned from NetNinja how to build MERN stack projects with JSON web tokens."
+      }
+    ]
+  },
+  "contact": {
+    "heading": "<Contact/>",
+    "description": "You can reach out to me below or download my resume.",
+    "cvButton": "Curriculum Vitae",
+    "letsConnect": "Let's Connect!",
+    "connectText": "Have a question, want to collaborate, or just say hi? Feel free to send me a message!",
+    "location": "Rotterdam, The Netherlands",
+    "sendMessageTitle": "Send a message",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "messageLabel": "Message",
+    "statusSending": "Sending...",
+    "statusSent": "Sent!",
+    "statusSend": "Send",
+    "msgSuccess": "Thanks! Your message has been sent successfully. ✨",
+    "msgErrorPrefix": "Oops! Something went wrong: ",
+    "msgNetworkError": "Oops! Could not connect to the server."
+  }
+}
