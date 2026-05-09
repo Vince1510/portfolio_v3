@@ -44,6 +44,12 @@ const BackgroundCanvas: React.FC<BackgroundCanvasProps> = ({
     if (cosmicRef.current) cosmicRef.current.setScene(activeIndex);
   }, [activeIndex]);
 
+  // Pause the hidden background to save performance
+  useEffect(() => {
+    if (seasonalRef.current) seasonalRef.current.setPaused(darkMode);
+    if (cosmicRef.current) cosmicRef.current.setPaused(!darkMode);
+  }, [darkMode]);
+
   const baseStyle: React.CSSProperties = {
     position: "fixed",
     top: 0,

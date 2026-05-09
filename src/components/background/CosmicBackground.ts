@@ -117,6 +117,11 @@ export class CosmicBackground {
   private currentScene = 0;
   private sunLight!: THREE.PointLight;
   private nebula!: THREE.Mesh;
+  private isPaused = false;
+
+  public setPaused(paused: boolean) {
+    this.isPaused = paused;
+  }
 
   private cameraTarget = new THREE.Vector3(0, 0, 0);
 
@@ -184,26 +189,38 @@ export class CosmicBackground {
 
     // Background distant small planets / moons
     this.bgPlanets = new THREE.Group();
-    for (let i = 0; i < 35; i++) {
+    const bgPlanetCount = 35;
+    const bgPlanetGeo = new THREE.SphereGeometry(1, 16, 16);
+    const bgPlanetMat = new THREE.MeshStandardMaterial({
+      roughness: 0.7,
+      metalness: 0.2,
+    });
+    const instancedBgPlanets = new THREE.InstancedMesh(bgPlanetGeo, bgPlanetMat, bgPlanetCount);
+    const dummy = new THREE.Object3D();
+
+    for (let i = 0; i < bgPlanetCount; i++) {
       const r = Math.random() * 0.3 + 0.05;
-      const geo = new THREE.SphereGeometry(r, 16, 16);
-      const mat = new THREE.MeshStandardMaterial({
-        color: new THREE.Color().setHSL(Math.random(), 0.6, 0.4),
-        roughness: 0.7,
-        metalness: 0.2,
-      });
-      const mesh = new THREE.Mesh(geo, mat);
       
       const theta = Math.random() * Math.PI * 2;
       const phi = Math.acos(2 * Math.random() - 1);
       const distance = 25 + Math.random() * 40;
-      mesh.position.set(
+      
+      dummy.position.set(
         distance * Math.sin(phi) * Math.cos(theta),
         distance * Math.sin(phi) * Math.sin(theta),
         distance * Math.cos(phi)
       );
-      this.bgPlanets.add(mesh);
+      dummy.scale.set(r, r, r);
+      dummy.updateMatrix();
+      
+      instancedBgPlanets.setMatrixAt(i, dummy.matrix);
+      instancedBgPlanets.setColorAt(i, new THREE.Color().setHSL(Math.random(), 0.6, 0.4));
     }
+    
+    instancedBgPlanets.instanceMatrix.needsUpdate = true;
+    if (instancedBgPlanets.instanceColor) instancedBgPlanets.instanceColor.needsUpdate = true;
+    
+    this.bgPlanets.add(instancedBgPlanets);
     this.scene.add(this.bgPlanets);
 
     window.addEventListener("resize", this.onResize);
@@ -390,7 +407,7 @@ export class CosmicBackground {
     const bumpTexture = new THREE.CanvasTexture(bumpCanvas);
 
     // Planet sphere
-    const geo = new THREE.SphereGeometry(cfg.radius, 64, 64);
+    const geo = new THREE.SphereGeometry(cfg.radius, 32, 32);
     const mat = new THREE.MeshStandardMaterial({
       map: planetTexture,
       bumpMap: bumpTexture,
@@ -454,6 +471,7 @@ export class CosmicBackground {
   // ─── ANIMATION LOOP ────────────────────────────────────────────────────────
   private loop = () => {
     this.animationId = requestAnimationFrame(this.loop);
+    if (this.isPaused) return;
 
     const t = Date.now() * 0.001;
 

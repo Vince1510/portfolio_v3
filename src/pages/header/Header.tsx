@@ -6,12 +6,35 @@ import vinceImage from "./vince.jpg";
 const HeaderPage: React.FC = () => {
   return (
     <div className="container">
-      <div className="intro-text">
-        <h2>I'm Vince van Apeldoorn</h2>
-        <h3>Front end Student at Hogeschool Rotterdam</h3>
-      </div>
-
       <div className="hero-circle">
+        <svg className="curved-text-svg" viewBox="0 0 600 600">
+          <defs>
+            <linearGradient id="title-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#7be08b" />
+              <stop offset="50%" stopColor="#3bc1b6" />
+              <stop offset="100%" stopColor="#e09545" />
+            </linearGradient>
+            <linearGradient id="title-grad-light" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="#1b5e20" />
+              <stop offset="50%" stopColor="#00695c" />
+              <stop offset="100%" stopColor="#bf360c" />
+            </linearGradient>
+          </defs>
+          
+          <path id="top-curve" d="M 40,300 A 260,260 0 0,1 560,300" fill="transparent" />
+          <text>
+            <textPath href="#top-curve" startOffset="50%" textAnchor="middle" className="fancy-title">
+              I'M VINCE VAN APELDOORN
+            </textPath>
+          </text>
+          
+          <path id="bottom-curve" d="M 16,300 A 284,284 0 0,0 584,300" fill="transparent" />
+          <text>
+            <textPath href="#bottom-curve" startOffset="50%" textAnchor="middle" className="fancy-subtitle">
+              Front end Student at Hogeschool Rotterdam
+            </textPath>
+          </text>
+        </svg>
         <img className="inner-img" src={vinceImage} alt="Vince van Apeldoorn" />
         <div className="hero-rotate" id="circle" data-theme="light">
           <div className="planet">

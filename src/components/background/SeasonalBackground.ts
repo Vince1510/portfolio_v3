@@ -44,6 +44,11 @@ export class SeasonalBackground {
   private bgGradient: { current: { top: string; bottom: string } };
   private time = 0;
   private camera = { scale: 1, x: 0, y: 0 };
+  private isPaused = false;
+
+  public setPaused(paused: boolean) {
+    this.isPaused = paused;
+  }
 
   constructor(canvas: HTMLCanvasElement) {
     this.canvas = canvas;
@@ -257,6 +262,7 @@ export class SeasonalBackground {
   // ─── MAIN LOOP ─────────────────────────────────────────────────────────────
   private loop = () => {
     this.animationId = requestAnimationFrame(this.loop);
+    if (this.isPaused) return;
     this.time += 0.016;
     const ctx = this.ctx;
     const W = this.canvas.width;

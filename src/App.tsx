@@ -1,17 +1,20 @@
-import React, { useState } from "react"; // v1.1
-import { ThemeProvider, createTheme, CssBaseline } from "@mui/material";
+import React, { useState, useMemo, Suspense, lazy } from "react"; // v1.1
+import ThemeProvider from "@mui/material/styles/ThemeProvider";
+import createTheme from "@mui/material/styles/createTheme";
+import CssBaseline from "@mui/material/CssBaseline";
 import "./index.scss";
 import ResponsiveAppBar from "./components/appbar/AppBar";
 import VerticalTabs from "./components/verticaltabs/VerticalTabs";
-import HeaderPage from "./pages/header/Header";
-import SkillsPage from "./pages/skills/Skills";
-import ProjectPage from "./pages/projecten/Projects";
-import ContactPage from "./pages/contact/Contact";
 import FullPageSection from "./components/fullpage/FullPageSection";
 import { useFullPage } from "./components/fullpage/useFullPage";
-import BackgroundCanvas from "./components/background/BackgroundCanvas";
 import LoadingScreen from "./components/loadingscreen/LoadingScreen";
 import OrientationOverlay from "./components/orientation/OrientationOverlay";
+
+const HeaderPage = lazy(() => import("./pages/header/Header"));
+const SkillsPage = lazy(() => import("./pages/skills/Skills"));
+const ProjectPage = lazy(() => import("./pages/projecten/Projects"));
+const ContactPage = lazy(() => import("./pages/contact/Contact"));
+const BackgroundCanvas = lazy(() => import("./components/background/BackgroundCanvas"));
 
 const TOTAL_SECTIONS = 4;
 
@@ -22,9 +25,7 @@ const App: React.FC = () => {
   const { activeIndex, goToSection } = useFullPage(TOTAL_SECTIONS);
 
   const toggleDarkMode = (event?: React.MouseEvent) => {
-    const isViewTransitionSupported =
-      // @ts-ignore
-      document.startViewTransition !== undefined;
+    const isViewTransitionSupported = document.startViewTransition !== undefined;
 
     if (!isViewTransitionSupported || !event) {
       setDarkMode((prevMode) => !prevMode);
@@ -41,17 +42,16 @@ const App: React.FC = () => {
     document.documentElement.style.setProperty("--y", `${y}px`);
     document.documentElement.style.setProperty("--r", `${maxRadius}px`);
 
-    // @ts-ignore
     document.startViewTransition(() => {
       setDarkMode((prevMode) => !prevMode);
     });
   };
 
-  const theme = createTheme({
+  const theme = useMemo(() => createTheme({
     palette: {
       mode: darkMode ? "dark" : "light",
     },
-  });
+  }), [darkMode]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -78,7 +78,9 @@ const App: React.FC = () => {
             pointerEvents: showUI ? "auto" : "none",
           }}
         >
-          <BackgroundCanvas darkMode={darkMode} activeIndex={activeIndex} />
+          <Suspense fallback={null}>
+            <BackgroundCanvas darkMode={darkMode} activeIndex={activeIndex} />
+          </Suspense>
 
           <VerticalTabs activeTab={activeIndex} onTabClick={goToSection} />
 
@@ -87,21 +89,29 @@ const App: React.FC = () => {
             toggleDarkMode={toggleDarkMode}
           />
 
-          <FullPageSection index={0} activeIndex={activeIndex} id="header">
-            <HeaderPage />
-          </FullPageSection>
+            <FullPageSection index={0} activeIndex={activeIndex} id="header">
+              <Suspense fallback={null}>
+                <HeaderPage />
+              </Suspense>
+            </FullPageSection>
 
-          <FullPageSection index={1} activeIndex={activeIndex} id="skills">
-            <SkillsPage />
-          </FullPageSection>
+            <FullPageSection index={1} activeIndex={activeIndex} id="skills">
+              <Suspense fallback={null}>
+                <SkillsPage />
+              </Suspense>
+            </FullPageSection>
 
-          <FullPageSection index={2} activeIndex={activeIndex} id="projects">
-            <ProjectPage />
-          </FullPageSection>
+            <FullPageSection index={2} activeIndex={activeIndex} id="projects">
+              <Suspense fallback={null}>
+                <ProjectPage />
+              </Suspense>
+            </FullPageSection>
 
-          <FullPageSection index={3} activeIndex={activeIndex} id="contact">
-            <ContactPage />
-          </FullPageSection>
+            <FullPageSection index={3} activeIndex={activeIndex} id="contact">
+              <Suspense fallback={null}>
+                <ContactPage />
+              </Suspense>
+            </FullPageSection>
         </div>
       </div>
     </ThemeProvider>
