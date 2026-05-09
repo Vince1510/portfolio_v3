@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/portfolio_v3/static/css/main.8516ef7f.css",
+    "main.css": "/portfolio_v3/static/css/main.da0cbb8a.css",
     "main.js": "/portfolio_v3/static/js/main.dd44476f.js",
     "static/css/25.0cba3341.chunk.css": "/portfolio_v3/static/css/25.0cba3341.chunk.css",
     "static/js/25.4918a6e6.chunk.js": "/portfolio_v3/static/js/25.4918a6e6.chunk.js",
@@ -23,7 +23,7 @@
     "static/media/mern-auth-cover.png": "/portfolio_v3/static/media/mern-auth-cover.b329529b19658f74f9c3.png",
     "static/media/iam-self-service.png": "/portfolio_v3/static/media/iam-self-service.f67c77206fba9171ae3b.png",
     "index.html": "/portfolio_v3/index.html",
-    "main.8516ef7f.css.map": "/portfolio_v3/static/css/main.8516ef7f.css.map",
+    "main.da0cbb8a.css.map": "/portfolio_v3/static/css/main.da0cbb8a.css.map",
     "main.dd44476f.js.map": "/portfolio_v3/static/js/main.dd44476f.js.map",
     "25.0cba3341.chunk.css.map": "/portfolio_v3/static/css/25.0cba3341.chunk.css.map",
     "25.4918a6e6.chunk.js.map": "/portfolio_v3/static/js/25.4918a6e6.chunk.js.map",
@@ -38,7 +38,7 @@
     "408.58a37e54.chunk.js.map": "/portfolio_v3/static/js/408.58a37e54.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8516ef7f.css",
+    "static/css/main.da0cbb8a.css",
     "static/js/main.dd44476f.js"
   ]
 }
