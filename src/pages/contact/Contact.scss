@@ -1,7 +1,47 @@
+.contact-wrapper {
+  width: 100%;
+  max-width: 1200px;
+  padding-left: 16px; // xs: 2
+  padding-right: 16px;
+  padding-top: 32px; // 4
+  padding-bottom: 96px; // xs: 12 (12 * 8)
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: 600px) {
+    padding-left: 32px; // sm: 4
+    padding-right: 32px;
+  }
+
+  @media (min-width: 900px) {
+    padding-left: 64px; // md: 8
+    padding-right: 64px;
+    padding-bottom: 32px; // md: 4
+  }
+}
+
 .card-contact {
   position: relative;
   z-index: 2;
   transition: all ease 0.3s;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border-radius: 32px; // 4 * 8
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+
+  [data-theme="dark"] & {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+  }
 
   .contactanimate1,
   .contactanimate2 {
@@ -12,7 +52,7 @@
     transition: 1s linear;
     z-index: -1;
     pointer-events: none;
-    filter: blur(80px); /* Heavy blur to make it an ambient glow rather than a solid shape */
+    filter: blur(80px);
   }
 
   .contactanimate1 {
@@ -40,48 +80,170 @@
     opacity: 0.25;
     transform: scale(1.1) translate(-50px, -50px);
   }
+}
 
-  @keyframes animFirstGlass {
-    0% {
-      transform: translateY(0) scale(1);
-    }
-    100% {
-      transform: translateY(100px) scale(1.2);
-    }
+.contact-grid {
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.contact-info-section {
+  padding: 20px; // 2.5 * 8
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  [data-theme="dark"] & {
+    background-color: rgba(0, 0, 0, 0.2);
   }
 
-  @keyframes animSecondGlass {
-    0% {
-      transform: translateY(0) scale(1);
-    }
-    100% {
-      transform: translateY(-100px) scale(1.2);
-    }
+  @media (min-width: 900px) {
+    padding: 48px; // 6 * 8
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: none;
   }
 }
 
-/* MUI input styling overrides for better glassmorphism fit */
+.contact-form-section {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  @media (min-width: 900px) {
+    padding: 48px;
+  }
+}
+
+.contact-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; // 1.5 * 8
+  margin-bottom: 16px;
+
+  @media (min-width: 900px) {
+    gap: 16px; // 2 * 8
+    margin-bottom: 32px;
+  }
+}
+
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.contact-icon-box {
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+
+  &.email { background-color: rgba(123, 224, 139, 0.2); color: #7be08b; }
+  &.phone { background-color: rgba(140, 99, 224, 0.2); color: #8c63e0; }
+  &.location { background-color: rgba(224, 149, 69, 0.2); color: #e09545; }
+
+  svg { font-size: 1.2rem; }
+}
+
+.contact-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s;
+
+  &.email:hover { color: #8c63e0; }
+  &.phone:hover { color: #e09545; }
+}
+
+.social-links {
+  display: flex;
+  gap: 16px;
+}
+
+.social-icon-button {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+  transition: all 0.3s !important;
+  color: inherit !important;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    transform: translateY(-3px);
+    
+    &.github { color: #8c63e0 !important; }
+    &.linkedin { color: #7be08b !important; }
+  }
+}
+
+.contact-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 900px) {
+    flex-direction: row;
+  }
+}
+
+.message-field {
+  margin-top: 16px !important;
+}
+
+.submit-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+  min-height: 24px;
+}
+
+.submit-button {
+  padding: 12px 32px !important;
+  border-radius: 30px !important;
+  font-weight: bold !important;
+  transition: all 0.3s ease !important;
+  text-transform: none !important;
+
+  &.loading, &.success { background-color: #7be08b !important; color: #000 !important; }
+  &.default { background-color: #8c63e0 !important; color: #fff !important; }
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(140, 99, 224, 0.4);
+    
+    &.success { background-color: #6bd07b !important; }
+    &.default { background-color: #784bd1 !important; }
+  }
+}
+
+.submit-result {
+  font-size: 0.875rem;
+  &.success { color: #7be08b; font-weight: bold; }
+  &.error { color: #f44336; }
+}
+
+@keyframes animFirstGlass {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(100px) scale(1.2); }
+}
+
+@keyframes animSecondGlass {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(-100px) scale(1.2); }
+}
+
+/* MUI input styling overrides */
 .contact-form {
   [data-theme="light"] & {
-    .MuiOutlinedInput-root {
-      background: rgba(255, 255, 255, 0.5);
-    }
+    .MuiOutlinedInput-root { background: rgba(255, 255, 255, 0.5); }
   }
-
   [data-theme="dark"] & {
-    .MuiOutlinedInput-root {
-      background: rgba(0, 0, 0, 0.2);
-    }
+    .MuiOutlinedInput-root { background: rgba(0, 0, 0, 0.2); }
   }
-
   .MuiOutlinedInput-root {
     border-radius: 8px;
     transition: all 0.3s ease;
-
-    &:hover {
-      background: rgba(140, 99, 224, 0.05);
-    }
-
+    &:hover { background: rgba(140, 99, 224, 0.05); }
     &.Mui-focused {
       background: rgba(140, 99, 224, 0.05);
       box-shadow: 0 0 0 2px rgba(140, 99, 224, 0.2);

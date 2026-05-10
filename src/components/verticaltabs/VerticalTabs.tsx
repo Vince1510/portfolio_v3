@@ -1,8 +1,14 @@
 import * as React from "react";
+
+// MUI Imports
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+
+// Local Imports
 import { useLanguage } from "../../context/LanguageContext";
+
+// Styles
 import "./VerticalTabs.scss";
 
 interface VerticalTabsProps {
@@ -14,7 +20,7 @@ const VerticalTabs: React.FC<VerticalTabsProps> = ({
   activeTab,
   onTabClick,
 }) => {
-  const { t } = useLanguage();
+  const { translate } = useLanguage();
   const [isPopupOpen, setIsPopupOpen] = React.useState(false);
   const popupRef = React.useRef<HTMLDivElement | null>(null);
 
@@ -44,10 +50,10 @@ const VerticalTabs: React.FC<VerticalTabsProps> = ({
   };
 
   const navItems = [
-    t("nav.home"),
-    t("nav.skills"),
-    t("nav.projects"),
-    t("nav.contact"),
+    translate("nav.home"),
+    translate("nav.skills"),
+    translate("nav.projects"),
+    translate("nav.contact"),
   ];
 
   return (

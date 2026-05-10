@@ -1,4 +1,6 @@
 import React from "react";
+
+// Styles
 import "./OrientationOverlay.scss";
 
 const OrientationOverlay: React.FC = () => {

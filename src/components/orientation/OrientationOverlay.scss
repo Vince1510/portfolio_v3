@@ -13,8 +13,8 @@
   text-align: center;
   padding: 2rem;
 
-  // Only show on devices with width < 1024px AND in portrait mode
-  @media (orientation: landscape) and (max-width: 1024px) {
+  // Only show on devices with width < 1024px, in landscape, AND with very small height (phones)
+  @media (orientation: landscape) and (max-width: 1024px) and (max-height: 500px) {
     display: flex;
   }
 
@@ -45,6 +45,7 @@
     width: 120px;
     height: 120px;
     margin-bottom: 1rem;
+    transform: translateY(20px);
 
     .phone-svg {
       width: 100%;

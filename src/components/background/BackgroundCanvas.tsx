@@ -1,4 +1,6 @@
 import React, { useEffect, useRef } from "react";
+
+// Local Imports
 import { SeasonalBackground } from "./SeasonalBackground";
 import { CosmicBackground } from "./CosmicBackground";
 
@@ -16,7 +18,6 @@ const BackgroundCanvas: React.FC<BackgroundCanvasProps> = ({
   const seasonalRef = useRef<SeasonalBackground | null>(null);
   const cosmicRef = useRef<CosmicBackground | null>(null);
 
-  // Initialise engines on mount — no StrictMode guard so cleanup/reinit works
   useEffect(() => {
     const sCanvas = seasonalCanvasRef.current;
     const cCanvas = cosmicCanvasRef.current;
@@ -38,7 +39,6 @@ const BackgroundCanvas: React.FC<BackgroundCanvasProps> = ({
     };
   }, []);
 
-  // Sync section → both engines whenever activeIndex changes
   useEffect(() => {
     if (seasonalRef.current) seasonalRef.current.setScene(activeIndex);
     if (cosmicRef.current) cosmicRef.current.setScene(activeIndex);
@@ -50,36 +50,15 @@ const BackgroundCanvas: React.FC<BackgroundCanvasProps> = ({
     if (cosmicRef.current) cosmicRef.current.setPaused(!darkMode);
   }, [darkMode]);
 
-  const baseStyle: React.CSSProperties = {
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    display: "block",
-    transition: "opacity 0.6s ease",
-    pointerEvents: "none",
-  };
-
   return (
     <>
-      {/* Canvas 2D — Seasonal light mode */}
       <canvas
         ref={seasonalCanvasRef}
-        style={{
-          ...baseStyle,
-          zIndex: darkMode ? -20 : -10,
-          opacity: darkMode ? 0 : 1,
-        }}
+        className="background-canvas seasonal"
       />
-      {/* WebGL — Cosmic dark mode */}
       <canvas
         ref={cosmicCanvasRef}
-        style={{
-          ...baseStyle,
-          zIndex: darkMode ? -10 : -20,
-          opacity: darkMode ? 1 : 0,
-        }}
+        className="background-canvas cosmic"
       />
     </>
   );

@@ -1,15 +1,21 @@
 import React from "react";
+
+// MUI Imports
 import { Phone, Email, GitHub, LinkedIn } from "@mui/icons-material";
+
+// Local Imports
 import { useLanguage } from "../../context/LanguageContext";
+
+// Assets & Styles
+import vinceImage from "../../assets/images/vince.jpg";
 import "./Header.scss";
-import vinceImage from "./vince.jpg";
 
 const HeaderPage: React.FC = () => {
-  const { t } = useLanguage();
+  const { translate } = useLanguage();
   return (
     <div className="container">
       <div className="hero-circle">
-        <svg className="curved-text-svg" viewBox="0 0 600 600">
+        <svg className="curved-text-svg" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="title-grad" x1="0%" y1="0%" x2="100%" y2="0%">
               <stop offset="0%" stopColor="#7be08b" />
@@ -23,17 +29,17 @@ const HeaderPage: React.FC = () => {
             </linearGradient>
           </defs>
           
-          <path id="top-curve" d="M 40,300 A 260,260 0 0,1 560,300" fill="transparent" />
+          <path id="top-curve" d="M 50,400 A 350,350 0 0,1 750,400" fill="transparent" />
           <text>
             <textPath href="#top-curve" startOffset="50%" textAnchor="middle" className="fancy-title">
-              {t("header.title")}
+              {translate("header.title")}
             </textPath>
           </text>
           
-          <path id="bottom-curve" d="M 16,300 A 284,284 0 0,0 584,300" fill="transparent" />
+          <path id="bottom-curve" d="M 20,400 A 380,380 0 0,0 780,400" fill="transparent" />
           <text>
             <textPath href="#bottom-curve" startOffset="50%" textAnchor="middle" className="fancy-subtitle">
-              {t("header.subtitle")}
+              {translate("header.subtitle")}
             </textPath>
           </text>
         </svg>

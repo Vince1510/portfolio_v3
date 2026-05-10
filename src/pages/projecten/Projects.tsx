@@ -1,20 +1,25 @@
 import * as React from "react";
 import { useRef, useState, useEffect, useCallback } from "react";
+import gsap from "gsap";
+import ScrollToPlugin from "gsap/ScrollToPlugin";
+
+// MUI Imports
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import LinkIcon from "@mui/icons-material/Link";
-import { useTheme } from "@mui/material/styles";
+
+// Local Imports
 import { useLanguage } from "../../context/LanguageContext";
-import gsap from "gsap";
-import ScrollToPlugin from "gsap/ScrollToPlugin";
-import mernImg from "./mern-auth-cover.png";
-import portfolioImg from "./portfolio-site.png";
-import playtoearnImg from "./play-to-earn.png";
-import putitoneImg from "./putiton-e.png";
-import tiktactoeImg from "./video-tik-tac-toe.mp4";
-import iamImg from "./iam-self-service.png";
-import witgoedImg from "./Witgoed-Hellevoetsluis.png";
-import krausImg from "./Teamkraus.png";
+
+// Assets & Styles
+import mernImg from "../../assets/images/mern-auth-cover.png";
+import portfolioImg from "../../assets/images/portfolio-site.png";
+import playtoearnImg from "../../assets/images/play-to-earn.png";
+import putitoneImg from "../../assets/images/putiton-e.png";
+import tiktactoeImg from "../../assets/images/tic-tac-toe.png";
+import iamImg from "../../assets/images/iam-self-service.png";
+import witgoedImg from "../../assets/images/Witgoed-Hellevoetsluis.png";
+import krausImg from "../../assets/images/Teamkraus.png";
 import "./Projects.scss";
 
 // Register ScrollToPlugin
@@ -25,7 +30,6 @@ interface ProjectData {
   description: string;
   link: string;
   mediaUrl: string;
-  mediaType: "image" | "video";
   tags: string[];
 }
 
@@ -36,7 +40,6 @@ const projects: ProjectData[] = [
       "Website gemaakt voor Witgoed Hellevoetsluis en Meubeldiscount met React, TypeScript en MUI.",
     link: "https://www.meubeldiscountbzoon.com/",
     mediaUrl: witgoedImg,
-    mediaType: "image",
     tags: ["React", "TypeScript", "MUI"],
   },
   {
@@ -45,7 +48,6 @@ const projects: ProjectData[] = [
       "Tijdens mijn stage bij Enovation heb ik de IAM Self Service applicatie gemigreerd van Angular 1 naar Angular v18.",
     link: "https://enovationgroup.com/",
     mediaUrl: iamImg,
-    mediaType: "image",
     tags: ["Angular v18", "Migration", "Stage"],
   },
   {
@@ -54,7 +56,6 @@ const projects: ProjectData[] = [
       "De officiële website voor Albert Kraus en Gradus Kraus, gemaakt met HTML, CSS en JavaScript.",
     link: "https://teamkraus.nl/",
     mediaUrl: krausImg,
-    mediaType: "image",
     tags: ["HTML", "CSS", "JavaScript"],
   },
   {
@@ -63,7 +64,6 @@ const projects: ProjectData[] = [
       "Deze portfolio website is gemaakt met Typescript en Material UI.",
     link: "https://github.com/Vince1510/portfolio_v3",
     mediaUrl: portfolioImg,
-    mediaType: "image",
     tags: ["React", "TypeScript", "MUI", "Three.js"],
   },
   {
@@ -72,7 +72,6 @@ const projects: ProjectData[] = [
       "Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website Putiton-e.",
     link: "https://putiton-e.com/",
     mediaUrl: putitoneImg,
-    mediaType: "image",
     tags: ["Stage", "Crebos", "Web"],
   },
   {
@@ -81,15 +80,13 @@ const projects: ProjectData[] = [
       "Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website Play to Earn games.",
     link: "https://playtoearngames.com/",
     mediaUrl: playtoearnImg,
-    mediaType: "image",
     tags: ["Stage", "Crebos", "Gaming"],
   },
   {
     title: "Tic Tac Toe",
     description: "Tic tac toe volledig met React voor 2 spelers.",
-    link: "https://github.com/Vince1510/Tic-Tac-Toe",
+    link: "https://tictactoe-vince.web.app",
     mediaUrl: tiktactoeImg,
-    mediaType: "video",
     tags: ["React", "Game", "2-Player"],
   },
   {
@@ -98,13 +95,12 @@ const projects: ProjectData[] = [
       "Ik heb van NetNinja geleerd hoe ik mern-stack projecten kan maken met JSON web tokens.",
     link: "https://github.com/Vince1510/MERN-Auth",
     mediaUrl: mernImg,
-    mediaType: "image",
     tags: ["MongoDB", "Express", "React", "Node.js"],
   },
 ];
 
 export default function Project() {
-  const { t } = useLanguage();
+  const { translate } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
@@ -166,7 +162,7 @@ export default function Project() {
     });
 
     return () => observer.disconnect();
-  }, [projects.length]);
+  }, []);
 
   // 3. ROBUST NAVIGATION
   const goTo = (index: number) => {
@@ -223,15 +219,9 @@ export default function Project() {
       <Typography
         variant="h4"
         component="h1"
-        align="center"
-        fontWeight="bold"
-        sx={{
-          mb: { xs: 2, md: 3 },
-          color: "text.primary",
-          letterSpacing: "-0.5px",
-        }}
+        className="projects-heading"
       >
-        {t("projects.heading")}
+        {translate("projects.heading")}
       </Typography>
 
       <div
@@ -252,23 +242,7 @@ export default function Project() {
               onClick={() => goTo(index)}
             >
               <div className="carousel-card-media">
-                {project.mediaType === "image" ? (
-                  <img src={project.mediaUrl} alt={project.title} draggable={false} />
-                ) : (
-                  <video
-                    src={project.mediaUrl}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    ref={(el) => {
-                      if (el) {
-                        if (isActive) el.play().catch(() => {});
-                        else el.pause();
-                      }
-                    }}
-                  />
-                )}
+                <img src={project.mediaUrl} alt={project.title} draggable={false} />
                 <div className="carousel-card-glow" />
               </div>
 
@@ -279,7 +253,7 @@ export default function Project() {
                   ))}
                 </div>
                 <h2 className="carousel-card-title">{project.title}</h2>
-                <p className="carousel-card-desc">{t(`projects.items.${index}.description`)}</p>
+                <p className="carousel-card-desc">{translate(`projects.items.${index}.description`)}</p>
                 <Button
                   variant="contained"
                   size="small"
@@ -288,19 +262,9 @@ export default function Project() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={(e) => e.stopPropagation()}
-                  sx={{
-                    mt: "auto",
-                    alignSelf: "flex-start",
-                    textTransform: "none",
-                    fontWeight: "bold",
-                    borderRadius: "20px",
-                    px: 2.5,
-                    bgcolor: "#8c63e0",
-                    fontSize: "0.8rem",
-                    "&:hover": { bgcolor: "#784bd1" },
-                  }}
+                  className="project-link-button"
                 >
-                  {t("projects.viewProject")}
+                  {translate("projects.viewProject")}
                 </Button>
               </div>
             </div>

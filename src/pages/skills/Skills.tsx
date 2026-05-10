@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
+
+// MUI Imports
 import { Typography, Divider } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
+
+// Styles
 import "./Skills.scss";
 
 const SkillsPage: React.FC = () => {

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+
+// Styles
 import "./LoadingScreen.scss";
 
 interface LoadingScreenProps {
@@ -53,7 +55,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({ onComplete, onFadeStart, 
     >
       <h1 ref={logoRef} className="loading-logo">
         {"<Vince/>"}
-      </h1>
+      </h1> 
       <div className="spinner-3d">
         <div className="ring"></div>
         <div className="ring"></div>

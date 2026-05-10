@@ -5,12 +5,23 @@
 /* ── Wrapper ─────────────────────────────────────────────────── */
 .projects-wrapper {
   width: 100%;
-  max-width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow: hidden;
   padding-top: 8px;
+}
+
+.projects-heading {
+  margin-bottom: 16px; // xs: 2
+  color: inherit;
+  font-weight: bold;
+  letter-spacing: -0.5px;
+  text-align: center;
+
+  @media (min-width: 900px) {
+    margin-bottom: 24px; // md: 3
+  }
 }
 
 /* ── Carousel track ──────────────────────────────────────────── */
@@ -185,6 +196,21 @@
   -webkit-line-clamp: 3;
   overflow: hidden;
   flex: 1;
+}
+
+.project-link-button {
+  margin-top: auto !important;
+  align-self: flex-start !important;
+  text-transform: none !important;
+  font-weight: bold !important;
+  border-radius: 20px !important;
+  padding: 4px 20px !important; // 0.5 * 8, 2.5 * 8
+  background-color: #8c63e0 !important;
+  font-size: 0.8rem !important;
+  
+  &:hover {
+    background-color: #784bd1 !important;
+  }
 }
 
 /* Light mode adjustments */

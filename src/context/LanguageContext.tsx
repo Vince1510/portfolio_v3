@@ -1,4 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from "react";
+
+// Local Imports
 import nl from "../locales/nl.json";
 import en from "../locales/en.json";
 
@@ -16,7 +18,7 @@ const translations: Record<Language, Translations> = {
 interface LanguageContextProps {
   language: Language;
   toggleLanguage: () => void;
-  t: (key: string) => any;
+  translate: (key: string) => any;
 }
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
@@ -35,7 +37,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     setLanguage((prev) => (prev === "nl" ? "en" : "nl"));
   };
 
-  const t = (keyPath: string) => {
+  const translate = (keyPath: string) => {
     const keys = keyPath.split(".");
     let result = translations[language];
 
@@ -51,7 +53,7 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   };
 
   return (
-    <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
+    <LanguageContext.Provider value={{ language, toggleLanguage, translate }}>
       {children}
     </LanguageContext.Provider>
   );

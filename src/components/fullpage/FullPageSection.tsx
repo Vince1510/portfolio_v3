@@ -1,4 +1,6 @@
 import React from "react";
+
+// Styles
 import "./FullPageSection.scss";
 
 interface FullPageSectionProps {

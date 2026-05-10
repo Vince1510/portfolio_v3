@@ -1,44 +1,82 @@
+.appbar-root {
+  background-color: transparent !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  border-bottom: none;
+}
 
+.appbar-container {
+  padding-left: 16px;
+  padding-right: 16px;
 
-.app-bar {
-  background-color: transparent;
-  padding-left: 0;
-  padding-right: 0;
-
-  .title {
-    font-family: monospace;
-    font-weight: 700;
-    text-decoration: none;
+  @media (min-width: 600px) { 
+    padding-left: 32px;
+    padding-right: 32px;
   }
 
-  .menu-button {
-    display: flex;
-    align-items: center;
-
-    .icon {
-      color: inherit;
-    }
-  }
-
-  .nav-button {
-    display: block;
-  }
-
-  .user-button {
-    padding: 0;
-  }
-
-  .user-menu {
-    margin-top: 45px;
-  }
-
-  .menu-item {
-    text-align: center;
+  @media (min-width: 900px) {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
+.appbar-toolbar {
+  display: flex;
+  justify-content: space-between;
+}
 
+.appbar-title {
+  cursor: default;
+  font-family: monospace;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.1rem;
+  display: block;
+  color: inherit;
 
+  [data-theme="light"] & {
+    color: black;
+  }
 
+  @media (min-width: 900px) {
+    font-size: 1.25rem;
+    display: flex;
+  }
+}
 
+.appbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
+.language-toggle {
+  min-width: auto !important;
+  padding: 4px 8px !important;
+  border-radius: 20px !important;
+  font-weight: bold !important;
+  text-transform: uppercase;
+  
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  color: #fff !important;
+
+  &:hover {
+    border-color: #fff !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+
+  [data-theme="light"] & {
+    border-color: rgba(0, 0, 0, 0.3) !important;
+    color: #000 !important;
+
+    &:hover {
+      border-color: #000 !important;
+      background-color: rgba(0, 0, 0, 0.1) !important;
+    }
+  }
+}

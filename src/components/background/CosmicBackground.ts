@@ -1,7 +1,5 @@
 // CosmicBackground.ts
 // Three.js engine for the dark-mode cosmic background.
-// Section mapping: 0=Earth, 1=Saturn-ring planet, 2=Ice planet, 3=Mars-like planet
-
 import * as THREE from "three";
 import gsap from "gsap";
 
