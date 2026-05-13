@@ -1,5 +1,5 @@
-// CosmicBackground.ts
-// Three.js engine for the dark-mode cosmic background.
+// SpaceBackground.ts
+// Three.js engine for the dark-mode space background.
 import * as THREE from "three";
 import gsap from "gsap";
 
@@ -103,7 +103,7 @@ const PLANET_CONFIGS: PlanetConfig[] = [
 
 const STAR_COUNT = 2000;
 
-export class CosmicBackground {
+export class SpaceBackground {
   private canvas: HTMLCanvasElement;
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;

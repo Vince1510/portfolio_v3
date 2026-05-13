@@ -163,7 +163,7 @@ h2 {
     }
   }
 
-  &.cosmic {
+  &.space {
     z-index: 1;
     opacity: 0;
 
@@ -207,7 +207,7 @@ h2 {
   --body-overlay: rgba(227, 242, 253, 0.08);
 }
 
-/* Cosmic dark background */
+/* Space dark background */
 [data-theme="dark"] body {
   background: #000510;
 }

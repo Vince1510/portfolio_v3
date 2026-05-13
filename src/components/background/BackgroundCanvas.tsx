@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 // Local Imports
 import { SeasonalBackground } from "./SeasonalBackground";
-import { CosmicBackground } from "./CosmicBackground";
+import { SpaceBackground } from "./SpaceBackground";
 
 interface BackgroundCanvasProps {
   darkMode: boolean;
@@ -14,40 +14,40 @@ const BackgroundCanvas: React.FC<BackgroundCanvasProps> = ({
   activeIndex,
 }) => {
   const seasonalCanvasRef = useRef<HTMLCanvasElement | null>(null);
-  const cosmicCanvasRef = useRef<HTMLCanvasElement | null>(null);
+  const spaceCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const seasonalRef = useRef<SeasonalBackground | null>(null);
-  const cosmicRef = useRef<CosmicBackground | null>(null);
+  const spaceRef = useRef<SpaceBackground | null>(null);
 
   useEffect(() => {
     const sCanvas = seasonalCanvasRef.current;
-    const cCanvas = cosmicCanvasRef.current;
+    const cCanvas = spaceCanvasRef.current;
     if (!sCanvas || !cCanvas) return;
 
     const seasonal = new SeasonalBackground(sCanvas);
     seasonalRef.current = seasonal;
     seasonal.init();
 
-    const cosmic = new CosmicBackground(cCanvas);
-    cosmicRef.current = cosmic;
-    cosmic.init();
+    const space = new SpaceBackground(cCanvas);
+    spaceRef.current = space;
+    space.init();
 
     return () => {
       seasonal.destroy();
-      cosmic.destroy();
+      space.destroy();
       seasonalRef.current = null;
-      cosmicRef.current = null;
+      spaceRef.current = null;
     };
   }, []);
 
   useEffect(() => {
     if (seasonalRef.current) seasonalRef.current.setScene(activeIndex);
-    if (cosmicRef.current) cosmicRef.current.setScene(activeIndex);
+    if (spaceRef.current) spaceRef.current.setScene(activeIndex);
   }, [activeIndex]);
 
   // Pause the hidden background to save performance
   useEffect(() => {
     if (seasonalRef.current) seasonalRef.current.setPaused(darkMode);
-    if (cosmicRef.current) cosmicRef.current.setPaused(!darkMode);
+    if (spaceRef.current) spaceRef.current.setPaused(!darkMode);
   }, [darkMode]);
 
   return (
@@ -57,8 +57,8 @@ const BackgroundCanvas: React.FC<BackgroundCanvasProps> = ({
         className="background-canvas seasonal"
       />
       <canvas
-        ref={cosmicCanvasRef}
-        className="background-canvas cosmic"
+        ref={spaceCanvasRef}
+        className="background-canvas space"
       />
     </>
   );

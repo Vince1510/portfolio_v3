@@ -48,6 +48,7 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
             {"<Vince/>"}
           </Typography>
           <Box className="appbar-actions">
+            {/* language toggle */}
             <Button
               onClick={toggleLanguage}
               variant="outlined"
@@ -56,6 +57,7 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
             >
               {language.toUpperCase()}
             </Button>
+            {/* light dark mode toggle */}
             <ThemeSwitcher darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
           </Box>
         </Toolbar>
