@@ -41,6 +41,10 @@
 
   [data-theme="light"] & {
     color: black;
+
+    .about-page-active & {
+      color: white;
+    }
   }
 
   @media (min-width: 900px) {
@@ -74,9 +78,19 @@
     border-color: rgba(0, 0, 0, 0.3) !important;
     color: #000 !important;
 
+    .about-page-active & {
+      border-color: rgba(255, 255, 255, 0.3) !important;
+      color: #fff !important;
+    }
+
     &:hover {
       border-color: #000 !important;
       background-color: rgba(0, 0, 0, 0.1) !important;
+
+      .about-page-active & {
+        border-color: #fff !important;
+        background-color: rgba(255, 255, 255, 0.1) !important;
+      }
     }
   }
 }

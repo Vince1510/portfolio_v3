@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { CssBaseline } from "@mui/material";
 
+import { BrowserRouter } from "react-router-dom";
 import { LanguageProvider } from "./context/LanguageContext";
 
 const root = ReactDOM.createRoot(
@@ -12,7 +13,9 @@ root.render(
   <React.StrictMode>
     <CssBaseline />
     <LanguageProvider>
-      <App />
+      <BrowserRouter basename="/portfolio_v3">
+        <App />
+      </BrowserRouter>
     </LanguageProvider>
   </React.StrictMode>
 );

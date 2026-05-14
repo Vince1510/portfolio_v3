@@ -99,6 +99,20 @@ const PLANET_CONFIGS: PlanetConfig[] = [
     hasRing: false, ringColor: "", atmosphereColor: "#ffccbc", roughness: 0.8, emissive: "#3d1000",
     position: [12, -12, -15], cameraPos: [0,0,0], cameraTarget: [0,0,0],
   },
+  // 4 – Cosmic / About Page
+  {
+    radius: 2.5,
+    baseColor: "#4A148C",
+    stripeColors: ["#7B1FA2", "#9C27B0", "#E1BEE7", "#6A1B9A", "#4A148C"],
+    hasRing: true,
+    ringColor: "#ea80fc",
+    atmosphereColor: "#e1bee7",
+    roughness: 0.3,
+    emissive: "#220033",
+    position: [0, 0, -30],
+    cameraPos: [0, 5, -10],
+    cameraTarget: [0, 0, -32],
+  },
 ];
 
 const STAR_COUNT = 2000;
@@ -250,7 +264,7 @@ export class SpaceBackground {
     });
 
     // Sun light color & position shift
-    const lightColors = [0xffeedd, 0xffe0a0, 0xaaddff, 0xff9977];
+    const lightColors = [0xffeedd, 0xffe0a0, 0xaaddff, 0xff9977, 0xdda0ff];
     gsap.to(this.sunLight.color, {
       r: ((lightColors[index] >> 16) & 0xff) / 255,
       g: ((lightColors[index] >> 8) & 0xff) / 255,

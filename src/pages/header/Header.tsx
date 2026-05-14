@@ -1,7 +1,8 @@
 import React from "react";
 
 // MUI Imports
-import { Phone, Email, GitHub, LinkedIn } from "@mui/icons-material";
+import { Phone, Email, GitHub, LinkedIn, Info } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 // Local Imports
 import { useLanguage } from "../../context/LanguageContext";
@@ -81,6 +82,13 @@ const HeaderPage: React.FC = () => {
                 <LinkedIn />
               </div>
             </a>
+          </div>
+          <div className="planet">
+            <Link to="/about" className="social-link">
+              <div className="social-icon">
+                <Info />
+              </div>
+            </Link>
           </div>
         </div>
       </div>

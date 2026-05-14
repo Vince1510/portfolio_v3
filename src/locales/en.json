@@ -3,7 +3,19 @@
     "home": "<Home/>",
     "skills": "<Skills/>",
     "projects": "<Projects/>",
-    "contact": "<Contact/>"
+    "contact": "<Contact/>",
+    "aboutMe": "<About Me/>",
+    "experience": "<Experience/>",
+    "education": "<Education/>",
+    "movies": "Movies",
+    "series": "Series",
+    "vacation": "Vacation",
+    "back": "Back"
+  },
+  "about": {
+    "interestsTitle": "Interests & Hobbies",
+    "interestsText": "Besides coding, I love watching movies and series. Traveling and exploring new cultures is also a big part of my life. I love visiting places with beautiful nature.",
+    "moreInfo": "More Info"
   },
   "header": {
     "title": "I'M VINCE VAN APELDOORN",
