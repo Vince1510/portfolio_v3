@@ -12,10 +12,8 @@ const MoviesPage: React.FC<{ showUI: boolean }> = ({ showUI }) => {
             From sci-fi epics to classic dramas, here are some of my favorites:
           </p>
           <ul style={{ listStyle: "none", padding: 0 }}>
-            <li>🎬 Interstellar</li>
-            <li>🎬 Inception</li>
-            <li>🎬 The Dark Knight</li>
-            <li>🎬 Blade Runner 2048</li>
+            <li> Interstellar</li>
+
           </ul>
         </section>
       </main>

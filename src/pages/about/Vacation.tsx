@@ -9,7 +9,6 @@ const VacationPage: React.FC<{ showUI: boolean }> = ({ showUI }) => {
           <h1>Vacation</h1>
           <p>
             Traveling and exploring new cultures is a big part of my life. 
-            I love visiting places with rich history and beautiful nature.
           </p>
           <p>
             There's always something new to discover!

@@ -12,10 +12,7 @@ const SeriesPage: React.FC<{ showUI: boolean }> = ({ showUI }) => {
             Here are some series that I found absolutely captivating:
           </p>
           <ul style={{ listStyle: "none", padding: 0 }}>
-            <li>📺 Breaking Bad</li>
-            <li>📺 Dark</li>
-            <li>📺 Arcane</li>
-            <li>📺 The Expanse</li>
+            <li> Breaking Bad</li>
           </ul>
         </section>
       </main>
