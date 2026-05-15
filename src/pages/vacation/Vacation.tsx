@@ -3,6 +3,8 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { Grid, Card, CardContent, CardMedia, Typography, Box, CardActionArea, Modal } from "@mui/material";
+import { useLanguage } from "../../context/LanguageContext";
+import { vacationsData, Vacation } from "../../data/vacationData";
 import "./Vacation.scss";
 
 // Fix for default marker icons in React-Leaflet
@@ -18,56 +20,18 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-interface Vacation {
-  location: string;
-  year: string;
-  description: string;
-  image: string;
-  coords: [number, number];
-}
-
-const vacations: Vacation[] = [
-  { 
-    location: "Vakantie met Toon Mallorca", 
-    year: "2026", 
-    description: "ja mooie tekst", 
-    image: "",
-    coords: [39.6953, 3.0176]
-  },
-  { 
-    location: "Thailand", 
-    year: "2025", 
-    description: "ja mooie tekst", 
-    image: "",
-    coords: [13.7563, 100.5018]
-  },
-  { 
-    location: "Maleisië", 
-    year: "2024", 
-    description: "ja mooie tekst", 
-    image: "",
-    coords: [3.1390, 101.6869]
-  },
-  { 
-    location: "Maleisië", 
-    year: "2023", 
-    description: "ja mooie tekst", 
-    image: "",
-    coords: [4.2105, 101.9758]
-  },
-];
-
 const VacationPage: React.FC = () => {
+  const { translate } = useLanguage();
   const [selectedVacation, setSelectedVacation] = useState<Vacation | null>(null);
 
   return (
     <Box className="vacation-container ui-fade visible" sx={{ py: 8 }}>
       <Box sx={{ maxWidth: 1200, mx: "auto", px: 2 }}>
         <Typography variant="h2" component="h1" align="center" gutterBottom sx={{ fontWeight: "bold", mb: 6 }}>
-          My Vacations
+          {translate("vacation.heading")}
         </Typography>
         <Grid container spacing={4}>
-          {vacations.map((vacation, index) => (
+          {vacationsData.map((vacation, index) => (
             <Grid item xs={12} sm={6} key={index}>
               <Card sx={{ borderRadius: 4, height: "100%", transition: "0.3s", "&:hover": { transform: "translateY(-10px)" } }}>
                 <CardActionArea onClick={() => setSelectedVacation(vacation)}>
@@ -75,20 +39,20 @@ const VacationPage: React.FC = () => {
                     component="img"
                     height="400"
                     image={vacation.image}
-                    alt={vacation.location}
+                    alt={translate(`vacation.items.${vacation.id}.location`)}
                   />
                   <CardContent sx={{ textAlign: "center", p: 3 }}>
                     <Typography variant="h4" component="h2" sx={{ fontWeight: "bold", mb: 1 }}>
-                      {vacation.location}
+                      {translate(`vacation.items.${vacation.id}.location`)}
                     </Typography>
                     <Typography variant="h6" color="primary" sx={{ mb: 2 }}>
                       {vacation.year}
                     </Typography>
                     <Typography variant="body1" color="text.secondary">
-                      {vacation.description}
+                      {translate(`vacation.items.${vacation.id}.description`)}
                     </Typography>
                     <Typography variant="button" sx={{ mt: 3, display: "block", color: "#7be08b" }}>
-                      View Map →
+                      {translate("vacation.viewMap")}
                     </Typography>
                   </CardContent>
                 </CardActionArea>
@@ -116,7 +80,7 @@ const VacationPage: React.FC = () => {
           {selectedVacation && (
             <>
               <Typography variant="h4" gutterBottom sx={{ fontWeight: "bold", background: "linear-gradient(90deg, #7be08b, #3bc1b6)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                {selectedVacation.location}
+                {translate(`vacation.items.${selectedVacation.id}.location`)}
               </Typography>
               <Box sx={{ height: "60vh", width: "100%", borderRadius: 2, overflow: "hidden", mt: 2 }}>
                 <MapContainer 
@@ -130,7 +94,7 @@ const VacationPage: React.FC = () => {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   />
                   <Marker position={selectedVacation.coords}>
-                    <Popup>{selectedVacation.location}</Popup>
+                    <Popup>{translate(`vacation.items.${selectedVacation.id}.location`)}</Popup>
                   </Marker>
                 </MapContainer>
               </Box>

@@ -73,5 +73,86 @@
     "msgSuccess": "Bedankt! Je bericht is succesvol verzonden. ✨",
     "msgErrorPrefix": "Oeps! Er ging iets mis: ",
     "msgNetworkError": "Oeps! Er kon geen verbinding worden gemaakt."
+  },
+  "about": {
+    "heading": "Over Mij",
+    "subtitle": "Ontdek mijn favoriete films, series en reizen.",
+    "moviesTitle": "Films die ik leuk vind",
+    "moviesDesc": "Een verzameling films die me hebben geïnspireerd en mijn perspectief hebben gevormd.",
+    "seriesTitle": "Series die ik leuk vind",
+    "seriesDesc": "De binge-waardige verhalen en personages die ik door de jaren heen heb gevolgd.",
+    "vacationTitle": "Mijn Vakanties",
+    "vacationDesc": "Gedenkwaardige reizen en prachtige plekken die ik heb mogen bezoeken."
+  },
+  "movies": {
+    "heading": "Films die ik leuk vind"
+  },
+  "series": {
+    "heading": "Series die ik leuk vind",
+    "season_one": "1 Seizoen",
+    "season_other": "{{count}} Seizoenen"
+  },
+  "vacation": {
+    "heading": "Mijn Vakanties",
+    "viewMap": "Bekijk Kaart →",
+    "items": {
+      "mallorca": {
+        "location": "Vakantie met Toon Mallorca",
+        "description": "Een prachtige reis naar Mallorca."
+      },
+      "thailand": {
+        "location": "Thailand",
+        "description": "De eilanden van Thailand verkennen."
+      },
+      "malaysia2024": {
+        "location": "Maleisië",
+        "description": "Terug naar Maleisië voor meer avonturen."
+      },
+      "malaysia2023": {
+        "location": "Maleisië",
+        "description": "Mijn eerste reis naar Maleisië."
+      }
+    }
+  },
+  "projects": {
+    "heading": "Projecten",
+    "viewProject": "View Project",
+    "ariaLabel": {
+      "goToProject": "Ga naar project {{index}}"
+    },
+    "items": [
+      {
+        "title": "Witgoed Hellevoetsluis",
+        "description": "Website gemaakt voor Witgoed Hellevoetsluis en Meubeldiscount met React, TypeScript en MUI."
+      },
+      {
+        "title": "Enovation IAM Self Service",
+        "description": "Tijdens mijn stage bij Enovation heb ik de IAM Self Service applicatie gemigreerd van Angular 1 naar Angular v18."
+      },
+      {
+        "title": "Team Kraus",
+        "description": "De officiële website voor Albert Kraus en Gradus Kraus, gemaakt met HTML, CSS en JavaScript."
+      },
+      {
+        "title": "Portfolio Website",
+        "description": "Deze portfolio website is gemaakt met Typescript en Material UI."
+      },
+      {
+        "title": "Putiton-e",
+        "description": "Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website Putiton-e."
+      },
+      {
+        "title": "Play to Earn",
+        "description": "Tijdens mijn stageperiode bij Crebos heb ik gewerkt aan de website Play to Earn games."
+      },
+      {
+        "title": "Tic Tac Toe",
+        "description": "Tic tac toe volledig met React voor 2 spelers."
+      },
+      {
+        "title": "MERN Auth",
+        "description": "Ik heb van NetNinja geleerd hoe ik mern-stack projecten kan maken met JSON web tokens."
+      }
+    ]
   }
 }

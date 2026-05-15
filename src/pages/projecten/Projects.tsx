@@ -278,7 +278,7 @@ export default function Project() {
             key={index}
             className={`carousel-dot ${index === activeIndex ? "carousel-dot--active" : ""}`}
             onClick={() => goTo(index)}
-            aria-label={`Ga naar project ${index + 1}`}
+            aria-label={translate("projects.ariaLabel.goToProject", { index: index + 1 })}
           />
         ))}
       </div>

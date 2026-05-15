@@ -4,6 +4,7 @@ import { Grid, Card, CardContent, CardActionArea, Typography, Box } from "@mui/m
 import MovieIcon from "@mui/icons-material/Movie";
 import TvIcon from "@mui/icons-material/Tv";
 import BeachAccessIcon from "@mui/icons-material/BeachAccess";
+import { useLanguage } from "../../context/LanguageContext";
 import "./About.scss";
 
 interface AboutPageProps {
@@ -11,24 +12,26 @@ interface AboutPageProps {
 }
 
 const AboutPage: React.FC<AboutPageProps> = ({ showUI }) => {
+  const { translate } = useLanguage();
+
   const hubCards = [
     {
-      title: "Movies I Like",
-      description: "A collection of films that inspired me and shaped my perspective.",
+      title: translate("about.moviesTitle"),
+      description: translate("about.moviesDesc"),
       icon: <MovieIcon sx={{ fontSize: 40 }} />,
       path: "/about/movies",
       color: "#7be08b"
     },
     {
-      title: "Series I Like",
-      description: "The binge-worthy stories and characters I've followed over the years.",
+      title: translate("about.seriesTitle"),
+      description: translate("about.seriesDesc"),
       icon: <TvIcon sx={{ fontSize: 40 }} />,
       path: "/about/series",
       color: "#3bc1b6"
     },
     {
-      title: "My Vacations",
-      description: "Memorable trips and beautiful places I've had the pleasure to visit.",
+      title: translate("about.vacationTitle"),
+      description: translate("about.vacationDesc"),
       icon: <BeachAccessIcon sx={{ fontSize: 40 }} />,
       path: "/about/vacation",
       color: "#e09545"
@@ -40,10 +43,10 @@ const AboutPage: React.FC<AboutPageProps> = ({ showUI }) => {
       <Box sx={{ maxWidth: 1200, mx: "auto", px: 2 }}>
         <Box sx={{ textAlign: "center", mb: 6 }}>
           <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: "bold" }}>
-            About Me
+            {translate("about.heading")}
           </Typography>
           <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 800, mx: "auto" }}>
-            Ja nog een mooie ondertitel komt hier
+            {translate("about.subtitle")}
           </Typography>
         </Box>
 

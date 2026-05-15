@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import { useLanguage } from "../../context/LanguageContext";
 import { moviesData } from "../../data/moviesData";
 import "./Movies.scss";
 
@@ -11,11 +12,13 @@ interface Movie {
 }
 
 const MoviesPage: React.FC = () => {
+  const { translate } = useLanguage();
+
   return (
     <Box className="movies-container ui-fade visible" sx={{ py: 8 }}>
       <Box sx={{ maxWidth: 1200, mx: "auto", px: 2 }}>
         <Typography variant="h2" component="h1" align="center" gutterBottom sx={{ fontWeight: "bold", mb: 6 }}>
-          Movies I Like
+          {translate("movies.heading")}
         </Typography>
         <Grid container spacing={4}>
           {moviesData.map((movie, index) => (

@@ -1,21 +1,24 @@
 import React from "react";
 import { Grid, Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import { useLanguage } from "../../context/LanguageContext";
 import { seriesData } from "../../data/seriesData";
 import "./Series.scss";
 
 interface Series {
   title: string;
-  seasons: string;
+  seasons: number;
   image: string;
 }
 
 const SeriesPage: React.FC = () => {
+  const { translate } = useLanguage();
+
   return (
     <Box className="series-container ui-fade visible" sx={{ py: 8 }}>
       <Box sx={{ maxWidth: 1200, mx: "auto", px: 2 }}>
         <Typography variant="h2" component="h1" align="center" gutterBottom sx={{ fontWeight: "bold", mb: 6 }}>
-          Series I Like
+          {translate("series.heading")}
         </Typography>
         <Grid container spacing={4}>
           {seriesData.map((series, index) => (
@@ -31,6 +34,9 @@ const SeriesPage: React.FC = () => {
                 <CardContent sx={{ textAlign: "center" }}>
                   <Typography variant="h5" component="h2" sx={{ fontWeight: "bold", mb: 1 }}>
                     {series.title}
+                  </Typography>
+                  <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 1 }}>
+                    {translate(series.seasons === 1 ? "series.season_one" : "series.season_other", { count: series.seasons })}
                   </Typography>
                   <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 0.5 }}>
                     <StarIcon sx={{ color: "#faaf00", fontSize: "1.2rem" }} />
