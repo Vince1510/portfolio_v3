@@ -92,12 +92,6 @@
   box-shadow:
     0 8px 32px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
-
-  .about-page-active & {
-    background: rgba(10, 10, 30, 0.55);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-  }
 }
 
 /* ─── Individual Dock Item ─────────────────────────────────────────────── */
@@ -120,10 +114,6 @@
 
 [data-theme="light"] .dock-item {
   color: rgba(0, 0, 0, 0.4);
-
-  .about-page-active & {
-    color: rgba(255, 255, 255, 0.5);
-  }
 }
 
 .dock-item:hover {
@@ -135,11 +125,6 @@
 [data-theme="light"] .dock-item:hover {
   color: rgba(0, 0, 0, 0.8);
   background: rgba(0, 0, 0, 0.05);
-
-  .about-page-active & {
-    color: rgba(255, 255, 255, 0.9);
-    background: rgba(255, 255, 255, 0.08);
-  }
 }
 
 /* Active state */
@@ -151,11 +136,6 @@
 [data-theme="light"] .dock-item--active {
   color: #8c63e0;
   background: rgba(140, 99, 224, 0.08);
-
-  .about-page-active & {
-    color: #7be08b;
-    background: rgba(123, 224, 139, 0.1);
-  }
 }
 
 .dock-item--active:hover {
@@ -218,10 +198,6 @@
 
 [data-theme="light"] .dock-indicator {
   background: #8c63e0;
-
-  .about-page-active & {
-    background: #7be08b;
-  }
 }
 
 @keyframes dock-dot-in {

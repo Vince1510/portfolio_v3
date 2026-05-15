@@ -7,15 +7,9 @@
     "aboutMe": "<Over Mij/>",
     "experience": "<Ervaring/>",
     "education": "<Opleiding/>",
-    "movies": "Films",
-    "series": "Series",
-    "vacation": "Vakantie",
-    "back": "Terug"
-  },
-  "about": {
-    "interestsTitle": "Hobby's & Interesses",
-    "interestsText": "Naast coderen kijk ik graag films en series. Ook vind ik het leuk: Traveling and exploring new cultures is a big part of my life. I love visiting places with a beautiful nature.",
-    "moreInfo": "Meer Info"
+    "movies": "<Films/>",
+    "series": "<Series/>",
+    "vacation": "<Vakantie/>"
   },
   "header": {
     "title": "VINCE VAN APELDOORN",

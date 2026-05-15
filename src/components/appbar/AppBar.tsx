@@ -7,10 +7,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-import { Link, useLocation } from "react-router-dom";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-
-// Local Imports
 import { useLanguage } from "../../context/LanguageContext";
 
 // Styles
@@ -28,8 +24,7 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
   toggleDarkMode,
   className = "",
 }) => {
-  const { language, toggleLanguage, translate } = useLanguage();
-  const location = useLocation();
+  const { language, toggleLanguage } = useLanguage();
 
   return (
     <AppBar
@@ -43,22 +38,10 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
           disableGutters
           className="appbar-toolbar"
         >
-          {location.pathname.startsWith("/about") && (
-            <Button
-              component={Link}
-              to="/"
-              startIcon={<ArrowBackIcon />}
-              color="inherit"
-              sx={{ mr: 2, textTransform: "none" }}
-            >
-              {translate("nav.back")}
-            </Button>
-          )}
           <Typography
             variant="h6"
             noWrap
             className="appbar-title"
-            sx={{ flexGrow: 1 }}
           >
             {"<Vince/>"}
           </Typography>

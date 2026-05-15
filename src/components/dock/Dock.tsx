@@ -6,7 +6,7 @@ import CodeIcon from "@mui/icons-material/Code";
 import FolderOpenIcon from "@mui/icons-material/FolderOpen";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
-import { useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // Local Imports
 import { useLanguage } from "../../context/LanguageContext";
@@ -38,7 +38,6 @@ const defaultDockItems: DockItem[] = [
 const Dock: React.FC<DockProps> = ({ activeIndex, items, sectionIds, className }) => {
   const { translate } = useLanguage();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const currentItems = items || defaultDockItems;
 
@@ -49,17 +48,11 @@ const Dock: React.FC<DockProps> = ({ activeIndex, items, sectionIds, className }
       const el = document.getElementById(item.sectionId);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        // If on a sub-page and section not found, go to main About or Home
-        const targetPath = location.pathname.startsWith("/about") ? "/about" : "/";
-        navigate(`${targetPath}#${item.sectionId}`);
       }
     } else if (sectionIds && sectionIds[index]) {
       const el = document.getElementById(sectionIds[index]);
       if (el) {
         el.scrollIntoView({ behavior: "smooth", block: "start" });
-      } else {
-        navigate(`/#${sectionIds[index]}`);
       }
     }
   };
