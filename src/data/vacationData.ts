@@ -23,7 +23,7 @@ export const vacationsData: Vacation[] = [
   { 
     id: "mallorca",
     year: "2026", 
-    image: "https://polarsteps.s3.amazonaws.com/user_images/steps/large_thumb/u_17033525/7927d8e0-886e-49cd-b731-3688c8256317_ca263a77-28a3-4e83-bf8e-e138a3f3542e.jpg",
+    image: "",
     coords: [39.4156, 3.2631],
     locations: [
       {
@@ -443,19 +443,19 @@ export const vacationsData: Vacation[] = [
   { 
     id: "thailand",
     year: "2025", 
-    image: "https://polarsteps.s3.amazonaws.com/user_images/steps/large_thumb/u_6535034/89406e22-e63a-4992-a393-68b0dcb7cea4_62b16c8f-2866-4b2d-a48c-3c494399c42d.jpg",
+    image: "",
     coords: [13.7563, 100.5018]
   },
   { 
     id: "malaysia2024",
     year: "2024", 
-    image: "https://polarsteps.s3.amazonaws.com/user_images/steps/large_thumb/u_6535034/EBC664FA-8667-4735-B009-74F8B47DA1EA_F477423E-6368-4D02-9306-FD25EAB7E873.jpg",
+    image: "",
     coords: [3.1390, 101.6869]
   },
   { 
     id: "malaysia2023",
     year: "2023", 
-    image: "https://polarsteps.s3.amazonaws.com/user_images/steps/large_thumb/u_6535034/D8DB45EA-5195-4ED7-9509-A9A123D0700E_9F88A413-BF10-490B-BEEF-B1C6660FC445.jpg",
+    image: "",
     coords: [4.2105, 101.9758]
   },
 ];

@@ -44,8 +44,13 @@ export const DiaryPopupContent: React.FC<DiaryPopupProps> = ({ step }) => (
     <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
       {step.date}
     </Typography>
-    <Typography variant="caption" color="text.secondary" sx={{ display: 'block' }}>
+    <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: step.imageUrl ? 1 : 0 }}>
       {step.lat}, {step.lng}
     </Typography>
+    {step.imageUrl && (
+      <Box sx={{ mt: 1, borderRadius: 2, overflow: 'hidden' }}>
+        <img src={step.imageUrl} alt={step.name} style={{ width: '100%', height: 'auto', display: 'block' }} />
+      </Box>
+    )}
   </Box>
 );
