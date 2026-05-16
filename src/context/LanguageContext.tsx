@@ -18,7 +18,7 @@ const translations: Record<Language, Translations> = {
 interface LanguageContextProps {
   language: Language;
   toggleLanguage: () => void;
-  translate: (key: string) => any;
+  translate: (key: string, variables?: Record<string, string | number>) => any;
 }
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(undefined);
@@ -37,9 +37,9 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     setLanguage((prev) => (prev === "nl" ? "en" : "nl"));
   };
 
-  const translate = (keyPath: string) => {
+  const translate = (keyPath: string, variables?: Record<string, string | number>) => {
     const keys = keyPath.split(".");
-    let result = translations[language];
+    let result: any = translations[language];
 
     for (const key of keys) {
       if (result && typeof result === "object" && key in result) {
@@ -47,6 +47,12 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
       } else {
         return keyPath; // Fallback to key if not found
       }
+    }
+
+    if (typeof result === "string" && variables) {
+      Object.entries(variables).forEach(([key, value]) => {
+        result = result.split(`{{${key}}}`).join(String(value));
+      });
     }
 
     return result;

@@ -7,8 +7,6 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
-
-// Local Imports
 import { useLanguage } from "../../context/LanguageContext";
 
 // Styles

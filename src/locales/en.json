@@ -3,7 +3,13 @@
     "home": "<Home/>",
     "skills": "<Skills/>",
     "projects": "<Projects/>",
-    "contact": "<Contact/>"
+    "contact": "<Contact/>",
+    "aboutMe": "<About Me/>",
+    "experience": "<Experience/>",
+    "education": "<Education/>",
+    "movies": "<Movies/>",
+    "series": "<Series/>",
+    "vacation": "<Vacation/>"
   },
   "header": {
     "title": "I'M VINCE VAN APELDOORN",
@@ -67,5 +73,86 @@
     "msgSuccess": "Thanks! Your message has been sent successfully. ✨",
     "msgErrorPrefix": "Oops! Something went wrong: ",
     "msgNetworkError": "Oops! Could not connect to the server."
+  },
+  "about": {
+    "heading": "About Me",
+    "subtitle": "Explore my favorite movies, series, and travels.",
+    "moviesTitle": "Movies I Like",
+    "moviesDesc": "A collection of films that inspired me and shaped my perspective.",
+    "seriesTitle": "Series I Like",
+    "seriesDesc": "The binge-worthy stories and characters I've followed over the years.",
+    "vacationTitle": "My Vacations",
+    "vacationDesc": "Memorable trips and beautiful places I've had the pleasure to visit."
+  },
+  "movies": {
+    "heading": "Movies I Like"
+  },
+  "series": {
+    "heading": "Series I Like",
+    "season_one": "1 Season",
+    "season_other": "{{count}} Seasons"
+  },
+  "vacation": {
+    "heading": "My Vacations",
+    "viewMap": "View Map →",
+    "items": {
+      "mallorca": {
+        "location": "Vacation with Toon Mallorca",
+        "description": "A beautiful trip to Mallorca."
+      },
+      "thailand": {
+        "location": "Thailand",
+        "description": "Exploring the islands of Thailand."
+      },
+      "malaysia2024": {
+        "location": "Malaysia",
+        "description": "Back to Malaysia for more adventures."
+      },
+      "malaysia2023": {
+        "location": "Malaysia",
+        "description": "My first trip to Malaysia."
+      }
+    }
+  },
+  "projects": {
+    "heading": "Projects",
+    "viewProject": "View Project",
+    "ariaLabel": {
+      "goToProject": "Go to project {{index}}"
+    },
+    "items": [
+      {
+        "title": "Witgoed Hellevoetsluis",
+        "description": "Website built for Witgoed Hellevoetsluis and Meubeldiscount using React, TypeScript, and MUI."
+      },
+      {
+        "title": "Enovation IAM Self Service",
+        "description": "During my internship at Enovation, I migrated the IAM Self Service application from Angular 1 to Angular v18."
+      },
+      {
+        "title": "Team Kraus",
+        "description": "The official website for Albert Kraus and Gradus Kraus, created with HTML, CSS, and JavaScript."
+      },
+      {
+        "title": "Portfolio Website",
+        "description": "This portfolio website is built with TypeScript and Material UI."
+      },
+      {
+        "title": "Putiton-e",
+        "description": "During my internship at Crebos, I worked on the Putiton-e website."
+      },
+      {
+        "title": "Play to Earn",
+        "description": "During my internship at Crebos, I worked on the Play to Earn games website."
+      },
+      {
+        "title": "Tic Tac Toe",
+        "description": "Tic tac toe game for 2 players, built entirely with React."
+      },
+      {
+        "title": "MERN Auth",
+        "description": "I learned from NetNinja how to build MERN stack projects with JSON web tokens."
+      }
+    ]
   }
 }

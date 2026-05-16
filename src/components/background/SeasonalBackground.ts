@@ -30,6 +30,8 @@ const SEASON_GRADIENTS = [
   { top: "#fff3e0", bottom: "#fbe9e7" },
   // Winter
   { top: "#e3f2fd", bottom: "#f5f5f5" },
+  // About Page (Defaulting to a soft Sakura/Spring theme)
+  { top: "#fce4ec", bottom: "#e8f5e9" },
 ];
 
 export class SeasonalBackground {
@@ -144,12 +146,12 @@ export class SeasonalBackground {
     const H = this.canvas.height;
     // Lower count to reduce business
     const count = Math.floor((W * H) / 25000);
-
     switch (index) {
       case 0: this.buildSpring(count, W, H); break;
       case 1: this.buildSummer(count, W, H); break;
       case 2: this.buildAutumn(count, W, H); break;
       case 3: this.buildWinter(count, W, H); break;
+      case 4: this.buildSpring(count, W, H); break;
     }
   }
 
@@ -286,12 +288,12 @@ export class SeasonalBackground {
     ctx.translate(W / 2, H / 2);
     ctx.scale(this.camera.scale, this.camera.scale);
     ctx.translate(-W / 2 + this.camera.x, -H / 2 + this.camera.y);
-
     switch (this.currentScene) {
       case 0: this.drawSpring(ctx, W, H); break;
       case 1: this.drawSummer(ctx, W, H); break;
       case 2: this.drawAutumn(ctx, W, H); break;
       case 3: this.drawWinter(ctx, W, H); break;
+      case 4: this.drawSpring(ctx, W, H); break;
     }
 
     ctx.restore();

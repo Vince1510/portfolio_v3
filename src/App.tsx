@@ -6,20 +6,28 @@ import ThemeProvider from "@mui/material/styles/ThemeProvider";
 import createTheme from "@mui/material/styles/createTheme";
 
 // Local Component Imports
+import { Routes, Route, useLocation } from "react-router-dom";
 import ResponsiveAppBar from "./components/appbar/AppBar";
-import Dock from "./components/dock/Dock";
+import Dock, { DockItem } from "./components/dock/Dock";
 import LoadingScreen from "./components/loadingscreen/LoadingScreen";
 import OrientationOverlay from "./components/orientation/OrientationOverlay";
-import { useActiveSection } from "./hooks/useActiveSection";
+
+// About Page Icons
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import InfoIcon from "@mui/icons-material/Info";
+import MovieIcon from "@mui/icons-material/Movie";
+import TvIcon from "@mui/icons-material/Tv";
+import BeachAccessIcon from "@mui/icons-material/BeachAccess";
 
 // Styles
 import "./index.scss";
 
-// Lazy Loaded Pages
-const HeaderPage = lazy(() => import("./pages/header/Header"));
-const SkillsPage = lazy(() => import("./pages/skills/Skills"));
-const ProjectPage = lazy(() => import("./pages/projecten/Projects"));
-const ContactPage = lazy(() => import("./pages/contact/Contact"));
+// Lazy Loaded Components
+const LandingPage = lazy(() => import("./pages/landing/LandingPage"));
+const AboutPage = lazy(() => import("./pages/about/About"));
+const MoviesPage = lazy(() => import("./pages/movies/Movies"));
+const SeriesPage = lazy(() => import("./pages/series/Series"));
+const VacationPage = lazy(() => import("./pages/vacation/Vacation"));
 const BackgroundCanvas = lazy(() => import("./components/background/BackgroundCanvas"));
 
 const SECTION_IDS = ["header", "skills", "projects", "contact"];
@@ -28,9 +36,12 @@ const App: React.FC = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [appLoaded, setAppLoaded] = useState(false);
   const [showUI, setShowUI] = useState(false);
-  const activeIndex = useActiveSection(SECTION_IDS);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const location = useLocation();
+  const isAboutPage = location.pathname.startsWith("/about");
 
   // Sync theme to document element for global CSS targeting
+  // ... (rest of the logic remains same)
   React.useEffect(() => {
     document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
   }, [darkMode]);
@@ -111,44 +122,70 @@ const App: React.FC = () => {
           className={`ui-fade ${showUI ? "visible" : ""}`}
         />
 
-        {/* Dynamic animated background */}
         <Suspense fallback={null}>
           <div className={`background-container ui-fade ${showUI ? "visible" : ""}`}>
-            <BackgroundCanvas darkMode={darkMode} activeIndex={activeIndex} />
+            <BackgroundCanvas darkMode={darkMode} activeIndex={isAboutPage ? 4 : activeIndex} />
           </div>
         </Suspense>
 
-        <main 
-          className={`scroll-container ui-fade ${showUI ? "visible" : ""}`}
-        >
-          <section id="header" className="page-section">
-            <Suspense fallback={null}>
-              <HeaderPage />
-            </Suspense>
-          </section>
-
-          <section id="skills" className="page-section">
-            <Suspense fallback={null}>
-              <SkillsPage />
-            </Suspense>
-          </section>
-
-          <section id="projects" className="page-section">
-            <Suspense fallback={null}>
-              <ProjectPage />
-            </Suspense>
-          </section>
-
-          <section id="contact" className="page-section">
-            <Suspense fallback={null}>
-              <ContactPage />
-            </Suspense>
-          </section>
-        </main>
+        <Routes>
+          <Route 
+            path="/" 
+            element={
+              <Suspense fallback={null}>
+                <LandingPage showUI={showUI} onActiveIndexChange={setActiveIndex} />
+              </Suspense>
+            } 
+          />
+          <Route 
+            path="/about" 
+            element={
+              <Suspense fallback={null}>
+                <AboutPage showUI={showUI} />
+              </Suspense>
+            } 
+          />
+          <Route 
+            path="/about/movies" 
+            element={
+              <Suspense fallback={null}>
+                <MoviesPage />
+              </Suspense>
+            } 
+          />
+          <Route 
+            path="/about/series" 
+            element={
+              <Suspense fallback={null}>
+                <SeriesPage />
+              </Suspense>
+            } 
+          />
+          <Route 
+            path="/about/vacation" 
+            element={
+              <Suspense fallback={null}>
+                <VacationPage />
+              </Suspense>
+            } 
+          />
+        </Routes>
 
         <Dock 
-          activeIndex={activeIndex} 
-          sectionIds={SECTION_IDS}
+          activeIndex={isAboutPage ? (
+            location.pathname.replace(/\/$/, "") === "/about" ? 1 :
+            location.pathname.startsWith("/about/movies") ? 2 :
+            location.pathname.startsWith("/about/series") ? 3 :
+            location.pathname.startsWith("/about/vacation") ? 4 : 0
+          ) : activeIndex} 
+          items={isAboutPage ? [
+            { icon: <ArrowBackIosIcon />, labelKey: "nav.home", path: "/" },
+            { icon: <InfoIcon />, labelKey: "nav.aboutMe", path: "/about" },
+            { icon: <MovieIcon />, labelKey: "nav.movies", path: "/about/movies" },
+            { icon: <TvIcon />, labelKey: "nav.series", path: "/about/series" },
+            { icon: <BeachAccessIcon />, labelKey: "nav.vacation", path: "/about/vacation" },
+          ] : undefined}
+          sectionIds={isAboutPage ? [] : SECTION_IDS}
           className={`ui-fade ${showUI ? "visible" : ""}`}
         />
       </div>
