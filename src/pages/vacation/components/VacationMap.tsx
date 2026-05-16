@@ -10,6 +10,7 @@ interface VacationMapProps {
 }
 
 const BLUE_DOT = { color: "#1a1a2e", fillColor: "#4893FD", fillOpacity: 0.9, weight: 1.5 };
+const RED_DOT = { color: "#1a1a2e", fillColor: "#ff4d4d", fillOpacity: 0.9, weight: 1.5 };
 
 const VacationMap: React.FC<VacationMapProps> = ({ vacation }) => {
   const diarySteps = polarstepsData[vacation.id] ?? [];
@@ -46,7 +47,7 @@ const VacationMap: React.FC<VacationMapProps> = ({ vacation }) => {
           key={`ps-${i}`}
           center={[step.lat, step.lng]}
           radius={6}
-          pathOptions={BLUE_DOT}
+          pathOptions={step.mediaAdded ? BLUE_DOT : RED_DOT}
         >
           <Popup maxWidth={260}>
             <DiaryPopupContent step={step} />

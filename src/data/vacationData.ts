@@ -23,7 +23,7 @@ export const vacationsData: Vacation[] = [
   { 
     id: "mallorca",
     year: "2026", 
-    image: "",
+    image: "https://www.image2url.com/r2/default/images/1778869621846-1ff9a0d4-f692-4fa7-823f-080d103a0fad.jpg",
     coords: [39.4156, 3.2631],
     locations: [
       {
@@ -443,19 +443,19 @@ export const vacationsData: Vacation[] = [
   { 
     id: "thailand",
     year: "2025", 
-    image: "",
+    image: "https://www.image2url.com/r2/default/images/1778932883277-8429ee09-be04-442f-9a01-86a248fb61c4.jpg",
     coords: [13.7563, 100.5018]
   },
   { 
     id: "malaysia2024",
     year: "2024", 
-    image: "",
+    image: "https://www.image2url.com/r2/default/images/1778936419140-b9294b85-69d4-4cad-ab5c-0558ec310fad.jpg",
     coords: [3.1390, 101.6869]
   },
   { 
     id: "malaysia2023",
     year: "2023", 
-    image: "",
+    image: "https://www.image2url.com/r2/default/images/1778936698415-c2e76669-0719-453b-ba03-477168f0ca82.jpg",
     coords: [4.2105, 101.9758]
   },
 ];

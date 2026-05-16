@@ -50,7 +50,11 @@ const VacationModal: React.FC<VacationModalProps> = ({ vacation, onClose }) => {
             <Box sx={{ display: "flex", gap: 2, mb: 1.5 }}>
               <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
                 <Box sx={{ width: 12, height: 12, borderRadius: "50%", bgcolor: "#4893FD", border: "1.5px solid #1a1a2e" }} />
-                <Typography variant="caption" color="text.secondary">Visited location</Typography>
+                <Typography variant="caption" color="text.secondary">Media added</Typography>
+              </Box>
+              <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
+                <Box sx={{ width: 12, height: 12, borderRadius: "50%", bgcolor: "#ff4d4d", border: "1.5px solid #1a1a2e" }} />
+                <Typography variant="caption" color="text.secondary">No media</Typography>
               </Box>
             </Box>
 

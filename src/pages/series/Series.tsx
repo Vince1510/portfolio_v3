@@ -1,5 +1,5 @@
-import React from "react";
-import { Grid, Card, CardContent, CardMedia, Typography, Box } from "@mui/material";
+import React, { useState, useEffect, useRef } from "react";
+import { Grid, Card, CardContent, CardMedia, Typography, Box, CircularProgress } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
 import { useLanguage } from "../../context/LanguageContext";
 import { seriesData } from "../../data/seriesData";
@@ -13,6 +13,29 @@ interface Series {
 
 const SeriesPage: React.FC = () => {
   const { translate } = useLanguage();
+  const [visibleItems, setVisibleItems] = useState(12);
+  const observerTarget = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setVisibleItems((prev) => Math.min(prev + 12, seriesData.length));
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (observerTarget.current) {
+      observer.observe(observerTarget.current);
+    }
+
+    return () => {
+      if (observerTarget.current) {
+        observer.unobserve(observerTarget.current);
+      }
+    };
+  }, []);
 
   return (
     <Box className="series-container ui-fade visible" sx={{ py: 8 }}>
@@ -21,7 +44,7 @@ const SeriesPage: React.FC = () => {
           {translate("series.heading")}
         </Typography>
         <Grid container spacing={4}>
-          {seriesData.map((series, index) => (
+          {seriesData.slice(0, visibleItems).map((series, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card sx={{ borderRadius: 4, height: "100%", transition: "0.3s", "&:hover": { transform: "translateY(-10px)" } }}>
                 <CardMedia
@@ -49,6 +72,12 @@ const SeriesPage: React.FC = () => {
             </Grid>
           ))}
         </Grid>
+
+        {visibleItems < seriesData.length && (
+          <Box ref={observerTarget} sx={{ display: "flex", justifyContent: "center", mt: 6, mb: 2 }}>
+            <CircularProgress sx={{ color: "#4893FD" }} />
+          </Box>
+        )}
       </Box>
     </Box>
   );

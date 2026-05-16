@@ -69,7 +69,27 @@ const movieTitles = [
   "Interstellar",
   "The Night House",
   "The Ridiculous 6",
-  "The Hunger Games"
+  "The Hunger Games",
+  "Source Code",
+  "Insidious",
+  "Missing",
+  "Sinners",
+  "Weapons",
+  "Barbarian",
+  "Blade Runner 2049",
+  "Passengers",
+  "Pan's Labyrinth",
+  "Alita: Battle Angel",
+  "John Wick",
+  "John Wick: Chapter 2",
+  "John Wick: Chapter 3 - Parabellum",
+  "John Wick: Chapter 4",
+  "Ballerina",
+  "Mad Max: Fury Road",
+  "2012",
+  "Bullet Train"
+
+  
 ];
 
 const seriesTitles = [
@@ -123,7 +143,7 @@ async function fetchSeriesData(title) {
       const details = detailResponse.data;
       return {
         title: details.name,
-        seasons: `${details.number_of_seasons} ${details.number_of_seasons === 1 ? 'Season' : 'Seasons'}`,
+        seasons: details.number_of_seasons,
         rating: details.vote_average ? details.vote_average.toFixed(1) : 'N/A',
         image: `https://image.tmdb.org/t/p/w500${details.poster_path}`
       };
@@ -150,8 +170,16 @@ async function main() {
     await new Promise(resolve => setTimeout(resolve, 200));
   }
 
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   const moviePath = path.join(__dirname, '../src/data/moviesData.ts');
-  fs.writeFileSync(moviePath, `export const moviesData = ${JSON.stringify(movieResults, null, 2)};`);
+  fs.writeFileSync(moviePath, `export const moviesData = ${JSON.stringify(shuffle(movieResults), null, 2)};`);
   console.log(`Saved ${movieResults.length} movies.`);
 
   // Fetch Series
@@ -165,7 +193,7 @@ async function main() {
   }
 
   const seriesPath = path.join(__dirname, '../src/data/seriesData.ts');
-  fs.writeFileSync(seriesPath, `export const seriesData = ${JSON.stringify(seriesResults, null, 2)};`);
+  fs.writeFileSync(seriesPath, `export const seriesData = ${JSON.stringify(shuffle(seriesResults), null, 2)};`);
   console.log(`Saved ${seriesResults.length} series.`);
 }
 
