@@ -14,7 +14,9 @@ export const polarstepsData: Record<string, PolarStep[]> = {
   mallorca: [
     { name: "Steenokkerzeel", date: "19 april 2026", lat: 50.90183, lng: 4.48144, imageUrl: "https://www.image2url.com/r2/default/images/1778869318653-a39fa941-c409-4b62-baa4-acffa82bc4fb.jpg", mediaAdded: true },
     { name: "Steenokkerzeel", date: "19 april 2026", lat: 50.9031, lng: 4.48464, imageUrl: "https://www.image2url.com/r2/default/images/1778869621846-1ff9a0d4-f692-4fa7-823f-080d103a0fad.jpg", mediaAdded: true },
-    { name: "Campos", date: "19 april 2026", lat: 39.43737, lng: 3.00251, imageUrl: "", mediaAdded: false },
+    { name: "Campos", date: "19 april 2026", lat: 39.43737, lng: 3.00251, imageUrl: "https://www.image2url.com/r2/default/images/1778946382190-f9aecba9-01ce-4fb7-8386-f225e751ae7b.jpg", mediaAdded: true },
+    { name: "Campos", date: "19 april 2026", lat: 39.436920, lng: 3.002293, imageUrl: "https://www.image2url.com/r2/default/images/1778946292171-e69a4f77-d62e-40f5-af44-1a6f9f0c90e0.jpg", mediaAdded: true },
+    { name: "tekst", date: "19 april 2026", lat: 39.410569, lng: 3.259479, imageUrl: "https://www.image2url.com/r2/default/images/1778946292171-e69a4f77-d62e-40f5-af44-1a6f9f0c90e0.jpg", mediaAdded: true },
     { name: "Felanitx", date: "20 april 2026", lat: 39.41204, lng: 3.26243, imageUrl: "", mediaAdded: false },
     { name: "39° 24'N 3° 15'E", date: "20 april 2026", lat: 39.41292, lng: 3.2607, imageUrl: "", mediaAdded: false },
     { name: "Felanitx", date: "20 april 2026", lat: 39.41246, lng: 3.26285, imageUrl: "", mediaAdded: false },

@@ -64,5 +64,47 @@ export const seriesData = [
     "seasons": 8,
     "rating": "7.6",
     "image": "https://image.tmdb.org/t/p/w500/l7N9aS6VyYvjelKoCB2eZge0Qky.jpg"
+  },
+  {
+    "title": "Clarkson's Farm",
+    "seasons": 5,
+    "rating": "8.5",
+    "image": "https://image.tmdb.org/t/p/w500/yKc3FqwD2eanWBUwqcRH7bChE3V.jpg"
+  },
+  {
+    "title": "The Grand Tour",
+    "seasons": 6,
+    "rating": "8.0",
+    "image": "https://image.tmdb.org/t/p/w500/3Pcqu6QliBWJ8vsOVClVLddPnZw.jpg"
+  },
+  {
+    "title": "Undercover",
+    "seasons": 3,
+    "rating": "7.5",
+    "image": "https://image.tmdb.org/t/p/w500/ziOJNiNUbomrs81behksd0z9Qoz.jpg"
+  },
+  {
+    "title": "The Queen's Gambit",
+    "seasons": 1,
+    "rating": "8.4",
+    "image": "https://image.tmdb.org/t/p/w500/zU0htwkhNvBQdVSIKB9s6hgVeFK.jpg"
+  },
+  {
+    "title": "The Penguin",
+    "seasons": 1,
+    "rating": "8.4",
+    "image": "https://image.tmdb.org/t/p/w500/vOWcqC4oDQws1doDWLO7d3dh5qc.jpg"
+  },
+  {
+    "title": "Mr. Bean",
+    "seasons": 1,
+    "rating": "8.0",
+    "image": "https://image.tmdb.org/t/p/w500/pUNQV35kDaKuejnXGNiUeEBurNE.jpg"
+  },
+  {
+    "title": "The IT Crowd",
+    "seasons": 4,
+    "rating": "8.2",
+    "image": "https://image.tmdb.org/t/p/w500/qZXkBoOUYzvKI4UCMzDQ5kqWHjh.jpg"
   }
 ];
