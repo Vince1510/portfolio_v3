@@ -18,65 +18,71 @@ const AboutPage: React.FC<AboutPageProps> = ({ showUI }) => {
     {
       title: translate("about.moviesTitle"),
       description: translate("about.moviesDesc"),
-      icon: <MovieIcon sx={{ fontSize: 40 }} />,
+      icon: <MovieIcon sx={{ fontSize: 50, color: 'white' }} />,
       path: "/about/movies",
-      color: "#7be08b"
+      color: "#7be08b",
+      image: "https://image.tmdb.org/t/p/w500/yQvGrMoipbRoddT0ZR8tPoR7NfX.jpg" // Interstellar
     },
     {
       title: translate("about.seriesTitle"),
       description: translate("about.seriesDesc"),
-      icon: <TvIcon sx={{ fontSize: 40 }} />,
+      icon: <TvIcon sx={{ fontSize: 50, color: 'white' }} />,
       path: "/about/series",
-      color: "#3bc1b6"
+      color: "#3bc1b6",
+      image: "https://image.tmdb.org/t/p/w500/kv1nRqgebSsREnd7vdC2pSGjpLo.jpg" // Lost in Space
     },
     {
       title: translate("about.vacationTitle"),
       description: translate("about.vacationDesc"),
-      icon: <BeachAccessIcon sx={{ fontSize: 40 }} />,
+      icon: <BeachAccessIcon sx={{ fontSize: 50, color: 'white' }} />,
       path: "/about/vacation",
-      color: "#e09545"
+      color: "#e09545",
+      image: "https://www.image2url.com/r2/default/images/1778869621846-1ff9a0d4-f692-4fa7-823f-080d103a0fad.jpg" // Mallorca
     }
   ];
 
   return (
-    <Box className={`about-container ui-fade ${showUI ? "visible" : ""}`} sx={{ py: 8 }}>
-      <Box sx={{ maxWidth: 1200, mx: "auto", px: 2 }}>
-        <Box sx={{ textAlign: "center", mb: 6 }}>
-          <Typography variant="h2" component="h1" gutterBottom sx={{ fontWeight: "bold" }}>
+    <Box className={`about-container ui-fade ${showUI ? "visible" : ""}`}>
+      <Box className="about-content">
+        <Box className="about-header">
+          <Typography variant="h2" component="h1" gutterBottom className="about-title">
             {translate("about.heading")}
           </Typography>
-          <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 800, mx: "auto" }}>
+          <Typography variant="h6" color="text.secondary" className="about-subtitle">
             {translate("about.subtitle")}
           </Typography>
         </Box>
 
-        <Grid container spacing={4}>
+        <Grid container spacing={4} className="about-cards-container">
           {hubCards.map((card, index) => (
             <Grid item xs={12} sm={4} key={index}>
-              <Card 
-                sx={{ 
-                  height: "100%", 
-                  display: "flex", 
-                  flexDirection: "column",
-                  borderRadius: 4,
-                  transition: "transform 0.2s",
-                  "&:hover": { transform: "translateY(-8px)" }
-                }}
-              >
-                <CardActionArea component={Link} to={card.path} sx={{ flexGrow: 1, p: 3 }}>
-                  <Box sx={{ display: "flex", justifyContent: "center", mb: 2, color: card.color }}>
-                    {card.icon}
-                  </Box>
-                  <CardContent sx={{ textAlign: "center" }}>
-                    <Typography gutterBottom variant="h5" component="h2" sx={{ fontWeight: "bold" }}>
-                      {card.title}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {card.description}
-                    </Typography>
-                  </CardContent>
-                </CardActionArea>
-              </Card>
+              <Link to={card.path} style={{ textDecoration: 'none' }}>
+                <div className="flip-card">
+                  <div className="flip-card-inner">
+                    <div 
+                      className="flip-card-front" 
+                      style={{ backgroundImage: `url(${card.image})` }}
+                    >
+                      <div className="flip-card-front-overlay">
+                        <Typography variant="h4" className="flip-card-front-title">
+                          {card.title}
+                        </Typography>
+                      </div>
+                    </div>
+                    <div className="flip-card-back" style={{ backgroundColor: card.color }}>
+                      <Box className="flip-card-icon">
+                        {card.icon}
+                      </Box>
+                      <Typography gutterBottom variant="h5" component="h2" className="flip-card-back-title">
+                        {card.title}
+                      </Typography>
+                      <Typography variant="body1" className="flip-card-back-desc">
+                        {card.description}
+                      </Typography>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             </Grid>
           ))}
         </Grid>

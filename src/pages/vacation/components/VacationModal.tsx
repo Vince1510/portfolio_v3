@@ -16,19 +16,9 @@ const VacationModal: React.FC<VacationModalProps> = ({ vacation, onClose }) => {
     <Modal
       open={Boolean(vacation)}
       onClose={onClose}
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center", p: 2 }}
+      className="vacation-modal-container"
     >
-      <Box
-        sx={{
-          bgcolor: "background.paper",
-          borderRadius: 4,
-          width: "100%",
-          maxWidth: 1000,
-          p: 4,
-          position: "relative",
-          outline: "none",
-        }}
-      >
+      <Box className="vacation-modal-content">
         <button className="close-button" onClick={onClose}>×</button>
 
         {vacation && (
@@ -36,29 +26,24 @@ const VacationModal: React.FC<VacationModalProps> = ({ vacation, onClose }) => {
             <Typography
               variant="h4"
               gutterBottom
-              sx={{
-                fontWeight: "bold",
-                background: "linear-gradient(90deg, #7be08b, #3bc1b6)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
+              className="vacation-modal-title"
             >
               {translate(`vacation.items.${vacation.id}.location`)}
             </Typography>
 
             {/* Map legend */}
-            <Box sx={{ display: "flex", gap: 2, mb: 1.5 }}>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                <Box sx={{ width: 12, height: 12, borderRadius: "50%", bgcolor: "#4893FD", border: "1.5px solid #1a1a2e" }} />
+            <Box className="vacation-legend-container">
+              <Box className="vacation-legend-item">
+                <Box className="vacation-legend-dot vacation-legend-dot-blue" />
                 <Typography variant="caption" color="text.secondary">Media added</Typography>
               </Box>
-              <Box sx={{ display: "flex", alignItems: "center", gap: 0.5 }}>
-                <Box sx={{ width: 12, height: 12, borderRadius: "50%", bgcolor: "#ff4d4d", border: "1.5px solid #1a1a2e" }} />
+              <Box className="vacation-legend-item">
+                <Box className="vacation-legend-dot vacation-legend-dot-red" />
                 <Typography variant="caption" color="text.secondary">No media</Typography>
               </Box>
             </Box>
 
-            <Box sx={{ height: "60vh", width: "100%", borderRadius: 2, overflow: "hidden", mt: 1 }}>
+            <Box className="vacation-map-wrapper">
               <VacationMap vacation={vacation} />
             </Box>
           </>

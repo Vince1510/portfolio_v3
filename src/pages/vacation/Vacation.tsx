@@ -11,14 +11,12 @@ const VacationPage: React.FC = () => {
   const [selectedVacation, setSelectedVacation] = useState<Vacation | null>(null);
 
   return (
-    <Box className="vacation-container ui-fade visible" sx={{ py: 8 }}>
-      <Box sx={{ maxWidth: 1200, mx: "auto", px: 2 }}>
+    <Box className="vacation-container ui-fade visible">
+      <Box className="vacation-content">
         <Typography
           variant="h2"
           component="h1"
-          align="center"
-          gutterBottom
-          sx={{ fontWeight: "bold", mb: 6 }}
+          className="vacation-title"
         >
           {translate("vacation.heading")}
         </Typography>

@@ -12,30 +12,20 @@ const VacationCard: React.FC<VacationCardProps> = ({ vacation, onClick }) => {
   const { translate } = useLanguage();
 
   return (
-    <Card
-      sx={{
-        borderRadius: 4,
-        height: "100%",
-        transition: "transform 0.3s ease, box-shadow 0.3s ease",
-        "&:hover": {
-          transform: "translateY(-10px)",
-          boxShadow: "0 20px 40px rgba(123, 224, 139, 0.25)",
-        },
-      }}
-    >
-      <CardActionArea onClick={() => onClick(vacation)} sx={{ height: "100%" }}>
+    <Card className="vacation-card-mui">
+      <CardActionArea onClick={() => onClick(vacation)} className="vacation-card-action">
         <CardMedia
           component="img"
           height="400"
           image={vacation.image}
           alt={translate(`vacation.items.${vacation.id}.location`)}
-          sx={{ objectFit: "cover" }}
+          className="vacation-card-media"
         />
-        <CardContent sx={{ textAlign: "center", p: 3 }}>
-          <Typography variant="h4" component="h2" sx={{ fontWeight: "bold", mb: 1 }}>
+        <CardContent className="vacation-card-content">
+          <Typography variant="h4" component="h2" className="vacation-card-title">
             {translate(`vacation.items.${vacation.id}.location`)}
           </Typography>
-          <Typography variant="h6" color="primary" sx={{ mb: 2 }}>
+          <Typography variant="h6" color="primary" className="vacation-card-year">
             {vacation.year}
           </Typography>
           <Typography variant="body1" color="text.secondary">
@@ -43,7 +33,7 @@ const VacationCard: React.FC<VacationCardProps> = ({ vacation, onClick }) => {
           </Typography>
           <Typography
             variant="button"
-            sx={{ mt: 3, display: "block", color: "#7be08b", letterSpacing: 1 }}
+            className="vacation-card-button"
           >
             {translate("vacation.viewMap")}
           </Typography>

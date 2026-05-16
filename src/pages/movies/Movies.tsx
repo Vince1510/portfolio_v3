@@ -38,29 +38,29 @@ const MoviesPage: React.FC = () => {
   }, []);
 
   return (
-    <Box className="movies-container ui-fade visible" sx={{ py: 8 }}>
-      <Box sx={{ maxWidth: 1200, mx: "auto", px: 2 }}>
-        <Typography variant="h2" component="h1" align="center" gutterBottom sx={{ fontWeight: "bold", mb: 6 }}>
+    <Box className="movies-container ui-fade visible">
+      <Box className="movies-content">
+        <Typography variant="h2" component="h1" gutterBottom className="movies-title">
           {translate("movies.heading")}
         </Typography>
         <Grid container spacing={4}>
           {moviesData.slice(0, visibleItems).map((movie, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={{ borderRadius: 4, height: "100%", transition: "0.3s", "&:hover": { transform: "translateY(-10px)" } }}>
+              <Card className="movie-card-mui">
                 <CardMedia
                   component="img"
                   height="450"
                   image={movie.image}
                   alt={movie.title}
-                  sx={{ objectFit: "cover" }}
+                  className="movie-media"
                 />
-                <CardContent sx={{ textAlign: "center" }}>
-                  <Typography variant="h5" component="h2" sx={{ fontWeight: "bold", mb: 1 }}>
+                <CardContent className="movie-content">
+                  <Typography variant="h5" component="h2" className="movie-title-text">
                     {movie.title}
                   </Typography>
-                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 0.5 }}>
-                    <StarIcon sx={{ color: "#faaf00", fontSize: "1.2rem" }} />
-                    <Typography variant="subtitle1" color="text.secondary" sx={{ fontWeight: "600" }}>
+                  <Box className="movie-rating-box">
+                    <StarIcon className="movie-rating-icon" />
+                    <Typography variant="subtitle1" color="text.secondary" className="movie-rating-text">
                       {(movie as any).rating}
                     </Typography>
                   </Box>
@@ -71,8 +71,8 @@ const MoviesPage: React.FC = () => {
         </Grid>
         
         {visibleItems < moviesData.length && (
-          <Box ref={observerTarget} sx={{ display: "flex", justifyContent: "center", mt: 6, mb: 2 }}>
-            <CircularProgress sx={{ color: "#4893FD" }} />
+          <Box ref={observerTarget} className="movies-loader-box">
+            <CircularProgress className="movies-loader" />
           </Box>
         )}
       </Box>

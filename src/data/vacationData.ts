@@ -307,11 +307,11 @@ export const vacationsData: Vacation[] = [
       },
       {
         title: 'View of the coast of Porto Cristo.',
-        description: '',
+        description: 'DJI 0039 and DJI 0040',
         lat: 39.45781048554964,
         lng: 3.280101120417385,
         iframe: {
-          href: ""
+          href: "https://www.youtube.com/embed/diUY6cc94GQ?si=2kUUkcl77yRmhugt"
         }
       }
     ],
