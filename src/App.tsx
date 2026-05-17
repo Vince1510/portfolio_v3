@@ -41,7 +41,6 @@ const App: React.FC = () => {
   const isAboutPage = location.pathname.startsWith("/about");
 
   // Sync theme to document element for global CSS targeting
-  // ... (rest of the logic remains same)
   React.useEffect(() => {
     document.documentElement.setAttribute("data-theme", darkMode ? "dark" : "light");
   }, [darkMode]);

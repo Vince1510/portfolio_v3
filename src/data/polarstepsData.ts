@@ -137,9 +137,16 @@ export const polarstepsData: Record<string, PolarStep[]> = {
     { name: "Steenokkerzeel", date: "1 mei 2026", lat: 50.90207, lng: 4.4835, imageUrl: "", mediaAdded: false },
   ],
   thailand: [
-    { name: "Eschborn", date: "18 juli 2025", lat: 50.14237, lng: 8.57522, imageUrl: "", mediaAdded: false },
-    { name: "Frankfurt", date: "18 juli 2025", lat: 50.0477, lng: 8.57613, imageUrl: "", mediaAdded: false },
-    { name: "Bangkok", date: "19 juli 2025", lat: 13.74191, lng: 100.54897, imageUrl: "", mediaAdded: false },
+    { name: "Eschborn", date: "18 juli 2025", lat: 50.14237, lng: 8.57522, imageUrl: "https://www.image2url.com/r2/default/images/1779030416142-86aabd0a-07b3-4789-a10b-fdac682cb974.jpg", mediaAdded: true },
+    { name: "Frankfurt", date: "18 juli 2025", lat: 50.0477, lng: 8.57613, imageUrl: "https://www.image2url.com/r2/default/images/1779030630383-3c8de1bf-a578-4f61-b889-855773f39767.jpg", mediaAdded: true },
+    { name: "Bangkok", date: "19 juli 2025", lat: 13.747778, lng: 100.603833, imageUrl: "https://www.image2url.com/r2/default/images/1779037174947-1830442d-7485-466c-8db4-6d055358f37f.jpg", mediaAdded: true },
+    { name: "Bangkok", date: "19 juli 2025", lat: 13.742194, lng: 100.550583, imageUrl: "https://www.image2url.com/r2/default/images/1779037334548-f77df9f9-1ff5-48d4-92d6-92e7d1b14f72.jpg", mediaAdded: true },
+    { name: "Bangkok", date: "19 juli 2025", lat: 13.740250, lng: 100.555528, imageUrl: "https://www.image2url.com/r2/default/images/1779037512823-ee19bccc-d694-43ba-8637-3011f9ba7f81.jpg", mediaAdded: true },
+    { name: "Bangkok", date: "19 juli 2025", lat: 13.741861, lng: 100.549111, imageUrl: "https://www.image2url.com/r2/default/images/1779038193443-11be153a-d5a5-47c6-bbf2-3d97f35c4c27.jpg", mediaAdded: true },
+    { name: "Bangkok", date: "19 juli 2025", lat: 13.741774, lng: 100.549101, imageUrl: "https://www.image2url.com/r2/default/images/1779038325366-b9c03c96-bde2-4b22-a0de-3acf802f7dff.jpg", mediaAdded: true },
+    { name: "Bangkok", date: "19 juli 2025", lat: 13.741805, lng: 100.549182, imageUrl: "https://www.image2url.com/r2/default/images/1779038439240-c2143dbe-1105-4885-b156-410f9a71a2d0.jpg", mediaAdded: true },
+
+
     { name: "Khlong Toei", date: "20 juli 2025", lat: 13.73571, lng: 100.55563, imageUrl: "", mediaAdded: false },
     { name: "Samut Sakhon", date: "21 juli 2025", lat: 13.54782, lng: 100.26061, imageUrl: "", mediaAdded: false },
     { name: "Kanchanaburi", date: "22 juli 2025", lat: 14.04124, lng: 99.51269, imageUrl: "", mediaAdded: false },
