@@ -1,14 +1,131 @@
-import React, { useState, useRef, useMemo } from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { Typography, Box, IconButton } from "@mui/material";
+import { styled } from "@mui/material/styles";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useLanguage } from "../../context/LanguageContext";
-import { moviesData } from "../../data/moviesData";
-import { seriesData } from "../../data/seriesData";
-import { polarstepsData } from "../../data/polarstepsData";
-import "./About.scss";
 
+// ── Styled components (replaces About.scss) ───────────────────────────────────
+
+const AboutContainer = styled(Box)({
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  color: "white",
+  zIndex: 10,
+  position: "relative",
+  overflow: "hidden",
+});
+
+
+
+const ContentFullscreen = styled(Box)({
+  flexGrow: 1,
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "40px 20px",
+  position: "relative",
+  zIndex: 2,
+  width: "100%",
+});
+
+const HeaderSimple = styled(Box)({
+  position: "absolute",
+  top: 80,
+  textAlign: "center",
+  width: "100%",
+});
+
+const SliderControls = styled(Box)({
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "space-between",
+  width: "100%",
+  maxWidth: 1200,
+  margin: "auto",
+  padding: "0 20px",
+});
+
+const SliderArrow = styled(IconButton)({
+  color: "white !important",
+  background: "rgba(0,0,0,0.5) !important",
+  border: "1px solid rgba(255,255,255,0.2) !important",
+  backdropFilter: "blur(8px)",
+  padding: "15px !important",
+  boxShadow: "0 8px 32px rgba(0,0,0,0.5) !important",
+  transition: "all 0.3s ease !important",
+  "&:hover": {
+    background: "rgba(255,255,255,0.1) !important",
+    transform: "scale(1.15)",
+    borderColor: "rgba(255,255,255,0.5) !important",
+  },
+  "@media (max-width: 768px)": {
+    display: "none !important",
+  },
+}) as typeof IconButton;
+
+const SliderTitleWrapper = styled(Box)({
+  position: "relative",
+  flexGrow: 1,
+  height: 200,
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  margin: "0 20px",
+});
+
+const SliderTitleLink = styled(Link, {
+  shouldForwardProp: (p) => p !== "active",
+})<{ active?: boolean }>(({ active }) => ({
+  position: "absolute",
+  textDecoration: "none",
+  color: "white",
+  textAlign: "center",
+  opacity: active ? 1 : 0,
+  transform: active ? "translateY(0)" : "translateY(20px)",
+  pointerEvents: active ? "auto" : "none",
+  transition: "opacity 0.6s ease, transform 0.6s ease",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  "&:hover .big-title": {
+    transform: "scale(1.05)",
+  },
+}));
+
+const BigTitle = styled(Typography)({
+  fontSize: "5.5rem !important",
+  fontWeight: "900 !important",
+  textTransform: "uppercase",
+  lineHeight: "1.2 !important",
+  margin: "0 !important",
+  textShadow: "0 10px 40px rgba(0,0,0,1), 0 2px 10px rgba(0,0,0,0.8)",
+  fontFamily: "'Inter', sans-serif",
+  letterSpacing: "-2px",
+  transition: "transform 0.4s ease",
+  "@media (max-width: 768px)": {
+    fontSize: "3rem !important",
+  },
+}) as typeof Typography;
+
+const ExploreText = styled(Typography)({
+  marginTop: "15px !important",
+  fontSize: "1.1rem !important",
+  letterSpacing: "3px",
+  opacity: 0.9,
+  textShadow: "0 4px 15px rgba(0,0,0,1)",
+  background: "rgba(0,0,0,0.3)",
+  padding: "5px 15px",
+  borderRadius: 20,
+  border: "1px solid rgba(255,255,255,0.1)",
+}) as typeof Typography;
+
+
+
+// ── Component ─────────────────────────────────────────────────────────────────
 interface AboutPageProps {
   showUI: boolean;
 }
@@ -18,161 +135,69 @@ const AboutPage: React.FC<AboutPageProps> = ({ showUI }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const touchStartX = useRef<number | null>(null);
 
-  const hubItems = useMemo(() => {
-    const movieImages = moviesData.slice(0, 60).map((m) => m.image);
-    const seriesImages = seriesData.slice(0, 35).map((s) => s.image);
-    
+  const hubItems = [
+    { title: "Movies I like", path: "/about/movies" },
+    { title: "Series I like", path: "/about/series" },
+    { title: "My vacations", path: "/about/vacation" },
+  ];
 
-    const customVacationImages: string[] = [
-      "https://www.image2url.com/r2/default/images/1778869621846-1ff9a0d4-f692-4fa7-823f-080d103a0fad.jpg",
-      "https://www.image2url.com/r2/default/images/1778932883277-8429ee09-be04-442f-9a01-86a248fb61c4.jpg",
-      "https://www.image2url.com/r2/default/images/1778936419140-b9294b85-69d4-4cad-ab5c-0558ec310fad.jpg",
-      "https://www.image2url.com/r2/default/images/1778936698415-c2e76669-0719-453b-ba03-477168f0ca82.jpg"
-    ];
+  const handleNext = () => setActiveIndex((p) => (p + 1) % hubItems.length);
+  const handlePrev = () => setActiveIndex((p) => (p - 1 + hubItems.length) % hubItems.length);
 
-    let vacationImages: string[] = [];
-
-    if (customVacationImages.length > 0) {
-      vacationImages = customVacationImages.slice(0, 12);
-    } else {
-      // Gather vacation images from polarsteps automatically
-      const allVacationImages: string[] = [];
-      Object.values(polarstepsData).forEach(steps => {
-        steps.forEach(step => {
-          if (step.imageUrl && step.imageUrl.trim() !== "") {
-            allVacationImages.push(step.imageUrl);
-          }
-        });
-      });
-      vacationImages = allVacationImages.slice(0, 12);
-    }
-
-    return [
-      {
-        title: "Movies I like",
-        path: "/about/movies",
-        images: movieImages,
-        ratio: "9/16",
-        gridClass: "grid-vertical"
-      },
-      {
-        title: "Series I like",
-        path: "/about/series",
-        images: seriesImages,
-        ratio: "9/16",
-        gridClass: "grid-vertical"
-      },
-      {
-        title: "My vacations",
-        path: "/about/vacation",
-        images: vacationImages,
-        ratio: "16/9",
-        gridClass: "grid-horizontal"
-      }
-    ];
-  }, []);
-
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % hubItems.length);
-  };
-
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + hubItems.length) % hubItems.length);
-  };
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
+  const onTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
   const onTouchEnd = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartX.current - touchEndX;
-
-    if (diff > 50) {
-      handleNext(); // Swipe left
-    } else if (diff < -50) {
-      handlePrev(); // Swipe right
-    }
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (diff > 50) handleNext();
+    else if (diff < -50) handlePrev();
     touchStartX.current = null;
   };
 
   return (
-    <Box 
-      className={`about-container ui-fade ${showUI ? "visible" : ""}`}
+    <AboutContainer
+      className={`ui-fade ${showUI ? "visible" : ""}`}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-      {/* Background Slider */}
-      <Box className="about-bg-slider">
-        {hubItems.map((item, index) => (
-          <Box
-            key={index}
-            className={`about-bg-slide ${index === activeIndex ? "active" : ""}`}
-          >
-            <div className={`about-bg-grid ${item.gridClass}`}>
-              {item.images.map((img, imgIndex) => (
-                <div 
-                  key={imgIndex} 
-                  className="about-bg-grid-item"
-                  style={{ 
-                    backgroundImage: `url(${img})`, 
-                    aspectRatio: item.ratio 
-                  }}
-                />
-              ))}
-            </div>
-          </Box>
-        ))}
-        <Box className="about-bg-overlay" />
-      </Box>
+
 
       {/* Content */}
-      <Box className="about-content-fullscreen slider-layout">
-        <Box className="about-header-simple">
-          <Typography variant="h6" color="text.secondary" className="about-subtitle-fade">
+      <ContentFullscreen>
+        <HeaderSimple>
+          <Typography
+            variant="h6"
+            color="text.secondary"
+            sx={{
+              fontSize: "1.4rem",
+              opacity: 0.9,
+              textTransform: "uppercase",
+              letterSpacing: "4px",
+              textShadow: "0 2px 4px rgba(0,0,0,0.8)",
+              color: "white",
+            }}
+          >
             {translate("about.subtitle")}
           </Typography>
-        </Box>
+        </HeaderSimple>
 
-        <Box className="slider-controls">
-          <IconButton onClick={handlePrev} className="slider-arrow prev-arrow">
-            <ArrowBackIosNewIcon fontSize="large" />
-          </IconButton>
-          
-          <Box className="slider-title-wrapper">
+        <SliderControls>
+          <SliderArrow onClick={handlePrev}><ArrowBackIosNewIcon fontSize="large" /></SliderArrow>
+
+          <SliderTitleWrapper>
             {hubItems.map((item, index) => (
-              <Link
-                key={index}
-                to={item.path}
-                className={`slider-title-link ${index === activeIndex ? "active" : ""}`}
-              >
-                <Typography variant="h1" className="about-big-title">
-                  {item.title}
-                </Typography>
-                <Typography variant="overline" className="explore-text">
-                  Tap to explore
-                </Typography>
-              </Link>
+              <SliderTitleLink key={index} to={item.path} active={index === activeIndex}>
+                <BigTitle variant="h1" className="big-title">{item.title}</BigTitle>
+                <ExploreText variant="overline">Tap to explore</ExploreText>
+              </SliderTitleLink>
             ))}
-          </Box>
+          </SliderTitleWrapper>
 
-          <IconButton onClick={handleNext} className="slider-arrow next-arrow">
-            <ArrowForwardIosIcon fontSize="large" />
-          </IconButton>
-        </Box>
+          <SliderArrow onClick={handleNext}><ArrowForwardIosIcon fontSize="large" /></SliderArrow>
+        </SliderControls>
 
-        <Box className="slider-dots">
-          {hubItems.map((_, index) => (
-            <Box
-              key={index}
-              className={`slider-dot ${index === activeIndex ? "active" : ""}`}
-              onClick={() => setActiveIndex(index)}
-            />
-          ))}
-        </Box>
-      </Box>
-    </Box>
+
+      </ContentFullscreen>
+    </AboutContainer>
   );
 };
 

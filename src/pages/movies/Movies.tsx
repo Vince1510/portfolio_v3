@@ -1,20 +1,49 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Grid, Card, CardContent, CardMedia, Typography, Box, CircularProgress } from "@mui/material";
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Box,
+  CircularProgress,
+} from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import { styled } from "@mui/material/styles";
 import { useLanguage } from "../../context/LanguageContext";
 import { moviesData } from "../../data/moviesData";
-import "./Movies.scss";
+import { STAR_COLOR } from "../../theme/theme";
 
-interface Movie {
-  title: string;
-  year: string;
-  image: string; // Placeholder or generated image
-}
+// ── Styled components (replaces Movies.scss) ─────────────────────────────────
+const PageContainer = styled(Box)({
+  padding: "64px 0",
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  zIndex: 10,
+  position: "relative",
+});
 
+const ContentWrapper = styled(Box)({
+  maxWidth: 1200,
+  width: "100%",
+  margin: "0 auto",
+  padding: "0 16px",
+});
+
+const MovieCard = styled(Card)({
+  height: "100%",
+  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  "&:hover": {
+    transform: "translateY(-10px)",
+  },
+});
+
+// ── Component ─────────────────────────────────────────────────────────────────
 const MoviesPage: React.FC = () => {
   const { translate } = useLanguage();
   const [visibleItems, setVisibleItems] = useState(12);
-  const observerTarget = useRef(null);
+  const observerTarget = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,57 +55,61 @@ const MoviesPage: React.FC = () => {
       { threshold: 0.1 }
     );
 
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
-    }
-
-    return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
-      }
-    };
+    const el = observerTarget.current;
+    if (el) observer.observe(el);
+    return () => { if (el) observer.unobserve(el); };
   }, []);
 
   return (
-    <Box className="movies-container ui-fade visible">
-      <Box className="movies-content">
-        <Typography variant="h2" component="h1" gutterBottom className="movies-title">
+    <PageContainer className="ui-fade visible">
+      <ContentWrapper>
+        <Typography
+          variant="h2"
+          component="h1"
+          gutterBottom
+          sx={{ textAlign: "center", fontWeight: "bold", mb: 6 }}
+        >
           {translate("movies.heading")}
         </Typography>
+
         <Grid container spacing={4}>
           {moviesData.slice(0, visibleItems).map((movie, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card className="movie-card-mui">
+              <MovieCard>
                 <CardMedia
                   component="img"
                   height="450"
                   image={movie.image}
                   alt={movie.title}
-                  className="movie-media"
+                  sx={{ objectFit: "cover" }}
                 />
-                <CardContent className="movie-content">
-                  <Typography variant="h5" component="h2" className="movie-title-text">
+                <CardContent sx={{ textAlign: "center" }}>
+                  <Typography
+                    variant="h5"
+                    component="h2"
+                    sx={{ fontWeight: "bold", mb: 1 }}
+                  >
                     {movie.title}
                   </Typography>
-                  <Box className="movie-rating-box">
-                    <StarIcon className="movie-rating-icon" />
-                    <Typography variant="subtitle1" color="text.secondary" className="movie-rating-text">
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 0.5 }}>
+                    <StarIcon sx={{ color: STAR_COLOR, fontSize: "1.2rem" }} />
+                    <Typography variant="subtitle1" color="text.secondary" sx={{ fontWeight: 600 }}>
                       {(movie as any).rating}
                     </Typography>
                   </Box>
                 </CardContent>
-              </Card>
+              </MovieCard>
             </Grid>
           ))}
         </Grid>
-        
+
         {visibleItems < moviesData.length && (
-          <Box ref={observerTarget} className="movies-loader-box">
-            <CircularProgress className="movies-loader" />
+          <Box ref={observerTarget} sx={{ display: "flex", justifyContent: "center", mt: 6, mb: 2 }}>
+            <CircularProgress />
           </Box>
         )}
-      </Box>
-    </Box>
+      </ContentWrapper>
+    </PageContainer>
   );
 };
 

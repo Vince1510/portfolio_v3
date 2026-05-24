@@ -7,12 +7,39 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import { styled } from "@mui/material/styles";
+
+// Local Imports
 import { useLanguage } from "../../context/LanguageContext";
-
-// Styles
 import ThemeSwitcher from "../themeswitcher/ThemeSwitcher";
-import "./AppBar.scss";
 
+// ── Replaces AppBar.scss entirely ────────────────────────────────────────────
+const StyledToolbar = styled(Toolbar)({
+  display: "flex",
+  justifyContent: "space-between",
+});
+
+const BrandTitle = styled(Typography)(({ theme }) => ({
+  fontFamily: "monospace",
+  fontWeight: 700,
+  fontSize: "1.1rem",
+  cursor: "default",
+  color: theme.palette.text.primary,
+  textDecoration: "none",
+  display: "block",
+  [theme.breakpoints.up("md")]: {
+    fontSize: "1.25rem",
+    display: "flex",
+  },
+})) as typeof Typography;
+
+const ActionsBox = styled(Box)({
+  display: "flex",
+  alignItems: "center",
+  gap: 12,
+});
+
+// ── Component ────────────────────────────────────────────────────────────────
 interface ResponsiveAppBarProps {
   darkMode: boolean;
   toggleDarkMode: (event?: React.MouseEvent) => void;
@@ -27,38 +54,19 @@ const ResponsiveAppBar: React.FC<ResponsiveAppBarProps> = ({
   const { language, toggleLanguage } = useLanguage();
 
   return (
-    <AppBar
-      position="fixed"
-      color="transparent"
-      elevation={0}
-      className={`appbar-root ${className}`}
-    >
-      <Container maxWidth="xl" className="appbar-container">
-        <Toolbar
-          disableGutters
-          className="appbar-toolbar"
-        >
-          <Typography
-            variant="h6"
-            noWrap
-            className="appbar-title"
-          >
+    <AppBar position="fixed" elevation={0} className={className}>
+      <Container maxWidth="xl" sx={{ px: { xs: 2, sm: 4, md: 0 } }}>
+        <StyledToolbar disableGutters>
+          <BrandTitle variant="h6" noWrap component="span">
             {"<Vince/>"}
-          </Typography>
-          <Box className="appbar-actions">
-            {/* language toggle */}
-            <Button
-              onClick={toggleLanguage}
-              variant="outlined"
-              size="small"
-              className="language-toggle"
-            >
+          </BrandTitle>
+          <ActionsBox>
+            <Button onClick={toggleLanguage} variant="outlined" size="small">
               {language.toUpperCase()}
             </Button>
-            {/* light dark mode toggle */}
             <ThemeSwitcher darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
-          </Box>
-        </Toolbar>
+          </ActionsBox>
+        </StyledToolbar>
       </Container>
     </AppBar>
   );

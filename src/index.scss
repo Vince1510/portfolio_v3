@@ -224,3 +224,40 @@ h2 {
     --glass-blur: 10px;
   }
 }
+
+/* ─── Leaflet overrides ───────────────────────────────────────────────────── */
+/* Must be global — Leaflet renders its own DOM outside of React component scope */
+
+.leaflet-container {
+  font-family: "Inter", sans-serif !important;
+}
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #1a1a1a !important;
+  color: white !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-theme="light"] .leaflet-popup-content-wrapper,
+[data-theme="light"] .leaflet-popup-tip {
+  background: white !important;
+  color: black !important;
+}
+
+.leaflet-popup-content {
+  margin: 15px !important;
+
+  h6 {
+    margin: 0 0 8px 0 !important;
+    font-size: 1.1rem !important;
+    color: #7be08b !important;
+  }
+
+  p {
+    margin: 0 0 12px 0 !important;
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+  }
+}

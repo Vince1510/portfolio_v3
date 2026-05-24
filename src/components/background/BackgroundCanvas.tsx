@@ -18,48 +18,53 @@ const BackgroundCanvas: React.FC<BackgroundCanvasProps> = ({
   const seasonalRef = useRef<SeasonalBackground | null>(null);
   const spaceRef = useRef<SpaceBackground | null>(null);
 
+  // Only init the canvas that is actually visible on mount.
+  // SeasonalBackground (23 KB) is deferred until the user first switches to light mode.
   useEffect(() => {
-    const sCanvas = seasonalCanvasRef.current;
     const cCanvas = spaceCanvasRef.current;
-    if (!sCanvas || !cCanvas) return;
-
-    const seasonal = new SeasonalBackground(sCanvas);
-    seasonalRef.current = seasonal;
-    seasonal.init();
+    if (!cCanvas) return;
 
     const space = new SpaceBackground(cCanvas);
     spaceRef.current = space;
     space.init();
 
+    // Immediately init seasonal only if starting in light mode
+    if (!darkMode && seasonalCanvasRef.current) {
+      const seasonal = new SeasonalBackground(seasonalCanvasRef.current);
+      seasonalRef.current = seasonal;
+      seasonal.init();
+    }
+
     return () => {
-      seasonal.destroy();
       space.destroy();
-      seasonalRef.current = null;
       spaceRef.current = null;
+      seasonalRef.current?.destroy();
+      seasonalRef.current = null;
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // intentionally runs once on mount only
+
+  // Lazy-init SeasonalBackground on first switch to light mode
+  useEffect(() => {
+    if (!darkMode && !seasonalRef.current && seasonalCanvasRef.current) {
+      const seasonal = new SeasonalBackground(seasonalCanvasRef.current);
+      seasonalRef.current = seasonal;
+      seasonal.init();
+      seasonal.setScene(activeIndex);
+    }
+    seasonalRef.current?.setPaused(darkMode);
+    spaceRef.current?.setPaused(!darkMode);
+  }, [darkMode]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    if (seasonalRef.current) seasonalRef.current.setScene(activeIndex);
-    if (spaceRef.current) spaceRef.current.setScene(activeIndex);
+    seasonalRef.current?.setScene(activeIndex);
+    spaceRef.current?.setScene(activeIndex);
   }, [activeIndex]);
-
-  // Pause the hidden background to save performance
-  useEffect(() => {
-    if (seasonalRef.current) seasonalRef.current.setPaused(darkMode);
-    if (spaceRef.current) spaceRef.current.setPaused(!darkMode);
-  }, [darkMode]);
 
   return (
     <>
-      <canvas
-        ref={seasonalCanvasRef}
-        className="background-canvas seasonal"
-      />
-      <canvas
-        ref={spaceCanvasRef}
-        className="background-canvas space"
-      />
+      <canvas ref={seasonalCanvasRef} className="background-canvas seasonal" />
+      <canvas ref={spaceCanvasRef} className="background-canvas space" />
     </>
   );
 };

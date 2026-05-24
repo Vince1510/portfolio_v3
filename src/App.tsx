@@ -3,7 +3,7 @@ import React, { useState, useMemo, Suspense, lazy } from "react";
 // MUI Imports
 import CssBaseline from "@mui/material/CssBaseline";
 import ThemeProvider from "@mui/material/styles/ThemeProvider";
-import createTheme from "@mui/material/styles/createTheme";
+import { buildTheme } from "./theme/theme";
 
 // Local Component Imports
 import { Routes, Route, useLocation } from "react-router-dom";
@@ -91,11 +91,7 @@ const App: React.FC = () => {
     });
   };
 
-  const theme = useMemo(() => createTheme({
-    palette: {
-      mode: darkMode ? "dark" : "light",
-    },
-  }), [darkMode]);
+  const theme = useMemo(() => buildTheme(darkMode), [darkMode]);
 
   return (
     <ThemeProvider theme={theme}>
@@ -121,11 +117,13 @@ const App: React.FC = () => {
           className={`ui-fade ${showUI ? "visible" : ""}`}
         />
 
-        <Suspense fallback={null}>
-          <div className={`background-container ui-fade ${showUI ? "visible" : ""}`}>
-            <BackgroundCanvas darkMode={darkMode} activeIndex={isAboutPage ? 4 : activeIndex} />
-          </div>
-        </Suspense>
+        {showUI && (
+          <Suspense fallback={null}>
+            <div className={`background-container ui-fade ${showUI ? "visible" : ""}`}>
+              <BackgroundCanvas darkMode={darkMode} activeIndex={isAboutPage ? 4 : activeIndex} />
+            </div>
+          </Suspense>
+        )}
 
         <Routes>
           <Route 

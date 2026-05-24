@@ -1,20 +1,49 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Grid, Card, CardContent, CardMedia, Typography, Box, CircularProgress } from "@mui/material";
+import {
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  Typography,
+  Box,
+  CircularProgress,
+} from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import { styled } from "@mui/material/styles";
 import { useLanguage } from "../../context/LanguageContext";
 import { seriesData } from "../../data/seriesData";
-import "./Series.scss";
+import { STAR_COLOR } from "../../theme/theme";
 
-interface Series {
-  title: string;
-  seasons: number;
-  image: string;
-}
+// ── Styled components (replaces Series.scss) ─────────────────────────────────
+const PageContainer = styled(Box)({
+  padding: "64px 0",
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  zIndex: 10,
+  position: "relative",
+});
 
+const ContentWrapper = styled(Box)({
+  maxWidth: 1200,
+  width: "100%",
+  margin: "0 auto",
+  padding: "0 16px",
+});
+
+const SeriesCard = styled(Card)({
+  height: "100%",
+  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  "&:hover": {
+    transform: "translateY(-10px)",
+  },
+});
+
+// ── Component ─────────────────────────────────────────────────────────────────
 const SeriesPage: React.FC = () => {
   const { translate } = useLanguage();
   const [visibleItems, setVisibleItems] = useState(12);
-  const observerTarget = useRef(null);
+  const observerTarget = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,60 +55,67 @@ const SeriesPage: React.FC = () => {
       { threshold: 0.1 }
     );
 
-    if (observerTarget.current) {
-      observer.observe(observerTarget.current);
-    }
-
-    return () => {
-      if (observerTarget.current) {
-        observer.unobserve(observerTarget.current);
-      }
-    };
+    const el = observerTarget.current;
+    if (el) observer.observe(el);
+    return () => { if (el) observer.unobserve(el); };
   }, []);
 
   return (
-    <Box className="series-container ui-fade visible">
-      <Box className="series-content">
-        <Typography variant="h2" component="h1" gutterBottom className="series-title">
+    <PageContainer className="ui-fade visible">
+      <ContentWrapper>
+        <Typography
+          variant="h2"
+          component="h1"
+          gutterBottom
+          sx={{ textAlign: "center", fontWeight: "bold", mb: 6 }}
+        >
           {translate("series.heading")}
         </Typography>
+
         <Grid container spacing={4}>
           {seriesData.slice(0, visibleItems).map((series, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card className="series-card-mui">
+              <SeriesCard>
                 <CardMedia
                   component="img"
                   height="450"
                   image={series.image}
                   alt={series.title}
-                  className="series-media"
+                  sx={{ objectFit: "cover" }}
                 />
-                <CardContent className="series-content-area">
-                  <Typography variant="h5" component="h2" className="series-title-text">
+                <CardContent sx={{ textAlign: "center" }}>
+                  <Typography
+                    variant="h5"
+                    component="h2"
+                    sx={{ fontWeight: "bold", mb: 1 }}
+                  >
                     {series.title}
                   </Typography>
-                  <Typography variant="subtitle2" color="text.secondary" className="series-season-text">
-                    {translate(series.seasons === 1 ? "series.season_one" : "series.season_other", { count: series.seasons })}
+                  <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 1 }}>
+                    {translate(
+                      series.seasons === 1 ? "series.season_one" : "series.season_other",
+                      { count: series.seasons }
+                    )}
                   </Typography>
-                  <Box className="series-rating-box">
-                    <StarIcon className="series-rating-icon" />
-                    <Typography variant="subtitle1" color="text.secondary" className="series-rating-text">
+                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 0.5 }}>
+                    <StarIcon sx={{ color: STAR_COLOR, fontSize: "1.2rem" }} />
+                    <Typography variant="subtitle1" color="text.secondary" sx={{ fontWeight: 600 }}>
                       {(series as any).rating}
                     </Typography>
                   </Box>
                 </CardContent>
-              </Card>
+              </SeriesCard>
             </Grid>
           ))}
         </Grid>
 
         {visibleItems < seriesData.length && (
-          <Box ref={observerTarget} className="series-loader-box">
-            <CircularProgress className="series-loader" />
+          <Box ref={observerTarget} sx={{ display: "flex", justifyContent: "center", mt: 6, mb: 2 }}>
+            <CircularProgress />
           </Box>
         )}
-      </Box>
-    </Box>
+      </ContentWrapper>
+    </PageContainer>
   );
 };
 
