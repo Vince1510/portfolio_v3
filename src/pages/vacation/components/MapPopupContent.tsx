@@ -39,10 +39,29 @@ export const YouTubePopupContent: React.FC<YouTubePopupProps> = ({ location }) =
 );
 
 export const DiaryPopupContent: React.FC<DiaryPopupProps> = ({ step }) => {
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [imgLoaded, setImgLoaded] = useState(false);
 
+  const images = typeof step.imageUrl === "string"
+    ? step.imageUrl.split(",").map((url) => url.trim()).filter(Boolean)
+    : Array.isArray(step.imageUrl)
+    ? step.imageUrl
+    : [];
+
+  const handlePrev = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setImgLoaded(false);
+    setActiveImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  const handleNext = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setImgLoaded(false);
+    setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  };
+
   return (
-    <Box sx={{ minWidth: 180 }}>
+    <Box sx={{ minWidth: { xs: 180, sm: 300, md: 360 } }}>
       <Typography variant="subtitle2" sx={{ fontWeight: "bold", mb: 0.5, color: LINK_COLOR }}>
         📍 {step.name}
       </Typography>
@@ -52,11 +71,11 @@ export const DiaryPopupContent: React.FC<DiaryPopupProps> = ({ step }) => {
       <Typography
         variant="caption"
         color="text.secondary"
-        sx={{ display: "block", mb: step.imageUrl ? 1 : 0 }}
+        sx={{ display: "block", mb: images.length > 0 ? 1 : 0 }}
       >
         {step.lat}, {step.lng}
       </Typography>
-      {step.imageUrl && (
+      {images.length > 0 && (
         <Box
           sx={{
             mt: 1,
@@ -64,7 +83,7 @@ export const DiaryPopupContent: React.FC<DiaryPopupProps> = ({ step }) => {
             overflow: "hidden",
             position: "relative",
             minHeight: imgLoaded ? "auto" : 120,
-            maxHeight: { xs: "200px", sm: "300px" },
+            maxHeight: { xs: "200px", sm: "340px", md: "460px" },
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -74,18 +93,116 @@ export const DiaryPopupContent: React.FC<DiaryPopupProps> = ({ step }) => {
           {!imgLoaded && <CircularProgress size={24} sx={{ position: "absolute" }} />}
           <Box
             component="img"
-            src={step.imageUrl}
-            alt={step.name}
+            src={images[activeImageIndex]}
+            alt={`${step.name} - ${activeImageIndex + 1}`}
             onLoad={() => setImgLoaded(true)}
             sx={{
               maxWidth: "100%",
-              maxHeight: { xs: "200px", sm: "300px" },
+              maxHeight: { xs: "200px", sm: "340px", md: "460px" },
               width: "auto",
               height: "auto",
               objectFit: "contain",
               display: imgLoaded ? "block" : "none",
             }}
           />
+
+          {images.length > 1 && (
+            <>
+              {/* Left Button */}
+              <Box
+                component="button"
+                onClick={handlePrev}
+                sx={{
+                  position: "absolute",
+                  left: 8,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  bgcolor: "rgba(0,0,0,0.6)",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: 28,
+                  height: 28,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  transition: "background-color 0.2s, transform 0.2s",
+                  zIndex: 2,
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  lineHeight: 1,
+                  "&:hover": {
+                    bgcolor: "rgba(0,0,0,0.8)",
+                    transform: "translateY(-50%) scale(1.1)",
+                  },
+                  "&:active": {
+                    transform: "translateY(-50%) scale(0.95)",
+                  },
+                }}
+              >
+                ‹
+              </Box>
+
+              {/* Right Button */}
+              <Box
+                component="button"
+                onClick={handleNext}
+                sx={{
+                  position: "absolute",
+                  right: 8,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  bgcolor: "rgba(0,0,0,0.6)",
+                  color: "#fff",
+                  border: "none",
+                  borderRadius: "50%",
+                  width: 28,
+                  height: 28,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                  transition: "background-color 0.2s, transform 0.2s",
+                  zIndex: 2,
+                  fontSize: "16px",
+                  fontWeight: "bold",
+                  lineHeight: 1,
+                  "&:hover": {
+                    bgcolor: "rgba(0,0,0,0.8)",
+                    transform: "translateY(-50%) scale(1.1)",
+                  },
+                  "&:active": {
+                    transform: "translateY(-50%) scale(0.95)",
+                  },
+                }}
+              >
+                ›
+              </Box>
+
+              {/* Counter indicator */}
+              <Typography
+                variant="caption"
+                sx={{
+                  position: "absolute",
+                  bottom: 8,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  bgcolor: "rgba(0,0,0,0.65)",
+                  color: "#fff",
+                  px: 1,
+                  py: 0.2,
+                  borderRadius: 1.5,
+                  fontSize: "0.65rem",
+                  fontWeight: "medium",
+                  pointerEvents: "none",
+                  zIndex: 2,
+                }}
+              >
+                {activeImageIndex + 1} / {images.length}
+              </Typography>
+            </>
+          )}
         </Box>
       )}
     </Box>

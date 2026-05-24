@@ -74,7 +74,7 @@ const VacationMap: React.FC<VacationMapProps> = ({ vacation }) => {
             },
           }}
         >
-          <Popup maxWidth={360}>
+          <Popup maxWidth={480}>
             <YouTubePopupContent location={loc} />
           </Popup>
         </CircleMarker>
@@ -96,7 +96,7 @@ const VacationMap: React.FC<VacationMapProps> = ({ vacation }) => {
             },
           }}
         >
-          <Popup maxWidth={260}>
+          <Popup maxWidth={420}>
             <DiaryPopupContent step={step} />
           </Popup>
         </CircleMarker>

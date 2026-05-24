@@ -29,9 +29,9 @@ const VacationModal: React.FC<VacationModalProps> = ({ vacation, onClose }) => {
         sx={{
           bgcolor: "background.paper",
           borderRadius: 4,
-          width: "95vw",
-          height: "86vh",
-          maxWidth: { xs: "95vw", sm: "90vw", md: "1200px", lg: "1400px" },
+          width: "96vw",
+          maxWidth: { xs: "96vw", sm: "94vw", md: "1400px", lg: "1600px" },
+          height: { xs: "86vh", sm: "90vh", md: "92vh" },
           p: { xs: 1, sm: 2 },
           position: "relative",
           outline: "none",
@@ -115,7 +115,7 @@ const VacationModal: React.FC<VacationModalProps> = ({ vacation, onClose }) => {
             {/* Map */}
             <Box
               sx={{
-                height: { xs: "55vh", sm: "65vh", md: "72vh" },
+                height: { xs: "55vh", sm: "68vh", md: "76vh", lg: "80vh" },
                 width: "100%",
                 borderRadius: 2,
                 overflow: "hidden",

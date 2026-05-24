@@ -6,9 +6,15 @@ export interface PolarStep {
   date: string;
   lat: number;
   lng: number;
-  imageUrl: string;
+  imageUrl: string | string[];
   mediaAdded?: boolean;
 }
+
+//array voor meerdere fotos
+// imageUrl: [
+//   "https://example.com/foto1.jpg",
+//   "https://example.com/foto2.jpg"
+// ],
 
 export const polarstepsData: Record<string, PolarStep[]> = {
   mallorca: [
@@ -1143,8 +1149,12 @@ export const polarstepsData: Record<string, PolarStep[]> = {
       date: "20 juli 2025",
       lat: 13.746359,
       lng: 100.490565,
-      imageUrl:
-        "https://www.image2url.com/r2/default/images/1779635308052-ec622eaa-51f3-4ff3-bd25-45b0e367c7d4.png",
+      imageUrl: [
+        "https://www.image2url.com/r2/default/images/1779636308879-122bcefc-7d8b-4f26-871e-b8a69431f0d7.png",
+        "https://www.image2url.com/r2/default/images/1779636280752-e0c2ebd7-8f34-4179-88aa-c4032f7299ad.png",
+        "https://www.image2url.com/r2/default/images/1779636340497-3c9cb799-e170-4652-a861-48660d7bd158.png",
+        "https://www.image2url.com/r2/default/images/1779636389431-c868b038-2f3c-4ce2-8f6f-c58fbad7e20f.png",
+      ],
       mediaAdded: true,
     },
     {
