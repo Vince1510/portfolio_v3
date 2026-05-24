@@ -65,6 +65,14 @@ const VacationMap: React.FC<VacationMapProps> = ({ vacation }) => {
           center={[loc.lat, loc.lng]}
           radius={7}
           pathOptions={BLUE_DOT}
+          eventHandlers={{
+            click: (e) => {
+              const map = e.target._map;
+              if (map) {
+                map.panTo(e.latlng);
+              }
+            },
+          }}
         >
           <Popup maxWidth={360}>
             <YouTubePopupContent location={loc} />
@@ -79,6 +87,14 @@ const VacationMap: React.FC<VacationMapProps> = ({ vacation }) => {
           center={[step.lat, step.lng]}
           radius={6}
           pathOptions={step.mediaAdded ? BLUE_DOT : RED_DOT}
+          eventHandlers={{
+            click: (e) => {
+              const map = e.target._map;
+              if (map) {
+                map.panTo(e.latlng);
+              }
+            },
+          }}
         >
           <Popup maxWidth={260}>
             <DiaryPopupContent step={step} />

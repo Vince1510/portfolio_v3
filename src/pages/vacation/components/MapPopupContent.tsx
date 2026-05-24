@@ -57,14 +57,34 @@ export const DiaryPopupContent: React.FC<DiaryPopupProps> = ({ step }) => {
         {step.lat}, {step.lng}
       </Typography>
       {step.imageUrl && (
-        <Box sx={{ mt: 1, borderRadius: 2, overflow: "hidden", position: "relative", minHeight: imgLoaded ? "auto" : 120, display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "rgba(0,0,0,0.05)" }}>
+        <Box
+          sx={{
+            mt: 1,
+            borderRadius: 2,
+            overflow: "hidden",
+            position: "relative",
+            minHeight: imgLoaded ? "auto" : 120,
+            maxHeight: { xs: "200px", sm: "300px" },
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0,0,0,0.05)",
+          }}
+        >
           {!imgLoaded && <CircularProgress size={24} sx={{ position: "absolute" }} />}
           <Box
             component="img"
             src={step.imageUrl}
             alt={step.name}
             onLoad={() => setImgLoaded(true)}
-            sx={{ width: "100%", height: "auto", display: imgLoaded ? "block" : "none" }}
+            sx={{
+              maxWidth: "100%",
+              maxHeight: { xs: "200px", sm: "300px" },
+              width: "auto",
+              height: "auto",
+              objectFit: "contain",
+              display: imgLoaded ? "block" : "none",
+            }}
           />
         </Box>
       )}
