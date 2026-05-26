@@ -6,8 +6,6 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { useLanguage } from "../../context/LanguageContext";
 
-// ── Styled components (replaces About.scss) ───────────────────────────────────
-
 const AboutContainer = styled(Box)({
   minHeight: "100vh",
   display: "flex",
@@ -17,8 +15,6 @@ const AboutContainer = styled(Box)({
   position: "relative",
   overflow: "hidden",
 });
-
-
 
 const ContentFullscreen = styled(Box)({
   flexGrow: 1,
@@ -123,12 +119,56 @@ const ExploreText = styled(Typography)({
   border: "1px solid rgba(255,255,255,0.1)",
 }) as typeof Typography;
 
+const CornerPhoto = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  width: 200,
+  height: 300,
+  borderRadius: 12,
+  border: "2px solid rgba(255, 255, 255, 0.15)",
+  boxShadow: "0 20px 40px rgba(0,0,0,0.6)",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  zIndex: 1,
+  pointerEvents: "none",
+  transition: "transform 0.5s ease, opacity 0.5s ease",
+  opacity: 0.75,
+  [theme.breakpoints.down("md")]: {
+    width: 140,
+    height: 210,
+  },
+  [theme.breakpoints.down("sm")]: {
+    width: 120,
+    height: 180,
+  },
+}));
 
-
-// ── Component ─────────────────────────────────────────────────────────────────
 interface AboutPageProps {
   showUI: boolean;
 }
+
+const cornerImages = [
+  // Movies
+  [
+    "https://image.tmdb.org/t/p/w500/pU1ULUq8D3iRxl1fdX2lZIzdHuI.jpg",
+    "https://image.tmdb.org/t/p/w500/AeRpUynJKDpJveklBJipOYrVxCS.jpg",
+    "https://image.tmdb.org/t/p/w500/Abnm1Ws3JH0ReCfEhLMPwPcMcGO.jpg",
+    "https://image.tmdb.org/t/p/w500/iEbLkYzyiUdOKNK4WNBFyGH7r2Y.jpg",
+  ],
+  // Series
+  [
+    "https://image.tmdb.org/t/p/w500/pRtJagIxpfODzzb0T0NAvZSzErC.jpg",
+    "https://image.tmdb.org/t/p/w500/ztkUQFLlC19CCMYHW9o1zWhJRNq.jpg",
+    "https://image.tmdb.org/t/p/w500/uOOtwVbSr4QDjAGIifLDwpb2Pdl.jpg",
+    "https://image.tmdb.org/t/p/w500/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg",
+  ],
+  // Vacations
+  [
+    "https://www.image2url.com/r2/default/images/1779038193443-11be153a-d5a5-47c6-bbf2-3d97f35c4c27.jpg",
+    "https://www.image2url.com/r2/default/images/1779634091897-11d46224-7ef8-422b-8e15-76827c8244c3.jpg",
+    "https://www.image2url.com/r2/default/images/1779806176018-c3078148-f72f-4379-bd0f-3228fccdcc72.jpg",
+    "https://www.image2url.com/r2/default/images/1778869621846-1ff9a0d4-f692-4fa7-823f-080d103a0fad.jpg",
+  ],
+];
 
 const AboutPage: React.FC<AboutPageProps> = ({ showUI }) => {
   const { translate } = useLanguage();
@@ -142,9 +182,12 @@ const AboutPage: React.FC<AboutPageProps> = ({ showUI }) => {
   ];
 
   const handleNext = () => setActiveIndex((p) => (p + 1) % hubItems.length);
-  const handlePrev = () => setActiveIndex((p) => (p - 1 + hubItems.length) % hubItems.length);
+  const handlePrev = () =>
+    setActiveIndex((p) => (p - 1 + hubItems.length) % hubItems.length);
 
-  const onTouchStart = (e: React.TouchEvent) => { touchStartX.current = e.touches[0].clientX; };
+  const onTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
   const onTouchEnd = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
     const diff = touchStartX.current - e.changedTouches[0].clientX;
@@ -153,13 +196,47 @@ const AboutPage: React.FC<AboutPageProps> = ({ showUI }) => {
     touchStartX.current = null;
   };
 
+  const currentImages = cornerImages[activeIndex];
+
   return (
     <AboutContainer
       className={`ui-fade ${showUI ? "visible" : ""}`}
       onTouchStart={onTouchStart}
       onTouchEnd={onTouchEnd}
     >
-
+      {/* Corner Photos */}
+      <CornerPhoto
+        sx={{
+          top: { xs: 110, sm: 10, md: 10 },
+          left: { xs: 10, sm: 10, md: 10 },
+          transform: "rotate(-12deg)",
+          backgroundImage: `url('${currentImages[0]}')`,
+        }}
+      />
+      <CornerPhoto
+        sx={{
+          top: { xs: 110, sm: 10, md: 10 },
+          right: { xs: 10, sm: 10, md: 10 },
+          transform: "rotate(15deg)",
+          backgroundImage: `url('${currentImages[1]}')`,
+        }}
+      />
+      <CornerPhoto
+        sx={{
+          bottom: { xs: 100, sm: 10, md: 10 },
+          left: { xs: 10, sm: 10, md: 10 },
+          transform: "rotate(12deg)",
+          backgroundImage: `url('${currentImages[2]}')`,
+        }}
+      />
+      <CornerPhoto
+        sx={{
+          bottom: { xs: 100, sm: 10, md: 10 },
+          right: { xs: 10, sm: 10, md: 10 },
+          transform: "rotate(-15deg)",
+          backgroundImage: `url('${currentImages[3]}')`,
+        }}
+      />
 
       {/* Content */}
       <ContentFullscreen>
@@ -181,21 +258,29 @@ const AboutPage: React.FC<AboutPageProps> = ({ showUI }) => {
         </HeaderSimple>
 
         <SliderControls>
-          <SliderArrow onClick={handlePrev}><ArrowBackIosNewIcon fontSize="large" /></SliderArrow>
+          <SliderArrow onClick={handlePrev}>
+            <ArrowBackIosNewIcon fontSize="large" />
+          </SliderArrow>
 
           <SliderTitleWrapper>
             {hubItems.map((item, index) => (
-              <SliderTitleLink key={index} to={item.path} active={index === activeIndex}>
-                <BigTitle variant="h1" className="big-title">{item.title}</BigTitle>
+              <SliderTitleLink
+                key={index}
+                to={item.path}
+                active={index === activeIndex}
+              >
+                <BigTitle variant="h1" className="big-title">
+                  {item.title}
+                </BigTitle>
                 <ExploreText variant="overline">Tap to explore</ExploreText>
               </SliderTitleLink>
             ))}
           </SliderTitleWrapper>
 
-          <SliderArrow onClick={handleNext}><ArrowForwardIosIcon fontSize="large" /></SliderArrow>
+          <SliderArrow onClick={handleNext}>
+            <ArrowForwardIosIcon fontSize="large" />
+          </SliderArrow>
         </SliderControls>
-
-
       </ContentFullscreen>
     </AboutContainer>
   );

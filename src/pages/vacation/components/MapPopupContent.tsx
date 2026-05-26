@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Box, Typography, CircularProgress } from "@mui/material";
-import { Location } from "../../../data/vacationData";
-import { PolarStep } from "../../../data/polarstepsData";
+import { Location, PolarStep } from "../../../data/polarstepsData";
 import { LINK_COLOR } from "../../../theme/theme";
 
 interface YouTubePopupProps {

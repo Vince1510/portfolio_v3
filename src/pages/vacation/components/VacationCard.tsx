@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Vacation } from "../../../data/vacationData";
+import { Vacation } from "../../../data/polarstepsData";
 import { useLanguage } from "../../../context/LanguageContext";
 
 const StyledCard = styled(Card)({

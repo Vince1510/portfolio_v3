@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal, Box, Typography } from "@mui/material";
 import { useTheme, alpha } from "@mui/material/styles";
-import { Vacation } from "../../../data/vacationData";
+import { Vacation } from "../../../data/polarstepsData";
 import { useLanguage } from "../../../context/LanguageContext";
 import VacationMap from "./VacationMap";
 

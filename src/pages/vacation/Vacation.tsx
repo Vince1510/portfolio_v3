@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Grid, Box, Typography } from "@mui/material";
 import { keyframes } from "@mui/material/styles";
 import { useLanguage } from "../../context/LanguageContext";
-import { vacationsData, Vacation } from "../../data/vacationData";
+import { vacationsData, Vacation } from "../../data/polarstepsData";
 import VacationCard from "./components/VacationCard";
 import VacationModal from "./components/VacationModal";
 
