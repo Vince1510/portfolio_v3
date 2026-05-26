@@ -27,8 +27,12 @@ const RED_DOT = {
   weight: 1.5,
 };
 
+// Functie die alleen nodig is voor development
+
 // const MapClickListener = () => {
-//   const [position, setPosition] = useState<{ lat: number; lng: number } | null>(null);
+//   const [position, setPosition] = useState<{ lat: number; lng: number } | null>(
+//     null,
+//   );
 
 //   useMapEvents({
 //     click(e) {
@@ -48,7 +52,8 @@ const RED_DOT = {
 //       <div style={{ padding: "8px", textAlign: "center", minWidth: "150px" }}>
 //         <h4 style={{ margin: "0 0 8px 0" }}>Map Coordinates</h4>
 //         <div style={{ fontSize: "14px", fontFamily: "monospace" }}>
-//           <strong>Lat:</strong> {position.lat.toFixed(6)}<br />
+//           <strong>Lat:</strong> {position.lat.toFixed(6)}
+//           <br />
 //           <strong>Lng:</strong> {position.lng.toFixed(6)}
 //         </div>
 //       </div>

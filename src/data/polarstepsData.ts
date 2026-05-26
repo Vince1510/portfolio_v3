@@ -10,6 +10,12 @@ export interface PolarStep {
   mediaAdded?: boolean;
 }
 
+//array voor meerdere fotos
+// imageUrl: [
+//   "https://example.com/foto1.jpg",
+//   "https://example.com/foto2.jpg"
+// ],
+
 export interface Location {
   title: string;
   description: string;
@@ -32,314 +38,316 @@ export interface Vacation {
 }
 
 export const vacationsData: Vacation[] = [
-  { 
+  {
     id: "mallorca",
-    year: "2026", 
-    image: "https://www.image2url.com/r2/default/images/1778869621846-1ff9a0d4-f692-4fa7-823f-080d103a0fad.jpg",
+    year: "2026",
+    image:
+      "https://www.image2url.com/r2/default/images/1778869621846-1ff9a0d4-f692-4fa7-823f-080d103a0fad.jpg",
     coords: [39.4156, 3.2631],
     locations: [
       {
         title: `Docks of S'Arenal in Portocolom`,
-        description: 'DJI 20260420161411 0010 D.',
-        lat: 39.42561689759493, 
+        description: "DJI 20260420161411 0010 D.",
+        lat: 39.42561689759493,
         lng: 3.2630681991577153,
         iframe: {
-          href: "https://www.youtube.com/embed/49iyFcR9YPY?si=aa9jdfK4HqBcvaJl"
-        }
+          href: "https://www.youtube.com/embed/49iyFcR9YPY?si=aa9jdfK4HqBcvaJl",
+        },
       },
       {
         title: `Sea and Light house view Mallorca Drone shots`,
-        description: 'DJI 007 and DJI 008.',
-        lat: 39.415656008488995, 
+        description: "DJI 007 and DJI 008.",
+        lat: 39.415656008488995,
         lng: 3.2707276939254375,
         iframe: {
-          href: "https://www.youtube.com/embed/hs-1tybWsXE?si=Ph947NoASoLKinJt"
-        }
+          href: "https://www.youtube.com/embed/hs-1tybWsXE?si=Ph947NoASoLKinJt",
+        },
       },
       {
         title: `Coastal view from lighthouse Mallorca drone shots.`,
-        description: 'DJI 009 en DJI 0010.',
-        lat: 39.41557104956237, 
+        description: "DJI 009 en DJI 0010.",
+        lat: 39.41557104956237,
         lng: 3.270676731954155,
         iframe: {
-          href: "https://www.youtube.com/embed/vzTXxL5HHI4?si=sA4qd2UG-SEiEDrH"
-        }
+          href: "https://www.youtube.com/embed/vzTXxL5HHI4?si=sA4qd2UG-SEiEDrH",
+        },
       },
       {
         title: `Coast view Mallorca Drone shot.`,
-        description: 'DJI 0011',
-        lat: 39.42058759324642, 
+        description: "DJI 0011",
+        lat: 39.42058759324642,
         lng: 3.276078701073857,
         iframe: {
-          href: "https://www.youtube.com/embed/M3qGJcvS5tE?si=KielZS_mOwtuwjso"
-        }
+          href: "https://www.youtube.com/embed/M3qGJcvS5tE?si=KielZS_mOwtuwjso",
+        },
       },
       {
         title: `Drone view of Cala Mitjana.`,
-        description: 'DJI 0027',
-        lat: 39.38879899833159, 
+        description: "DJI 0027",
+        lat: 39.38879899833159,
         lng: 3.247034847763644,
         iframe: {
-          href: "https://www.youtube.com/embed/eOMEpjuO4hw?si=9cjwV5u4XbSUskQQ"
-        }
+          href: "https://www.youtube.com/embed/eOMEpjuO4hw?si=9cjwV5u4XbSUskQQ",
+        },
       },
       {
         title: `Showing where we walked from.`,
-        description: '20260423 170616',
+        description: "20260423 170616",
         lat: 39.39283840050536,
         lng: 3.2494398950711916,
         iframe: {
-          href: "https://www.youtube.com/embed/ZQA2ERYuzrI?si=ED_Ea1Kn2CZJxXCH"
-        }
+          href: "https://www.youtube.com/embed/ZQA2ERYuzrI?si=ED_Ea1Kn2CZJxXCH",
+        },
       },
       {
         title: `View of Cala Sa Nau.`,
-        description: '20260423 173716',
-        lat: 39.39975099850891, 
+        description: "20260423 173716",
+        lat: 39.39975099850891,
         lng: 3.2536804676055913,
         iframe: {
-          href: "https://www.youtube.com/embed/AqrJivyGQhs?si=i18sctCGour8QjSi"
-        }
+          href: "https://www.youtube.com/embed/AqrJivyGQhs?si=i18sctCGour8QjSi",
+        },
       },
       {
-        title: 'You would never guess where we are.',
-        description: 'DJI 0029.',
+        title: "You would never guess where we are.",
+        description: "DJI 0029.",
         lat: 39.390755159373754,
         lng: 3.2503089308738713,
         iframe: {
-          href: "https://www.youtube.com/embed/fe-lpu-sGjc?si=rmqyBTifCh7MT-f7"
-        }
+          href: "https://www.youtube.com/embed/fe-lpu-sGjc?si=rmqyBTifCh7MT-f7",
+        },
       },
       {
-        title: 'South coast drone view shots of Mallorca.',
-        description: 'DJI 0023, DJI 0024 and DJI 0025.',
+        title: "South coast drone view shots of Mallorca.",
+        description: "DJI 0023, DJI 0024 and DJI 0025.",
         lat: 39.40837748507193,
         lng: 3.2620427012375335,
         iframe: {
-          href: "https://www.youtube.com/embed/ae09JPxW-8s?si=KPmI0hvyBxmELv8M"
-        }
+          href: "https://www.youtube.com/embed/ae09JPxW-8s?si=KPmI0hvyBxmELv8M",
+        },
       },
       {
-        title: 'Drone view of the forest and nature in Cala Marçal.',
-        description: 'DJI 0026',
+        title: "Drone view of the forest and nature in Cala Marçal.",
+        description: "DJI 0026",
         lat: 39.407150622884,
         lng: 3.2564753293991093,
         iframe: {
-          href: "https://www.youtube.com/embed/RfM_zMpSHio?si=Mn6Bo-OFEsYsvTA8"
-        }
+          href: "https://www.youtube.com/embed/RfM_zMpSHio?si=Mn6Bo-OFEsYsvTA8",
+        },
       },
       {
-        title: 'View of Cala Parbacana.',
-        description: '20260424 142344',
+        title: "View of Cala Parbacana.",
+        description: "20260424 142344",
         lat: 39.41310443276665,
         lng: 3.2641822099139977,
         iframe: {
-          href: "https://www.youtube.com/embed/LXufJxmC96k?si=v6ZM8FS7XaV2sk3r"
-        }
+          href: "https://www.youtube.com/embed/LXufJxmC96k?si=v6ZM8FS7XaV2sk3r",
+        },
       },
       {
-        title: 'View of the salt production fields in Campos.',
-        description: 'DJI 0016 and DJI 0017.',
-        lat: 39.350680573215605, 
+        title: "View of the salt production fields in Campos.",
+        description: "DJI 0016 and DJI 0017.",
+        lat: 39.350680573215605,
         lng: 3.009840846061707,
         iframe: {
-          href: "https://www.youtube.com/embed/nd-YyyZHCXg?si=Ts8OKg_QoYxw4_L0"
-        }
+          href: "https://www.youtube.com/embed/nd-YyyZHCXg?si=Ts8OKg_QoYxw4_L0",
+        },
       },
       {
-        title: 'Garden Botanicactus view drone shots.',
-        description: 'DJI 0018 and DJI 0019.',
-        lat: 39.34019660589499, 
+        title: "Garden Botanicactus view drone shots.",
+        description: "DJI 0018 and DJI 0019.",
+        lat: 39.34019660589499,
         lng: 3.062246739727926,
         iframe: {
-          href: "https://www.youtube.com/embed/sZ3infoMNM8?si=RuWWe1WMo5nHAoWo"
-        }
+          href: "https://www.youtube.com/embed/sZ3infoMNM8?si=RuWWe1WMo5nHAoWo",
+        },
       },
       {
-        title: 'Drone shots showing the coast side of "Far des Cap Salines", "Cala Màrmols" and "El Caragol".',
-        description: 'DJI 0020, DJI 0021 and DJI 0022.',
-        lat: 39.26500522453817, 
+        title:
+          'Drone shots showing the coast side of "Far des Cap Salines", "Cala Màrmols" and "El Caragol".',
+        description: "DJI 0020, DJI 0021 and DJI 0022.",
+        lat: 39.26500522453817,
         lng: 3.0528751015117455,
         iframe: {
-          href: "https://www.youtube.com/embed/doyqfwGrSIM?si=CIVo4ejcTpBhN12t"
-        }
+          href: "https://www.youtube.com/embed/doyqfwGrSIM?si=CIVo4ejcTpBhN12t",
+        },
       },
       {
-        title: 'Docks Portocolom slow night fly by.',
-        description: 'DJI 0033, DJI 0034 and DJI 0035.',
-        lat: 39.41537971895979, 
+        title: "Docks Portocolom slow night fly by.",
+        description: "DJI 0033, DJI 0034 and DJI 0035.",
+        lat: 39.41537971895979,
         lng: 3.2621428370475773,
         iframe: {
-          href: "https://www.youtube.com/embed/V6RTul6vKdE?si=kJ392wnvQJCBihAM"
-        }
+          href: "https://www.youtube.com/embed/V6RTul6vKdE?si=kJ392wnvQJCBihAM",
+        },
       },
       {
-        title: 'Night view of the docks Portocolom.',
-        description: 'DJI 0032.',
-        lat: 39.413609367587966, 
+        title: "Night view of the docks Portocolom.",
+        description: "DJI 0032.",
+        lat: 39.413609367587966,
         lng: 3.265476822853089,
         iframe: {
-          href: "https://www.youtube.com/embed/2pfRnuczNno?si=wTqpaYwv_l9oo3rv"
-        }
+          href: "https://www.youtube.com/embed/2pfRnuczNno?si=wTqpaYwv_l9oo3rv",
+        },
       },
       {
-        title: 'View of the coast of Porto Cristo.',
-        description: 'DJI 0039 and DJI 0040.',
+        title: "View of the coast of Porto Cristo.",
+        description: "DJI 0039 and DJI 0040.",
         lat: 39.53788182636169,
         lng: 3.3405876159122276,
         iframe: {
-          href: "https://www.youtube.com/embed/diUY6cc94GQ?si=RnZdfQOvoN5BzbO7"
-        }
+          href: "https://www.youtube.com/embed/diUY6cc94GQ?si=RnZdfQOvoN5BzbO7",
+        },
       },
       {
-        title: 'Testing out speed of drone at Campero.',
-        description: 'DJI 0036',
+        title: "Testing out speed of drone at Campero.",
+        description: "DJI 0036",
         lat: 39.4139554288905,
         lng: 3.2631173729350853,
         iframe: {
-          href: "https://www.youtube.com/embed/6rcF74RAKz4?si=zsWjdN8nK2WFSKdC"
-        }
+          href: "https://www.youtube.com/embed/6rcF74RAKz4?si=zsWjdN8nK2WFSKdC",
+        },
       },
       {
-        title: 'Drone view from Campero in Portocolom.',
-        description: 'DJI 0037 and DJI 0038.',
+        title: "Drone view from Campero in Portocolom.",
+        description: "DJI 0037 and DJI 0038.",
         lat: 39.41398029550478,
         lng: 3.2629859446933556,
         iframe: {
-          href: "https://www.youtube.com/embed/Dn6HEZ4Es9k?si=yahiJBTL8GjlmydW"
-        }
+          href: "https://www.youtube.com/embed/Dn6HEZ4Es9k?si=yahiJBTL8GjlmydW",
+        },
       },
       {
-        title: 'Inside the wine brewery.',
-        description: 'DJI 20260423183353 0004 D',
+        title: "Inside the wine brewery.",
+        description: "DJI 20260423183353 0004 D",
         lat: 39.40221532435899,
         lng: 3.203001022284298,
         iframe: {
-          href: "https://www.youtube.com/embed/zWtXSkMjeQI?si=-IqXyqi50G6SU7R5"
-        }
+          href: "https://www.youtube.com/embed/zWtXSkMjeQI?si=-IqXyqi50G6SU7R5",
+        },
       },
       {
-        title: 'Start of the tour of the wine brewery.',
-        description: 'DJI 20260423183530 0005 D.',
+        title: "Start of the tour of the wine brewery.",
+        description: "DJI 20260423183530 0005 D.",
         lat: 39.40298631506984,
         lng: 3.202646970694332,
         iframe: {
-          href: "https://www.youtube.com/embed/rmg6liiFTX4?si=fsW2wDY9MXRSgdOM"
-        }
+          href: "https://www.youtube.com/embed/rmg6liiFTX4?si=fsW2wDY9MXRSgdOM",
+        },
       },
       {
-        title: 'View over the fields for the wine brewery.',
-        description: 'DJI_20260423184100_0006_D.',
+        title: "View over the fields for the wine brewery.",
+        description: "DJI_20260423184100_0006_D.",
         lat: 39.40315004587096,
         lng: 3.2028427719524193,
         iframe: {
-          href: "https://www.youtube.com/embed/3hxZB5KQAZ0?si=TR-6ZSwHensvFHdy"
-        }
+          href: "https://www.youtube.com/embed/3hxZB5KQAZ0?si=TR-6ZSwHensvFHdy",
+        },
       },
       {
-        title: 'Owner talking with passion about his brewery.',
-        description: 'DJI 20260423185527 0012 D.',
+        title: "Owner talking with passion about his brewery.",
+        description: "DJI 20260423185527 0012 D.",
         lat: 39.40355833492858,
         lng: 3.2026290892463303,
         iframe: {
-          href: "https://www.youtube.com/embed/4jqqjRwoAGw?si=CoDNnfrPjJP4ThHn"
-        }
+          href: "https://www.youtube.com/embed/4jqqjRwoAGw?si=CoDNnfrPjJP4ThHn",
+        },
       },
       {
-        title: 'Live band playing in Porto Cristo.',
-        description: 'DJI_20260425165633_0018_D.',
+        title: "Live band playing in Porto Cristo.",
+        description: "DJI_20260425165633_0018_D.",
         lat: 39.540494330528794,
         lng: 3.3348235487392235,
         iframe: {
-          href: "https://www.youtube.com/embed/PpPTEJ8C-OI?si=jEV_wnhfSDQuHJ9D"
-        }
+          href: "https://www.youtube.com/embed/PpPTEJ8C-OI?si=jEV_wnhfSDQuHJ9D",
+        },
       },
       {
-        title: 'Docks view near restaurants.',
-        description: 'DJI 20260425173123 0019 D.',
+        title: "Docks view near restaurants.",
+        description: "DJI 20260425173123 0019 D.",
         lat: 39.5402647319661,
         lng: 3.332192301695614,
         iframe: {
-          href: "https://www.youtube.com/embed/e2u135Xgt-M?si=pOC89BqQ4GWv_Wte"
-        }
+          href: "https://www.youtube.com/embed/e2u135Xgt-M?si=pOC89BqQ4GWv_Wte",
+        },
       },
       {
-        title: 'Porto Cristo view from the beach.',
-        description: 'DJI 20260425173123 0019 D.',
+        title: "Porto Cristo view from the beach.",
+        description: "DJI 20260425173123 0019 D.",
         lat: 39.541882248009195,
         lng: 3.336878120844631,
         iframe: {
-          href: "https://www.youtube.com/embed/s6CaEPjSnt8?si=inMoTWbqTOJHRQHD"
-        }
+          href: "https://www.youtube.com/embed/s6CaEPjSnt8?si=inMoTWbqTOJHRQHD",
+        },
       },
       {
-        title: 'Close up of the waves in Porto Cristo.',
-        description: 'DJI_20260425155952_0016_D.',
+        title: "Close up of the waves in Porto Cristo.",
+        description: "DJI_20260425155952_0016_D.",
         lat: 39.538314147776035,
         lng: 3.3401182293346214,
         iframe: {
-          href: "https://www.youtube.com/embed/Pujj4B9QSRk?si=pdMGaRyv9e4g8ijc"
-        }
+          href: "https://www.youtube.com/embed/Pujj4B9QSRk?si=pdMGaRyv9e4g8ijc",
+        },
       },
       {
-        title: 'Drone view of the cross at Sant Salvador.',
-        description: 'DJI 0043, DJI 0044 and DJI 0045.',
+        title: "Drone view of the cross at Sant Salvador.",
+        description: "DJI 0043, DJI 0044 and DJI 0045.",
         lat: 39.45813976011726,
         lng: 3.1857061385562706,
         iframe: {
-          href: "https://www.youtube.com/embed/PWvB4oGETwM?si=EYp_dVJUi2NIpuUU"
-        }
+          href: "https://www.youtube.com/embed/PWvB4oGETwM?si=EYp_dVJUi2NIpuUU",
+        },
       },
       {
-        title: 'Drone view of the Castell de Santueri.',
-        description: 'DJI 0046, DJI 0047 and DJI 0048.',
+        title: "Drone view of the Castell de Santueri.",
+        description: "DJI 0046, DJI 0047 and DJI 0048.",
         lat: 39.431417896534796,
         lng: 3.187023103182583,
         iframe: {
-          href: "https://www.youtube.com/embed/2ef5LenrrbQ?si=FNsiHwXCXp86zYBB"
-        }
+          href: "https://www.youtube.com/embed/2ef5LenrrbQ?si=FNsiHwXCXp86zYBB",
+        },
       },
       {
-        title: 'View from the cross at Sant Salvador.',
-        description: 'DJI_20260426123850_0020_D.',
+        title: "View from the cross at Sant Salvador.",
+        description: "DJI_20260426123850_0020_D.",
         lat: 39.45812940559484,
         lng: 3.185749053900509,
         iframe: {
-          href: "https://www.youtube.com/embed/HJP79xck7TM?si=fo8Goy4RVqVw-vSz"
-        }
+          href: "https://www.youtube.com/embed/HJP79xck7TM?si=fo8Goy4RVqVw-vSz",
+        },
       },
       {
-        title: 'View from Crist Rei at Sant Salvador.',
-        description: 'DJI_20260426141859_0021_D.',
+        title: "View from Crist Rei at Sant Salvador.",
+        description: "DJI_20260426141859_0021_D.",
         lat: 39.45409120667242,
         lng: 3.1885037776226,
         iframe: {
-          href: "https://www.youtube.com/embed/f8PMcsuVtQI?si=O6GiA3XD9TGAs2kH"
-        }
+          href: "https://www.youtube.com/embed/f8PMcsuVtQI?si=O6GiA3XD9TGAs2kH",
+        },
       },
       {
-        title: 'View of the coast of Porto Cristo.',
-        description: 'DJI 0039 and DJI 0040',
+        title: "View of the coast of Porto Cristo.",
+        description: "DJI 0039 and DJI 0040",
         lat: 39.45781048554964,
         lng: 3.280101120417385,
         iframe: {
-          href: "https://www.youtube.com/embed/diUY6cc94GQ?si=2kUUkcl77yRmhugt"
-        }
-      }
+          href: "https://www.youtube.com/embed/diUY6cc94GQ?si=2kUUkcl77yRmhugt",
+        },
+      },
     ],
     routes: [
       [
-        [39.40837748507193, 	3.2620427012375335],
-        [39.40825866826655, 	3.2610404491424565],
-        [39.40695857840718, 	3.259624242782593],
-        [39.40732885081648, 	3.2584226131439213],
-        [39.40708016055249, 	3.2582134008407597],
-        [39.407030422393234, 	3.2567757368087773],
-        [39.40709259508674, 	3.256561160087586],
-        [39.407150622884, 		3.2564753293991093],
+        [39.40837748507193, 3.2620427012375335],
+        [39.40825866826655, 3.2610404491424565],
+        [39.40695857840718, 3.259624242782593],
+        [39.40732885081648, 3.2584226131439213],
+        [39.40708016055249, 3.2582134008407597],
+        [39.407030422393234, 3.2567757368087773],
+        [39.40709259508674, 3.256561160087586],
+        [39.407150622884, 3.2564753293991093],
       ],
       [
-        [39.412527655913664, 	3.2629770040512085],
+        [39.412527655913664, 3.2629770040512085],
         [39.412578771700105, 3.2630431652614797],
         [39.412533872695384, 3.263100385665894],
         [39.4123515135349, 3.2628026604652405],
@@ -428,47 +436,168 @@ export const vacationsData: Vacation[] = [
         [39.412350822758526, 3.2628080248832707],
       ],
       [
-        [39.4125918959646, 3.2637637853486017], [39.41291309533143, 3.2632434367997125], [39.41298662181602, 3.263119127936989], [39.41312960671383, 3.26296624202314], [39.4132166408559, 3.2629072334248126], [39.41355027072727, 3.2628240849453505], [39.41352540395962, 3.2619657780605853], [39.413497288190776, 3.260984608436957], [39.41348071033408, 3.2601021616710573], [39.41374613453557, 3.259284496293731], [39.41399272880859, 3.2584798335892633],
-        [39.41433257158745, 3.2580158113887596], [39.41493972559928, 3.2573962211063194],
-        [39.41433257158745, 3.2580158113887596], [39.41493972559928, 3.2573962211063194],
-        [39.41606491512935, 3.256883919184475], [39.41700981164485, 3.256980478709011],
-        [39.41756513958631, 3.257031440680294], [39.417878027634714, 3.2570663093974876], [39.41801478620818, 3.2570663093974876], [39.418151544513336, 3.257055580561428], [39.41817640963092, 3.2570958136966515], [39.41821163519895, 3.257109224741726], [39.41825722120175, 3.257087767069607],
-        [39.41930569103822, 3.2580158113887596], [39.41933055574406, 3.2580667733600426], [39.42041423389117, 3.2573139666419597], [39.42057999579321, 3.2576733826499553], [39.42087422219847, 3.2580596207481003], [39.42113943930227, 3.2582795618873215], [39.421475103252355, 3.258386850247917], [39.42195580436575, 3.258360028157768], [39.42234947953232, 3.258343934903679], [39.422656130226756, 3.2583975790839768],
-        [39.422855038063894, 3.258530795519619], [39.42303944169749, 3.258705139105587], [39.42318654986428, 3.2589358090808678], [39.4238744318195, 3.260048925822048], [39.42382263330494, 3.2601213444015014], [39.4238164175299, 3.2601883996268737], [39.42383506485333, 3.260309099032544], [39.42388893487066, 3.2603949297210204], [39.423984243260925, 3.2604646671554076], [39.42405883234498, 3.2604646671554076], [39.42412513368603, 3.2604190696021544], [39.42417278773594, 3.260303734614514], [39.424158284332904, 3.2602205861350524], [39.4242432327935, 3.2600462425490844],
-        [39.42648086268509, 3.258050679942244], [39.42671290903804, 3.257771730204695], [39.4268455066071, 3.2575142381392657], [39.42727644696404, 3.255529403468245], [39.42788970364657, 3.2526004312239825],
-        [39.42805959136748, 3.2520622013908005], [39.43185916704526, 3.24556589115673],
-        [39.433048304648345, 3.2443159817557903], [39.43327204255593, 3.2440102099280925],
-        [39.43356207210748, 3.2435595988135906], [39.4339681114513, 3.2427924870353317], [39.43431614329109, 3.2421487568717575], [39.434892049302356, 3.241478204618034], [39.4357331121179, 3.240700364003715], [39.43670674358279, 3.2393431662421794], [39.43709204929793, 3.2386940716605754], [39.437340632499286, 3.2381790875297165], [39.437551927522975, 3.237680196652946], [39.43794551458375, 3.236891627202568], [39.43818995174417, 3.2364517449241252],
-        [39.438359814350505, 3.236237168202934], [39.43847167486508, 3.2361835240226364], [39.43853796249262, 3.236060142407951], [39.43868710942402, 3.2358348368507004], [39.43890254331667, 3.2356524466376873], [39.43940383883402, 3.235405683408317], [39.44007084628396, 3.2351750134330364],
-        [39.441371699580344, 3.23493003823387], [39.44215054279243, 3.2349729535781084], [39.44441245295659, 3.2353162763320142], [39.44475214740571, 3.235273360987776], [39.44514155119922, 3.2351982591353594], [39.445448101590024, 3.2352304456435377], [39.445771220811444, 3.2354664800368487], [39.446301464490084, 3.236303329249495], [39.44751935265288, 3.2375907895766436], [39.44771818951396, 3.2376980779372393], [39.44877035845239, 3.237783908625716], [39.449350287291324, 3.2379984853469073],[39.45014975270047, 3.2386887072425457], [39.45014975270047, 3.2386887072425457],
-        [39.45059504681074, 3.2390445470264244], [39.45078973264332, 3.239175975268154], [39.451104542625025, 3.2392644881656456], [39.45188327699062, 3.2394146918704796], [39.45288360649363, 3.239580988829403], [39.45372859413028, 3.239707052653103], [39.45464812784667, 3.239854574148922], [39.45519694285813, 3.239975273554592], [39.455549010587504, 3.240007460062771], [39.45639189491714, 3.2401844858577538], [39.457087732766716, 3.2403212785175133],
-        [39.457278258584, 3.2404124734603106], [39.461900420792496, 3.243749141474837], [39.46320086629915, 3.244392871638411], [39.46501482294702, 3.245240449687117], [39.46550350637936, 3.2453370092116534], [39.47130946557168, 3.2458519933425123], [39.473471047012794, 3.246045112391585], [39.47377747266321, 3.2462382314406573], [39.47445657334867, 3.24766516663658], [39.47771119558943, 3.249510526438826],
-        [39.548165795338896, 3.324868082891044], [39.54648637757299, 3.3300286530356975],
+        [39.4125918959646, 3.2637637853486017],
+        [39.41291309533143, 3.2632434367997125],
+        [39.41298662181602, 3.263119127936989],
+        [39.41312960671383, 3.26296624202314],
+        [39.4132166408559, 3.2629072334248126],
+        [39.41355027072727, 3.2628240849453505],
+        [39.41352540395962, 3.2619657780605853],
+        [39.413497288190776, 3.260984608436957],
+        [39.41348071033408, 3.2601021616710573],
+        [39.41374613453557, 3.259284496293731],
+        [39.41399272880859, 3.2584798335892633],
+        [39.41433257158745, 3.2580158113887596],
+        [39.41493972559928, 3.2573962211063194],
+        [39.41433257158745, 3.2580158113887596],
+        [39.41493972559928, 3.2573962211063194],
+        [39.41606491512935, 3.256883919184475],
+        [39.41700981164485, 3.256980478709011],
+        [39.41756513958631, 3.257031440680294],
+        [39.417878027634714, 3.2570663093974876],
+        [39.41801478620818, 3.2570663093974876],
+        [39.418151544513336, 3.257055580561428],
+        [39.41817640963092, 3.2570958136966515],
+        [39.41821163519895, 3.257109224741726],
+        [39.41825722120175, 3.257087767069607],
+        [39.41930569103822, 3.2580158113887596],
+        [39.41933055574406, 3.2580667733600426],
+        [39.42041423389117, 3.2573139666419597],
+        [39.42057999579321, 3.2576733826499553],
+        [39.42087422219847, 3.2580596207481003],
+        [39.42113943930227, 3.2582795618873215],
+        [39.421475103252355, 3.258386850247917],
+        [39.42195580436575, 3.258360028157768],
+        [39.42234947953232, 3.258343934903679],
+        [39.422656130226756, 3.2583975790839768],
+        [39.422855038063894, 3.258530795519619],
+        [39.42303944169749, 3.258705139105587],
+        [39.42318654986428, 3.2589358090808678],
+        [39.4238744318195, 3.260048925822048],
+        [39.42382263330494, 3.2601213444015014],
+        [39.4238164175299, 3.2601883996268737],
+        [39.42383506485333, 3.260309099032544],
+        [39.42388893487066, 3.2603949297210204],
+        [39.423984243260925, 3.2604646671554076],
+        [39.42405883234498, 3.2604646671554076],
+        [39.42412513368603, 3.2604190696021544],
+        [39.42417278773594, 3.260303734614514],
+        [39.424158284332904, 3.2602205861350524],
+        [39.4242432327935, 3.2600462425490844],
+        [39.42648086268509, 3.258050679942244],
+        [39.42671290903804, 3.257771730204695],
+        [39.4268455066071, 3.2575142381392657],
+        [39.42727644696404, 3.255529403468245],
+        [39.42788970364657, 3.2526004312239825],
+        [39.42805959136748, 3.2520622013908005],
+        [39.43185916704526, 3.24556589115673],
+        [39.433048304648345, 3.2443159817557903],
+        [39.43327204255593, 3.2440102099280925],
+        [39.43356207210748, 3.2435595988135906],
+        [39.4339681114513, 3.2427924870353317],
+        [39.43431614329109, 3.2421487568717575],
+        [39.434892049302356, 3.241478204618034],
+        [39.4357331121179, 3.240700364003715],
+        [39.43670674358279, 3.2393431662421794],
+        [39.43709204929793, 3.2386940716605754],
+        [39.437340632499286, 3.2381790875297165],
+        [39.437551927522975, 3.237680196652946],
+        [39.43794551458375, 3.236891627202568],
+        [39.43818995174417, 3.2364517449241252],
+        [39.438359814350505, 3.236237168202934],
+        [39.43847167486508, 3.2361835240226364],
+        [39.43853796249262, 3.236060142407951],
+        [39.43868710942402, 3.2358348368507004],
+        [39.43890254331667, 3.2356524466376873],
+        [39.43940383883402, 3.235405683408317],
+        [39.44007084628396, 3.2351750134330364],
+        [39.441371699580344, 3.23493003823387],
+        [39.44215054279243, 3.2349729535781084],
+        [39.44441245295659, 3.2353162763320142],
+        [39.44475214740571, 3.235273360987776],
+        [39.44514155119922, 3.2351982591353594],
+        [39.445448101590024, 3.2352304456435377],
+        [39.445771220811444, 3.2354664800368487],
+        [39.446301464490084, 3.236303329249495],
+        [39.44751935265288, 3.2375907895766436],
+        [39.44771818951396, 3.2376980779372393],
+        [39.44877035845239, 3.237783908625716],
+        [39.449350287291324, 3.2379984853469073],
+        [39.45014975270047, 3.2386887072425457],
+        [39.45014975270047, 3.2386887072425457],
+        [39.45059504681074, 3.2390445470264244],
+        [39.45078973264332, 3.239175975268154],
+        [39.451104542625025, 3.2392644881656456],
+        [39.45188327699062, 3.2394146918704796],
+        [39.45288360649363, 3.239580988829403],
+        [39.45372859413028, 3.239707052653103],
+        [39.45464812784667, 3.239854574148922],
+        [39.45519694285813, 3.239975273554592],
+        [39.455549010587504, 3.240007460062771],
+        [39.45639189491714, 3.2401844858577538],
+        [39.457087732766716, 3.2403212785175133],
+        [39.457278258584, 3.2404124734603106],
+        [39.461900420792496, 3.243749141474837],
+        [39.46320086629915, 3.244392871638411],
+        [39.46501482294702, 3.245240449687117],
+        [39.46550350637936, 3.2453370092116534],
+        [39.47130946557168, 3.2458519933425123],
+        [39.473471047012794, 3.246045112391585],
+        [39.47377747266321, 3.2462382314406573],
+        [39.47445657334867, 3.24766516663658],
+        [39.47771119558943, 3.249510526438826],
+        [39.548165795338896, 3.324868082891044],
+        [39.54648637757299, 3.3300286530356975],
         [39.53788182636169, 3.3405876159122276],
       ],
       [
-        [39.52443301053215, 3.32304596895483], [39.52406473989383, 3.323445618098049], [39.52396336167869, 3.323370516245632], [39.52369439834993, 3.323029875700741], [39.52368198463267, 3.323070108835964], [39.5238433627838, 3.32329809660223], [39.52372336368154, 3.323496580069332], [39.52351646819072, 3.3232605456760216], [39.52337164098037, 3.32292526954916],
-        [39.52335095135426, 3.3228904008319664], [39.52326198589165, 3.3228448032787132], [39.52319370999422, 3.3227187394550133], [39.523069571826944, 3.322675824110775], [39.522993019846496, 3.322528302614956], [39.52292474368464, 3.3224934338977623], [39.52273232868557, 3.3221635221889305], [39.52272405275967, 3.3221071957996178], [39.52261853461804, 3.3220669626643944], [39.52256060302114, 3.3220884203365135], [39.52204956148359, 3.3215385674884605], [39.522093010505515, 3.321476876681118], [39.52201231944316, 3.3213374018123436], [39.521821970924655, 3.321203291361599], [39.52166058807638, 3.320827782099514],
-      ]
-    ]
+        [39.52443301053215, 3.32304596895483],
+        [39.52406473989383, 3.323445618098049],
+        [39.52396336167869, 3.323370516245632],
+        [39.52369439834993, 3.323029875700741],
+        [39.52368198463267, 3.323070108835964],
+        [39.5238433627838, 3.32329809660223],
+        [39.52372336368154, 3.323496580069332],
+        [39.52351646819072, 3.3232605456760216],
+        [39.52337164098037, 3.32292526954916],
+        [39.52335095135426, 3.3228904008319664],
+        [39.52326198589165, 3.3228448032787132],
+        [39.52319370999422, 3.3227187394550133],
+        [39.523069571826944, 3.322675824110775],
+        [39.522993019846496, 3.322528302614956],
+        [39.52292474368464, 3.3224934338977623],
+        [39.52273232868557, 3.3221635221889305],
+        [39.52272405275967, 3.3221071957996178],
+        [39.52261853461804, 3.3220669626643944],
+        [39.52256060302114, 3.3220884203365135],
+        [39.52204956148359, 3.3215385674884605],
+        [39.522093010505515, 3.321476876681118],
+        [39.52201231944316, 3.3213374018123436],
+        [39.521821970924655, 3.321203291361599],
+        [39.52166058807638, 3.320827782099514],
+      ],
+    ],
   },
-  { 
+  {
     id: "thailand",
-    year: "2025", 
-    image: "https://www.image2url.com/r2/default/images/1778932883277-8429ee09-be04-442f-9a01-86a248fb61c4.jpg",
-    coords: [13.7563, 100.5018]
+    year: "2025",
+    image:
+      "https://www.image2url.com/r2/default/images/1778932883277-8429ee09-be04-442f-9a01-86a248fb61c4.jpg",
+    coords: [13.7563, 100.5018],
   },
-  { 
+  {
     id: "malaysia2024",
-    year: "2024", 
-    image: "https://www.image2url.com/r2/default/images/1778936419140-b9294b85-69d4-4cad-ab5c-0558ec310fad.jpg",
-    coords: [3.1390, 101.6869]
+    year: "2024",
+    image:
+      "https://www.image2url.com/r2/default/images/1778936419140-b9294b85-69d4-4cad-ab5c-0558ec310fad.jpg",
+    coords: [3.139, 101.6869],
   },
-  { 
+  {
     id: "malaysia2023",
-    year: "2023", 
-    image: "https://www.image2url.com/r2/default/images/1778936698415-c2e76669-0719-453b-ba03-477168f0ca82.jpg",
-    coords: [4.2105, 101.9758]
+    year: "2023",
+    image:
+      "https://www.image2url.com/r2/default/images/1778936698415-c2e76669-0719-453b-ba03-477168f0ca82.jpg",
+    coords: [4.2105, 101.9758],
   },
 ];
 
@@ -1842,18 +1971,40 @@ export const polarstepsData: Record<string, PolarStep[]> = {
     {
       name: "Amsterdam",
       date: "11 juli 2024",
-      lat: 52.37308,
-      lng: 4.89245,
-      imageUrl: "",
-      mediaAdded: false,
+      lat: 52.325606,
+      lng: 4.740343,
+      imageUrl:
+        "https://www.image2url.com/r2/default/images/1779815129717-56a953b3-3fc3-409d-b802-a65a870293ef.png",
+      mediaAdded: true,
     },
     {
       name: "Guangzhou, China Huadu District",
-      date: "11 juli 2024",
+      date: "12 juli 2024",
       lat: 23.39987,
       lng: 113.30368,
-      imageUrl: "",
-      mediaAdded: false,
+      imageUrl:
+        "https://www.image2url.com/r2/default/images/1779809745423-c899297e-753f-4a6c-ae1c-28d9028a3309.png",
+      mediaAdded: true,
+    },
+    {
+      name: "Guangzhou, Canton tower",
+      date: "12 juli 2024",
+      lat: 23.110765,
+      lng: 113.313584,
+      imageUrl:
+        "https://www.image2url.com/r2/default/images/1779806176018-c3078148-f72f-4379-bd0f-3228fccdcc72.jpg",
+      mediaAdded: true,
+    },
+    {
+      name: "Bazhen Restaurant",
+      date: "12 juli 2024",
+      lat: 23.119176,
+      lng: 113.259366,
+      imageUrl: [
+        "https://www.image2url.com/r2/default/images/1779814838948-af4d7aed-1ff8-4c51-9e63-9466eaaf49c3.png",
+        "https://www.image2url.com/r2/default/images/1779814912841-c191e73b-2878-4d77-aeb2-233f8a9606ef.png",
+      ],
+      mediaAdded: true,
     },
     {
       name: "Malacca",
