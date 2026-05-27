@@ -2225,52 +2225,22 @@ export const polarstepsData: Record<string, PolarStep[]> = {
   ],
   malaysia2023: [
     {
-      name: "Frankfurt",
-      date: "12 juli 2023",
-      lat: 50.05244,
-      lng: 8.58789,
-      imageUrl: "",
-      mediaAdded: false,
-    },
-    {
-      name: "Frankfurt",
-      date: "12 juli 2023",
-      lat: 50.05149,
-      lng: 8.58754,
-      imageUrl: "",
-      mediaAdded: false,
-    },
-    {
-      name: "Frankfurt",
-      date: "12 juli 2023",
-      lat: 50.05181,
-      lng: 8.58687,
-      imageUrl: "",
-      mediaAdded: false,
-    },
-    {
       name: "Muscat",
       date: "12 juli 2023",
       lat: 23.60154,
       lng: 58.28776,
-      imageUrl: "",
-      mediaAdded: false,
-    },
-    {
-      name: "Muscat",
-      date: "12 juli 2023",
-      lat: 23.6007,
-      lng: 58.28351,
-      imageUrl: "",
-      mediaAdded: false,
+      imageUrl:
+        "https://www.image2url.com/r2/default/images/1779887477941-adc814a2-bd4c-44d9-80be-161cd152ddc8.png",
+      mediaAdded: true,
     },
     {
       name: "Malacca",
       date: "13 juli 2023",
       lat: 2.20645,
       lng: 102.23773,
-      imageUrl: "",
-      mediaAdded: false,
+      imageUrl:
+        "https://www.image2url.com/r2/default/images/1779888519877-15531b88-2f0d-4bd4-9331-ecbf9236c207.png",
+      mediaAdded: true,
     },
     {
       name: "Malacca",
@@ -2279,6 +2249,24 @@ export const polarstepsData: Record<string, PolarStep[]> = {
       lng: 102.23833,
       imageUrl: "",
       mediaAdded: false,
+    },
+    {
+      name: "Malacca",
+      date: "13 juli 2023",
+      lat: 2.197965,
+      lng: 102.245159,
+      imageUrl:
+        "https://www.image2url.com/r2/default/images/1779889375175-7b8da960-f918-4c57-a62c-cda4901fa25a.png",
+      mediaAdded: true,
+    },
+    {
+      name: "Malacca",
+      date: "13 juli 2023",
+      lat: 2.197879,
+      lng: 102.245615,
+      imageUrl:
+        "https://www.image2url.com/r2/default/images/1779888937439-c9a55620-6f7b-4771-90df-573293e2e9f5.png",
+      mediaAdded: true,
     },
     {
       name: "Malacca",
