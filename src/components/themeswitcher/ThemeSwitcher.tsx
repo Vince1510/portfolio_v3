@@ -12,9 +12,8 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
   darkMode,
   toggleDarkMode,
 }) => {
-  // We attach the click to the label/container to capture the exact mouse coordinates
   const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent default checkbox action so our state toggle handles it
+    e.preventDefault();
     toggleDarkMode(e);
   };
 
@@ -25,7 +24,8 @@ const ThemeSwitcher: React.FC<ThemeSwitcherProps> = ({
         className="switch__input"
         id="Switch"
         checked={!darkMode}
-        readOnly // React to the container click instead
+        readOnly
+        aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
       />
       <label className="switch__label" htmlFor="Switch">
         <span className="switch__indicator"></span>

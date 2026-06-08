@@ -1,0 +1,66 @@
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.4s ease;
+  pointer-events: all;
+}
+.loading-screen.dark {
+  background-color: #000510;
+  color: #fff;
+}
+.loading-screen.light {
+  background-color: #fce4ec; /* Spring color */
+  color: #000;
+}
+.loading-screen .loading-logo {
+  font-family: monospace;
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+.loading-screen .spinner-3d {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+.loading-screen .spinner-3d .ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid transparent;
+  border-top-color: currentColor;
+  box-shadow: 0 0 10px currentColor;
+  animation: rotate-3d 2s linear infinite;
+}
+.loading-screen .spinner-3d .ring:nth-child(1) {
+  transform: rotateX(35deg) rotateY(-45deg);
+  animation-delay: -0.8s;
+}
+.loading-screen .spinner-3d .ring:nth-child(2) {
+  transform: rotateX(50deg) rotateY(10deg);
+  animation-delay: -0.4s;
+}
+.loading-screen .spinner-3d .ring:nth-child(3) {
+  transform: rotateX(35deg) rotateY(55deg);
+}
+
+@keyframes rotate-3d {
+  from {
+    transform: rotate3d(1, 1, 1, 0deg);
+  }
+  to {
+    transform: rotate3d(1, 1, 1, 360deg);
+  }
+}/*# sourceMappingURL=LoadingScreen.css.map */
