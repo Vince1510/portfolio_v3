@@ -38,6 +38,24 @@ export interface Vacation {
 }
 
 export const vacationsData: Vacation[] = [
+  // add new vacation card
+  {
+    id: "malaysia",
+    year: "2026",
+    image: "",
+    coords: [0, 0],
+
+    locations: [],
+  },
+
+  {
+    id: "londen",
+    year: "2026",
+    image: "",
+    coords: [0, 0],
+
+    locations: [],
+  },
   {
     id: "mallorca",
     year: "2026",

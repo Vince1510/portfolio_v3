@@ -96,6 +96,14 @@
     "heading": "Mijn Vakanties",
     "viewMap": "Bekijk Kaart →",
     "items": {
+      "londen": {
+        "location": "(Binnekort!) Tripje naar Londen",
+        "description": "Een paar dagen naar Londen"
+      },
+      "malaysia": {
+        "location": "(Binnekort!) Maleisië",
+        "description": "Terug naar Maleisie"
+      },
       "mallorca": {
         "location": "Vakantie met Toon Mallorca",
         "description": "Een prachtige reis naar Mallorca."

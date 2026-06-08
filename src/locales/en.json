@@ -96,6 +96,14 @@
     "heading": "My Vacations",
     "viewMap": "View Map →",
     "items": {
+      "londen": {
+        "location": "(Upcoming) London",
+        "description": "A beautiful trip to London."
+      },
+      "malaysia": {
+        "location": "(Upcoming) Malaysia",
+        "description": "A beautiful trip to Malaysia."
+      },
       "mallorca": {
         "location": "Vacation with Toon Mallorca",
         "description": "A beautiful trip to Mallorca."
