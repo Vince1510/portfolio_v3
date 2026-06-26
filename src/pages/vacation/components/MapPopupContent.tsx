@@ -11,8 +11,8 @@ interface DiaryPopupProps {
   step: PolarStep;
 }
 
-export const YouTubePopupContent: React.FC<YouTubePopupProps> = ({ location }) => (
-  <Box sx={{ minWidth: 300 }}>
+export const YouTubePopupContent = ({ location }: YouTubePopupProps): JSX.Element => (
+  <div style={{ minWidth: 300 }}>
     <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1, color: LINK_COLOR }}>
       {location.title}
     </Typography>
@@ -23,21 +23,20 @@ export const YouTubePopupContent: React.FC<YouTubePopupProps> = ({ location }) =
       {location.description}
     </Typography>
     {location.iframe?.href && (
-      <Box sx={{ position: "relative", paddingTop: "56.25%", borderRadius: 2, overflow: "hidden" }}>
-        <Box
-          component="iframe"
+      <div style={{ position: "relative", paddingTop: "56.25%", borderRadius: 8, overflow: "hidden" }}>
+        <iframe
           src={location.iframe.href}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen
           title={location.title}
-          sx={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
+          style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", border: 0 }}
         />
-      </Box>
+      </div>
     )}
-  </Box>
+  </div>
 );
 
-export const DiaryPopupContent: React.FC<DiaryPopupProps> = ({ step }) => {
+export const DiaryPopupContent = ({ step }: DiaryPopupProps): JSX.Element => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [imgLoaded, setImgLoaded] = useState(false);
 
@@ -60,6 +59,7 @@ export const DiaryPopupContent: React.FC<DiaryPopupProps> = ({ step }) => {
   };
 
   return (
+    // @ts-ignore
     <Box sx={{ minWidth: { xs: 180, sm: 300, md: 360 } }}>
       <Typography variant="subtitle2" sx={{ fontWeight: "bold", mb: 0.5, color: LINK_COLOR }}>
         📍 {step.name}

@@ -99,12 +99,12 @@ const ContactPage: React.FC = () => {
   };
 
   return (
-    <Box className="contact-wrapper">
+    <div className="contact-wrapper">
       <Card className="card-contact">
         <Grid container className="contact-grid">
           {/* Left Side: Contact Info */}
           <Grid xs={12} md={5} className="contact-info-section">
-            <Box>
+            <div>
               <Typography variant={isSmallScreen ? "h4" : "h3"} fontWeight="bold" gutterBottom color="text.primary">
                 {translate("contact.letsConnect")}
               </Typography>
@@ -112,35 +112,35 @@ const ContactPage: React.FC = () => {
                 {translate("contact.connectText")}
               </Typography>
 
-              <Box className="contact-info-list">
-                <Box className="contact-info-item">
-                  <Box className="contact-icon-box email">
+              <div className="contact-info-list">
+                <div className="contact-info-item">
+                  <div className="contact-icon-box email">
                     <EmailIcon />
-                  </Box>
+                  </div>
                   <Typography variant="body2" className="contact-link email" component="a" href="mailto:vincevanapeldoorn@gmail.com">
                     vincevanapeldoorn@gmail.com
                   </Typography>
-                </Box>
-                <Box className="contact-info-item">
-                  <Box className="contact-icon-box phone">
+                </div>
+                <div className="contact-info-item">
+                  <div className="contact-icon-box phone">
                      <PhoneIcon />
-                  </Box>
+                  </div>
                   <Typography variant="body2" className="contact-link phone" component="a" href="tel:+31638457836">
                      +31 638457836
                   </Typography>
-                </Box>
-                <Box className="contact-info-item">
-                  <Box className="contact-icon-box location">
+                </div>
+                <div className="contact-info-item">
+                  <div className="contact-icon-box location">
                     <LocationOnIcon />
-                  </Box>
+                  </div>
                   <Typography variant="body2" color="text.primary">
                     {translate("contact.location")}
                   </Typography>
-                </Box>
-              </Box>
-            </Box>
+                </div>
+              </div>
+            </div>
 
-            <Box className="social-links">
+            <div className="social-links">
               <IconButton
                 component="a"
                 href="https://github.com/Vince1510?tab=repositories"
@@ -159,7 +159,7 @@ const ContactPage: React.FC = () => {
               >
                 <LinkedInIcon />
               </IconButton>
-            </Box>
+            </div>
           </Grid>
 
           {/* Right Side: Form */}
@@ -168,7 +168,7 @@ const ContactPage: React.FC = () => {
               {translate("contact.sendMessageTitle")}
             </Typography>
             <form onSubmit={onSubmit} ref={formRef} className="contact-form">
-              <Box className="contact-form-row">
+              <div className="contact-form-row">
                 <TextField
                   label={translate("contact.nameLabel")}
                   name="name"
@@ -198,7 +198,7 @@ const ContactPage: React.FC = () => {
                     ),
                   }}
                 />
-              </Box>
+              </div>
               <TextField
                 label={translate("contact.messageLabel")}
                 name="message"
@@ -209,7 +209,7 @@ const ContactPage: React.FC = () => {
                 required
                 className="message-field"
               />
-              <Box className="submit-container">
+              <div className="submit-container">
                 <Typography className={`submit-result ${success ? 'success' : 'error'}`}>
                   {result}
                 </Typography>
@@ -228,7 +228,7 @@ const ContactPage: React.FC = () => {
                 >
                   {loading ? translate("contact.statusSending") : success ? translate("contact.statusSent") : translate("contact.statusSend")}
                 </Button>
-              </Box>
+              </div>
             </form>
           </Grid>
         </Grid>
@@ -237,7 +237,7 @@ const ContactPage: React.FC = () => {
         <div className="contactanimate1"></div>
         <div className="contactanimate2"></div>
       </Card>
-    </Box>
+    </div>
   );
 };
 

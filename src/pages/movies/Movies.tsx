@@ -15,7 +15,7 @@ import { moviesData } from "../../data/moviesData";
 import { STAR_COLOR } from "../../theme/theme";
 
 // ── Styled components (replaces Movies.scss) ─────────────────────────────────
-const PageContainer = styled(Box)({
+const PageContainer = styled("div")({
   padding: "64px 0",
   minHeight: "100vh",
   display: "flex",
@@ -24,7 +24,7 @@ const PageContainer = styled(Box)({
   position: "relative",
 });
 
-const ContentWrapper = styled(Box)({
+const ContentWrapper = styled("div")({
   maxWidth: 1200,
   width: "100%",
   margin: "0 auto",
@@ -91,12 +91,12 @@ const MoviesPage: React.FC = () => {
                   >
                     {movie.title}
                   </Typography>
-                  <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", gap: 0.5 }}>
+                  <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "4px" }}>
                     <StarIcon sx={{ color: STAR_COLOR, fontSize: "1.2rem" }} />
                     <Typography variant="subtitle1" color="text.secondary" sx={{ fontWeight: 600 }}>
                       {(movie as any).rating}
                     </Typography>
-                  </Box>
+                  </div>
                 </CardContent>
               </MovieCard>
             </Grid>
@@ -104,9 +104,9 @@ const MoviesPage: React.FC = () => {
         </Grid>
 
         {visibleItems < moviesData.length && (
-          <Box ref={observerTarget} sx={{ display: "flex", justifyContent: "center", mt: 6, mb: 2 }}>
+          <div ref={observerTarget} style={{ display: "flex", justifyContent: "center", marginTop: "48px", marginBottom: "16px" }}>
             <CircularProgress />
-          </Box>
+          </div>
         )}
       </ContentWrapper>
     </PageContainer>

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 // Local Imports
 import { SeasonalBackground } from "./SeasonalBackground";
-import { SpaceBackground } from "./SpaceBackground";
+import R3FSpaceBackground from "./R3FSpaceBackground";
 
 interface BackgroundCanvasProps {
   darkMode: boolean;
@@ -14,37 +14,9 @@ const BackgroundCanvas: React.FC<BackgroundCanvasProps> = ({
   activeIndex,
 }) => {
   const seasonalCanvasRef = useRef<HTMLCanvasElement | null>(null);
-  const spaceCanvasRef = useRef<HTMLCanvasElement | null>(null);
   const seasonalRef = useRef<SeasonalBackground | null>(null);
-  const spaceRef = useRef<SpaceBackground | null>(null);
 
-  // Only init the canvas that is actually visible on mount.
-  // SeasonalBackground (23 KB) is deferred until the user first switches to light mode.
-  useEffect(() => {
-    const cCanvas = spaceCanvasRef.current;
-    if (!cCanvas) return;
-
-    const space = new SpaceBackground(cCanvas);
-    spaceRef.current = space;
-    space.init();
-
-    // Immediately init seasonal only if starting in light mode
-    if (!darkMode && seasonalCanvasRef.current) {
-      const seasonal = new SeasonalBackground(seasonalCanvasRef.current);
-      seasonalRef.current = seasonal;
-      seasonal.init();
-    }
-
-    return () => {
-      space.destroy();
-      spaceRef.current = null;
-      seasonalRef.current?.destroy();
-      seasonalRef.current = null;
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // intentionally runs once on mount only
-
-  // Lazy-init SeasonalBackground on first switch to light mode
+  // Lazy-init SeasonalBackground on first switch to light mode or if starting in light mode
   useEffect(() => {
     if (!darkMode && !seasonalRef.current && seasonalCanvasRef.current) {
       const seasonal = new SeasonalBackground(seasonalCanvasRef.current);
@@ -53,18 +25,44 @@ const BackgroundCanvas: React.FC<BackgroundCanvasProps> = ({
       seasonal.setScene(activeIndex);
     }
     seasonalRef.current?.setPaused(darkMode);
-    spaceRef.current?.setPaused(!darkMode);
-  }, [darkMode]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [darkMode, activeIndex]); 
 
   useEffect(() => {
     seasonalRef.current?.setScene(activeIndex);
-    spaceRef.current?.setScene(activeIndex);
   }, [activeIndex]);
+
+  useEffect(() => {
+    return () => {
+      // Cleanup on unmount
+      if (seasonalRef.current) {
+        seasonalRef.current.destroy();
+        seasonalRef.current = null;
+      }
+    };
+  }, []);
 
   return (
     <>
-      <canvas ref={seasonalCanvasRef} className="background-canvas seasonal" />
-      <canvas ref={spaceCanvasRef} className="background-canvas space" />
+      <canvas 
+        ref={seasonalCanvasRef} 
+        className="background-canvas seasonal" 
+        style={{ display: darkMode ? 'none' : 'block' }} 
+      />
+      <div 
+        className="background-canvas space" 
+        style={{ 
+          position: 'fixed', 
+          top: 0, 
+          left: 0, 
+          width: '100vw', 
+          height: '100vh', 
+          zIndex: -1,
+          pointerEvents: 'none',
+          display: !darkMode ? 'none' : 'block' 
+        }}
+      >
+        <R3FSpaceBackground activeIndex={activeIndex} isPaused={!darkMode} />
+      </div>
     </>
   );
 };
