@@ -11,15 +11,19 @@ interface DiaryPopupProps {
   step: PolarStep;
 }
 
+const youtubeTitleSx: any = { fontWeight: "bold", mb: 1, color: LINK_COLOR };
+const youtubeCaptionSx: any = { display: "block", mb: 1 };
+const youtubeBodySx: any = { mb: 2 };
+
 export const YouTubePopupContent = ({ location }: YouTubePopupProps): JSX.Element => (
   <div style={{ minWidth: 300 }}>
-    <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1, color: LINK_COLOR }}>
+    <Typography variant="h6" sx={youtubeTitleSx}>
       {location.title}
     </Typography>
-    <Typography variant="caption" color="text.secondary" sx={{ display: "block", mb: 1 }}>
+    <Typography variant="caption" color="text.secondary" sx={youtubeCaptionSx}>
       {location.lat}, {location.lng}
     </Typography>
-    <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+    <Typography variant="body2" color="text.secondary" sx={youtubeBodySx}>
       {location.description}
     </Typography>
     {location.iframe?.href && (
@@ -35,6 +39,62 @@ export const YouTubePopupContent = ({ location }: YouTubePopupProps): JSX.Elemen
     )}
   </div>
 );
+
+const diaryBoxSx: any = { minWidth: { xs: 180, sm: 300, md: 360 } };
+const diaryTitleSx: any = { fontWeight: "bold", mb: 0.5, color: LINK_COLOR };
+const diaryCaptionSx: any = { display: "block" };
+const imgLoadingSx: any = { position: "absolute" };
+
+const prevButtonSx: any = {
+  position: "absolute",
+  left: 8,
+  top: "50%",
+  transform: "translateY(-50%)",
+  bgcolor: "rgba(0,0,0,0.6)",
+  color: "#fff",
+  border: "none",
+  borderRadius: "50%",
+  width: 28,
+  height: 28,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  cursor: "pointer",
+  transition: "background-color 0.2s, transform 0.2s",
+  zIndex: 2,
+  fontSize: "16px",
+  fontWeight: "bold",
+  lineHeight: 1,
+  "&:hover": {
+    bgcolor: "rgba(0,0,0,0.8)",
+    transform: "translateY(-50%) scale(1.1)",
+  },
+  "&:active": {
+    transform: "translateY(-50%) scale(0.95)",
+  },
+};
+
+const nextButtonSx: any = {
+  ...prevButtonSx,
+  left: undefined,
+  right: 8,
+};
+
+const counterSx: any = {
+  position: "absolute",
+  bottom: 8,
+  left: "50%",
+  transform: "translateX(-50%)",
+  bgcolor: "rgba(0,0,0,0.65)",
+  color: "#fff",
+  px: 1,
+  py: 0.2,
+  borderRadius: 1.5,
+  fontSize: "0.65rem",
+  fontWeight: "medium",
+  pointerEvents: "none",
+  zIndex: 2,
+};
 
 export const DiaryPopupContent = ({ step }: DiaryPopupProps): JSX.Element => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -58,51 +118,53 @@ export const DiaryPopupContent = ({ step }: DiaryPopupProps): JSX.Element => {
     setActiveImageIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
   };
 
+  const imgContainerSx: any = {
+    mt: 1,
+    borderRadius: 2,
+    overflow: "hidden",
+    position: "relative",
+    minHeight: imgLoaded ? "auto" : 120,
+    maxHeight: { xs: "200px", sm: "340px", md: "460px" },
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0,0,0,0.05)",
+  };
+
+  const imgElementSx: any = {
+    maxWidth: "100%",
+    maxHeight: { xs: "200px", sm: "340px", md: "460px" },
+    width: "auto",
+    height: "auto",
+    objectFit: "contain",
+    display: imgLoaded ? "block" : "none",
+  };
+
   return (
     // @ts-ignore
-    <Box sx={{ minWidth: { xs: 180, sm: 300, md: 360 } }}>
-      <Typography variant="subtitle2" sx={{ fontWeight: "bold", mb: 0.5, color: LINK_COLOR }}>
+    <Box sx={diaryBoxSx}>
+      <Typography variant="subtitle2" sx={diaryTitleSx}>
         📍 {step.name}
       </Typography>
-      <Typography variant="caption" color="text.secondary" sx={{ display: "block" }}>
+      <Typography variant="caption" color="text.secondary" sx={diaryCaptionSx}>
         {step.date}
       </Typography>
       <Typography
         variant="caption"
         color="text.secondary"
-        sx={{ display: "block", mb: images.length > 0 ? 1 : 0 }}
+        sx={{ display: "block", mb: images.length > 0 ? 1 : 0 } as any}
       >
         {step.lat}, {step.lng}
       </Typography>
       {images.length > 0 && (
-        <Box
-          sx={{
-            mt: 1,
-            borderRadius: 2,
-            overflow: "hidden",
-            position: "relative",
-            minHeight: imgLoaded ? "auto" : 120,
-            maxHeight: { xs: "200px", sm: "340px", md: "460px" },
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "rgba(0,0,0,0.05)",
-          }}
-        >
-          {!imgLoaded && <CircularProgress size={24} sx={{ position: "absolute" }} />}
+        <Box sx={imgContainerSx}>
+          {!imgLoaded && <CircularProgress size={24} sx={imgLoadingSx} />}
           <Box
             component="img"
             src={images[activeImageIndex]}
             alt={`${step.name} - ${activeImageIndex + 1}`}
             onLoad={() => setImgLoaded(true)}
-            sx={{
-              maxWidth: "100%",
-              maxHeight: { xs: "200px", sm: "340px", md: "460px" },
-              width: "auto",
-              height: "auto",
-              objectFit: "contain",
-              display: imgLoaded ? "block" : "none",
-            }}
+            sx={imgElementSx}
           />
 
           {images.length > 1 && (
@@ -111,34 +173,7 @@ export const DiaryPopupContent = ({ step }: DiaryPopupProps): JSX.Element => {
               <Box
                 component="button"
                 onClick={handlePrev}
-                sx={{
-                  position: "absolute",
-                  left: 8,
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  bgcolor: "rgba(0,0,0,0.6)",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: "50%",
-                  width: 28,
-                  height: 28,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  transition: "background-color 0.2s, transform 0.2s",
-                  zIndex: 2,
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  lineHeight: 1,
-                  "&:hover": {
-                    bgcolor: "rgba(0,0,0,0.8)",
-                    transform: "translateY(-50%) scale(1.1)",
-                  },
-                  "&:active": {
-                    transform: "translateY(-50%) scale(0.95)",
-                  },
-                }}
+                sx={prevButtonSx}
               >
                 ‹
               </Box>
@@ -147,34 +182,7 @@ export const DiaryPopupContent = ({ step }: DiaryPopupProps): JSX.Element => {
               <Box
                 component="button"
                 onClick={handleNext}
-                sx={{
-                  position: "absolute",
-                  right: 8,
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  bgcolor: "rgba(0,0,0,0.6)",
-                  color: "#fff",
-                  border: "none",
-                  borderRadius: "50%",
-                  width: 28,
-                  height: 28,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  cursor: "pointer",
-                  transition: "background-color 0.2s, transform 0.2s",
-                  zIndex: 2,
-                  fontSize: "16px",
-                  fontWeight: "bold",
-                  lineHeight: 1,
-                  "&:hover": {
-                    bgcolor: "rgba(0,0,0,0.8)",
-                    transform: "translateY(-50%) scale(1.1)",
-                  },
-                  "&:active": {
-                    transform: "translateY(-50%) scale(0.95)",
-                  },
-                }}
+                sx={nextButtonSx}
               >
                 ›
               </Box>
@@ -182,21 +190,7 @@ export const DiaryPopupContent = ({ step }: DiaryPopupProps): JSX.Element => {
               {/* Counter indicator */}
               <Typography
                 variant="caption"
-                sx={{
-                  position: "absolute",
-                  bottom: 8,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  bgcolor: "rgba(0,0,0,0.65)",
-                  color: "#fff",
-                  px: 1,
-                  py: 0.2,
-                  borderRadius: 1.5,
-                  fontSize: "0.65rem",
-                  fontWeight: "medium",
-                  pointerEvents: "none",
-                  zIndex: 2,
-                }}
+                sx={counterSx}
               >
                 {activeImageIndex + 1} / {images.length}
               </Typography>

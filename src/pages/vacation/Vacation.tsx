@@ -11,6 +11,15 @@ const fadeInUp = keyframes`
   to   { opacity: 1; transform: translateY(0); }
 `;
 
+const containerSx: any = {
+  padding: "64px 0",
+  minHeight: "100vh",
+  display: "flex",
+  flexDirection: "column",
+  zIndex: 10,
+  position: "relative",
+};
+
 const VacationPage: React.FC = () => {
   const { translate } = useLanguage();
   const [selectedVacation, setSelectedVacation] = useState<Vacation | null>(
@@ -18,28 +27,12 @@ const VacationPage: React.FC = () => {
   );
 
   return (
-    <Box
-      className="ui-fade visible"
-      sx={{
-        padding: "64px 0",
-        minHeight: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        zIndex: 10,
-        position: "relative",
-      }}
-    >
-      <Box
-        sx={{
-          maxWidth: 1200,
-          width: "100%",
-          margin: "0 auto",
-          padding: "0 16px",
-        }}
-      >
+    <Box>
+      <Box>
         <Typography
           variant="h2"
           component="h1"
+          // @ts-ignore
           sx={{
             textAlign: "center",
             fontWeight: "bold",

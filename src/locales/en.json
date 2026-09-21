@@ -97,11 +97,12 @@
     "viewMap": "View Map →",
     "items": {
       "londen": {
-        "location": "(Upcoming) London",
+        "location": "London",
+
         "description": "A beautiful trip to London."
       },
       "malaysia": {
-        "location": "(Upcoming) Malaysia",
+        "location": "Malaysia",
         "description": "A beautiful trip to Malaysia."
       },
       "mallorca": {

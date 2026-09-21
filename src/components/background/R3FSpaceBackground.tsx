@@ -294,6 +294,7 @@ const Planet = ({
           transparent
           opacity={0.12}
           side={THREE.BackSide}
+          depthWrite={false}
         />
       </mesh>
 
@@ -370,6 +371,7 @@ const Stars = ({ isPaused }: { isPaused: boolean }) => {
         size={0.35}
         vertexColors
         transparent
+        depthWrite={false}
         opacity={0.9}
         sizeAttenuation
       />
@@ -546,9 +548,11 @@ const R3FSpaceBackground: React.FC<R3FSpaceBackgroundProps> = ({
       className="background-canvas space"
       style={{ display: isPaused ? "none" : "block" }} // Hide or manage in parent
       camera={{ fov: 60, near: 0.1, far: 1000 }}
+      dpr={[1, 1.5]}
       gl={{
         alpha: true,
-        antialias: true,
+        antialias: false,
+        powerPreference: "high-performance",
         toneMapping: THREE.ACESFilmicToneMapping,
         toneMappingExposure: 1.1,
       }}

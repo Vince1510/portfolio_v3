@@ -1,28 +1,27 @@
 import React from "react";
 import { Card, CardActionArea, CardMedia, CardContent, Typography } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import { Vacation } from "../../../data/polarstepsData";
 import { useLanguage } from "../../../context/LanguageContext";
-
-const StyledCard = styled(Card)({
-  height: "100%",
-  transition: "transform 0.3s ease, box-shadow 0.3s ease",
-  "&:hover": {
-    transform: "translateY(-10px)",
-    boxShadow: "0 20px 40px rgba(123,224,139,0.25)",
-  },
-});
 
 interface VacationCardProps {
   vacation: Vacation;
   onClick: (vacation: Vacation) => void;
 }
 
+const cardSx: any = {
+  height: "100%",
+  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+  "&:hover": {
+    transform: "translateY(-10px)",
+    boxShadow: "0 20px 40px rgba(123,224,139,0.25)",
+  },
+};
+
 const VacationCard: React.FC<VacationCardProps> = ({ vacation, onClick }) => {
   const { translate } = useLanguage();
 
   return (
-    <StyledCard>
+    <Card sx={cardSx}>
       <CardActionArea onClick={() => onClick(vacation)} sx={{ height: "100%" }}>
         <CardMedia
           component="img"
@@ -49,7 +48,7 @@ const VacationCard: React.FC<VacationCardProps> = ({ vacation, onClick }) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-    </StyledCard>
+    </Card>
   );
 };
 

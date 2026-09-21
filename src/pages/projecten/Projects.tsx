@@ -1,7 +1,4 @@
 import * as React from "react";
-import { useRef, useState, useEffect, useCallback } from "react";
-import gsap from "gsap";
-import ScrollToPlugin from "gsap/ScrollToPlugin";
 
 // MUI Imports
 import Typography from "@mui/material/Typography";
@@ -22,8 +19,7 @@ import witgoedImg from "../../assets/images/Witgoed-Hellevoetsluis.png";
 import krausImg from "../../assets/images/Teamkraus.png";
 import "./Projects.scss";
 
-// Register ScrollToPlugin
-gsap.registerPlugin(ScrollToPlugin);
+// Local Imports
 
 interface ProjectData {
   title: string;
@@ -101,118 +97,6 @@ const projects: ProjectData[] = [
 
 export default function Project() {
   const { translate } = useLanguage();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  // Drag state
-  const isDragging = useRef(false);
-  const startX = useRef(0);
-  const scrollLeftStart = useRef(0);
-  const isAutoScrolling = useRef(false);
-
-  // 1. DYNAMIC CENTERING PADDING
-  // We need to add padding to the container so that the first and last cards can be centered.
-  const updatePadding = useCallback(() => {
-    const track = trackRef.current;
-    if (!track) return;
-    const firstCard = track.querySelector(".carousel-card") as HTMLElement;
-    if (!firstCard) return;
-    
-    // Total padding to center a card: (containerWidth - cardWidth) / 2
-    const padding = (track.clientWidth - firstCard.offsetWidth) / 2;
-    track.style.paddingLeft = `${padding}px`;
-    track.style.paddingRight = `${padding}px`;
-  }, []);
-
-  useEffect(() => {
-    updatePadding();
-    window.addEventListener("resize", updatePadding);
-    return () => window.removeEventListener("resize", updatePadding);
-  }, [updatePadding]);
-
-  // 2. INTERSECTION OBSERVER FOR ACTIVE INDEX
-  // Highly performant way to track which card is currently centered
-  useEffect(() => {
-    const track = trackRef.current;
-    if (!track) return;
-
-    const observerOption = {
-      root: track,
-      threshold: 0.6, // Fire when 60% of the card is visible
-      rootMargin: "0px -25% 0px -25%" // Focus on the center area
-    };
-
-    const callback: IntersectionObserverCallback = (entries) => {
-      if (isAutoScrolling.current) return;
-      
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const index = cardRefs.current.indexOf(entry.target as HTMLDivElement);
-          if (index !== -1) {
-            setActiveIndex(index);
-          }
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, observerOption);
-    cardRefs.current.forEach((card) => {
-      if (card) observer.observe(card);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  // 3. ROBUST NAVIGATION
-  const goTo = (index: number) => {
-    const track = trackRef.current;
-    const card = cardRefs.current[index];
-    if (!track || !card) return;
-
-    isAutoScrolling.current = true;
-    setActiveIndex(index);
-    
-    // Temporarily disable snap to allow GSAP to scroll smoothly
-    track.style.scrollSnapType = "none";
-
-    const targetOffset = card.offsetLeft - (track.clientWidth - card.offsetWidth) / 2;
-
-    gsap.to(track, {
-      scrollTo: { x: targetOffset },
-      duration: 0.8,
-      ease: "power2.inOut",
-      onComplete: () => {
-        isAutoScrolling.current = false;
-        track.style.scrollSnapType = "x mandatory";
-      }
-    });
-  };
-
-  // 4. MOUSE DRAG HELPER
-  const onMouseDown = (e: React.MouseEvent) => {
-    isDragging.current = true;
-    startX.current = e.pageX - (trackRef.current?.offsetLeft || 0);
-    scrollLeftStart.current = trackRef.current?.scrollLeft || 0;
-    if (trackRef.current) {
-      trackRef.current.style.scrollSnapType = "none";
-    }
-  };
-
-  const onMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging.current || !trackRef.current) return;
-    e.preventDefault();
-    const x = e.pageX - trackRef.current.offsetLeft;
-    const walk = (x - startX.current) * 1.5; // multiplier for speed
-    trackRef.current.scrollLeft = scrollLeftStart.current - walk;
-  };
-
-  const onMouseUp = () => {
-    isDragging.current = false;
-    if (trackRef.current) {
-      trackRef.current.style.scrollSnapType = "x mandatory";
-    }
-  };
 
   return (
     <div className="projects-wrapper">
@@ -224,36 +108,26 @@ export default function Project() {
         {translate("projects.heading")}
       </Typography>
 
-      <div
-        ref={trackRef}
-        className="carousel-track"
-        onMouseDown={onMouseDown}
-        onMouseMove={onMouseMove}
-        onMouseUp={onMouseUp}
-        onMouseLeave={onMouseUp}
-      >
+      <div className="projects-grid">
         {projects.map((project, index) => {
-          const isActive = index === activeIndex;
           return (
             <div
               key={index}
-              ref={(el) => (cardRefs.current[index] = el)}
-              className={`carousel-card ${isActive ? "carousel-card--active" : ""}`}
-              onClick={() => goTo(index)}
+              className="project-card"
             >
-              <div className="carousel-card-media">
+              <div className="project-card-media">
                 <img src={project.mediaUrl} alt={project.title} draggable={false} />
-                <div className="carousel-card-glow" />
+                <div className="project-card-glow" />
               </div>
 
-              <div className="carousel-card-info">
-                <div className="carousel-card-tags">
+              <div className="project-card-info">
+                <div className="project-card-tags">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="carousel-tag">{tag}</span>
+                    <span key={tag} className="project-tag">{tag}</span>
                   ))}
                 </div>
-                <h2 className="carousel-card-title">{project.title}</h2>
-                <p className="carousel-card-desc">{translate(`projects.items.${index}.description`)}</p>
+                <h2 className="project-card-title">{project.title}</h2>
+                <p className="project-card-desc">{translate(`projects.items.${index}.description`)}</p>
                 <Button
                   variant="contained"
                   size="small"
@@ -261,7 +135,6 @@ export default function Project() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
                   className="project-link-button"
                 >
                   {translate("projects.viewProject")}
@@ -271,21 +144,6 @@ export default function Project() {
           );
         })}
       </div>
-
-      <div className="carousel-dots">
-        {projects.map((_, index) => (
-          <button
-            key={index}
-            className={`carousel-dot ${index === activeIndex ? "carousel-dot--active" : ""}`}
-            onClick={() => goTo(index)}
-            aria-label={translate("projects.ariaLabel.goToProject", { index: index + 1 })}
-          />
-        ))}
-      </div>
-
-      <p className="carousel-counter">
-        {activeIndex + 1} / {projects.length}
-      </p>
     </div>
   );
 }
