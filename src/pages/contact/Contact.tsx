@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import confetti from "canvas-confetti";
 
-// MUI Imports
+// MUI Imports (Grid komt nu direct uit @mui/material in v6)
 import {
   Card,
   Typography,
@@ -11,8 +11,8 @@ import {
   Box,
   IconButton,
   CircularProgress,
+  Grid,
 } from "@mui/material";
-import Grid from "@mui/material/Unstable_Grid2";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -44,11 +44,17 @@ const ContactPage: React.FC = () => {
   const fireConfetti = () => {
     const duration = 3 * 1000;
     const animationEnd = Date.now() + duration;
-    const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+    const defaults = {
+      startVelocity: 30,
+      spread: 360,
+      ticks: 60,
+      zIndex: 9999,
+    };
 
-    const randomInRange = (min: number, max: number) => Math.random() * (max - min) + min;
+    const randomInRange = (min: number, max: number) =>
+      Math.random() * (max - min) + min;
 
-    const interval: any = setInterval(function() {
+    const interval: any = setInterval(function () {
       const timeLeft = animationEnd - Date.now();
 
       if (timeLeft <= 0) {
@@ -56,8 +62,16 @@ const ContactPage: React.FC = () => {
       }
 
       const particleCount = 50 * (timeLeft / duration);
-      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 } });
-      confetti({ ...defaults, particleCount, origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 } });
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+      });
+      confetti({
+        ...defaults,
+        particleCount,
+        origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+      });
     }, 250);
   };
 
@@ -103,12 +117,21 @@ const ContactPage: React.FC = () => {
       <Card className="card-contact">
         <Grid container className="contact-grid">
           {/* Left Side: Contact Info */}
-          <Grid xs={12} md={5} className="contact-info-section">
+          <Grid>
             <div>
-              <Typography variant={isSmallScreen ? "h4" : "h3"} fontWeight="bold" gutterBottom color="text.primary">
+              <Typography
+                variant={isSmallScreen ? "h4" : "h3"}
+                fontWeight="bold"
+                gutterBottom
+                color="text.primary"
+              >
                 {translate("contact.letsConnect")}
               </Typography>
-              <Typography variant="body2" color="text.secondary" className="contact-connect-text">
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                className="contact-connect-text"
+              >
                 {translate("contact.connectText")}
               </Typography>
 
@@ -117,16 +140,26 @@ const ContactPage: React.FC = () => {
                   <div className="contact-icon-box email">
                     <EmailIcon />
                   </div>
-                  <Typography variant="body2" className="contact-link email" component="a" href="mailto:vincevanapeldoorn@gmail.com">
+                  <Typography
+                    variant="body2"
+                    className="contact-link email"
+                    component="a"
+                    href="mailto:vincevanapeldoorn@gmail.com"
+                  >
                     vincevanapeldoorn@gmail.com
                   </Typography>
                 </div>
                 <div className="contact-info-item">
                   <div className="contact-icon-box phone">
-                     <PhoneIcon />
+                    <PhoneIcon />
                   </div>
-                  <Typography variant="body2" className="contact-link phone" component="a" href="tel:+31638457836">
-                     +31 638457836
+                  <Typography
+                    variant="body2"
+                    className="contact-link phone"
+                    component="a"
+                    href="tel:+31638457836"
+                  >
+                    +31 638457836
                   </Typography>
                 </div>
                 <div className="contact-info-item">
@@ -163,8 +196,14 @@ const ContactPage: React.FC = () => {
           </Grid>
 
           {/* Right Side: Form */}
-          <Grid xs={12} md={7} className="contact-form-section">
-            <Typography variant="h5" fontWeight="bold" gutterBottom color="text.primary" className="form-title">
+          <Grid>
+            <Typography
+              variant="h5"
+              fontWeight="bold"
+              gutterBottom
+              color="text.primary"
+              className="form-title"
+            >
               {translate("contact.sendMessageTitle")}
             </Typography>
             <form onSubmit={onSubmit} ref={formRef} className="contact-form">
@@ -210,7 +249,9 @@ const ContactPage: React.FC = () => {
                 className="message-field"
               />
               <div className="submit-container">
-                <Typography className={`submit-result ${success ? 'success' : 'error'}`}>
+                <Typography
+                  className={`submit-result ${success ? "success" : "error"}`}
+                >
                   {result}
                 </Typography>
                 <Button
@@ -222,17 +263,23 @@ const ContactPage: React.FC = () => {
                       <CircularProgress size={20} color="inherit" />
                     ) : success ? (
                       <CheckCircleIcon />
-                    ) : <SendIcon />
+                    ) : (
+                      <SendIcon />
+                    )
                   }
-                  className={`submit-button ${loading ? 'loading' : success ? 'success' : 'default'}`}
+                  className={`submit-button ${loading ? "loading" : success ? "success" : "default"}`}
                 >
-                  {loading ? translate("contact.statusSending") : success ? translate("contact.statusSent") : translate("contact.statusSend")}
+                  {loading
+                    ? translate("contact.statusSending")
+                    : success
+                      ? translate("contact.statusSent")
+                      : translate("contact.statusSend")}
                 </Button>
               </div>
             </form>
           </Grid>
         </Grid>
-        
+
         {/* Background ambient orbs */}
         <div className="contactanimate1"></div>
         <div className="contactanimate2"></div>
